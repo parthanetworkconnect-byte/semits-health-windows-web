@@ -1,0 +1,107 @@
+﻿id,name,category
+hc001,High blood pressure (hypertension),Cardiovascular & Circulation
+hc002,Low blood pressure,Cardiovascular & Circulation
+hc003,High LDL cholesterol,Cardiovascular & Circulation
+hc004,High triglycerides,Cardiovascular & Circulation
+hc005,Coronary artery disease,Cardiovascular & Circulation
+hc006,Heart failure,Cardiovascular & Circulation
+hc007,Atrial fibrillation,Cardiovascular & Circulation
+hc008,Previous stroke / TIA,Cardiovascular & Circulation
+hc009,Peripheral artery disease,Cardiovascular & Circulation
+hc010,Sodium restriction,Cardiovascular & Circulation
+hc011,Fluid restriction,Cardiovascular & Circulation
+hc012,Anticoagulant treatment,Cardiovascular & Circulation
+hc013,Prediabetes,Diabetes & Metabolic
+hc014,Type 1 diabetes,Diabetes & Metabolic
+hc015,Type 2 diabetes,Diabetes & Metabolic
+hc016,Gestational diabetes,Diabetes & Metabolic
+hc017,Insulin resistance,Diabetes & Metabolic
+hc018,Metabolic syndrome,Diabetes & Metabolic
+hc019,Weight management,Diabetes & Metabolic
+hc020,Underweight / weight gain,Diabetes & Metabolic
+hc021,PCOS,Diabetes & Metabolic
+hc022,Hypoglycaemia,Diabetes & Metabolic
+hc023,High blood glucose,Diabetes & Metabolic
+hc024,Chronic kidney disease,"Kidney, Liver & Digestive"
+hc025,Dialysis nutrition,"Kidney, Liver & Digestive"
+hc026,Kidney stones,"Kidney, Liver & Digestive"
+hc027,High potassium,"Kidney, Liver & Digestive"
+hc028,Low potassium,"Kidney, Liver & Digestive"
+hc029,High phosphate,"Kidney, Liver & Digestive"
+hc030,Fatty liver (MASLD),"Kidney, Liver & Digestive"
+hc031,Cirrhosis,"Kidney, Liver & Digestive"
+hc032,Acid reflux (GERD),"Kidney, Liver & Digestive"
+hc033,Irritable bowel syndrome (IBS),"Kidney, Liver & Digestive"
+hc034,Constipation,"Kidney, Liver & Digestive"
+hc035,Diarrhoea,"Kidney, Liver & Digestive"
+hc036,Inflammatory bowel disease,"Kidney, Liver & Digestive"
+hc037,Coeliac disease,"Kidney, Liver & Digestive"
+hc038,Gallbladder disease,"Kidney, Liver & Digestive"
+hc039,Pancreatitis,"Kidney, Liver & Digestive"
+hc040,Diverticular disease,"Kidney, Liver & Digestive"
+hc041,Peanut allergy,Allergies & Intolerances
+hc042,Tree nut allergy,Allergies & Intolerances
+hc043,Milk allergy,Allergies & Intolerances
+hc044,Egg allergy,Allergies & Intolerances
+hc045,Fish allergy,Allergies & Intolerances
+hc046,Shellfish allergy,Allergies & Intolerances
+hc047,Sesame allergy,Allergies & Intolerances
+hc048,Soy allergy,Allergies & Intolerances
+hc049,Wheat allergy,Allergies & Intolerances
+hc050,Lactose intolerance,Allergies & Intolerances
+hc051,Fructose malabsorption,Allergies & Intolerances
+hc052,Histamine-related food reactions,Allergies & Intolerances
+hc053,FODMAP sensitivity,Allergies & Intolerances
+hc054,Gluten avoidance without coeliac diagnosis,Allergies & Intolerances
+hc055,Hypothyroidism,"Endocrine, Bone & Deficiencies"
+hc056,Hyperthyroidism,"Endocrine, Bone & Deficiencies"
+hc057,Hashimoto thyroiditis,"Endocrine, Bone & Deficiencies"
+hc058,Graves disease,"Endocrine, Bone & Deficiencies"
+hc059,Osteoporosis,"Endocrine, Bone & Deficiencies"
+hc060,Osteopenia,"Endocrine, Bone & Deficiencies"
+hc061,Vitamin D deficiency,"Endocrine, Bone & Deficiencies"
+hc062,Vitamin B12 deficiency,"Endocrine, Bone & Deficiencies"
+hc063,Iron deficiency,"Endocrine, Bone & Deficiencies"
+hc064,Iron deficiency anaemia,"Endocrine, Bone & Deficiencies"
+hc065,Folate deficiency,"Endocrine, Bone & Deficiencies"
+hc066,Gout / high uric acid,"Endocrine, Bone & Deficiencies"
+hc067,Haemochromatosis,"Endocrine, Bone & Deficiencies"
+hc068,Pregnancy,Life Stage & Specific Needs
+hc069,Breastfeeding,Life Stage & Specific Needs
+hc070,Child nutrition,Life Stage & Specific Needs
+hc071,Adolescent nutrition,Life Stage & Specific Needs
+hc072,Older-adult nutrition,Life Stage & Specific Needs
+hc073,Menopause,Life Stage & Specific Needs
+hc074,Perimenopause,Life Stage & Specific Needs
+hc075,Sports performance,Life Stage & Specific Needs
+hc076,Muscle building,Life Stage & Specific Needs
+hc077,Post-surgery recovery,Life Stage & Specific Needs
+hc078,Cancer-treatment nutrition support,Life Stage & Specific Needs
+hc079,Swallowing difficulties,Life Stage & Specific Needs
+hc080,Pressure injury nutrition,Life Stage & Specific Needs
+hc081,Shift-worker meals,Life Stage & Specific Needs
+hc082,Insomnia,"Brain, Sleep & Wellbeing"
+hc083,Sleep improvement,"Brain, Sleep & Wellbeing"
+hc084,Migraine food triggers,"Brain, Sleep & Wellbeing"
+hc085,Cognitive health,"Brain, Sleep & Wellbeing"
+hc086,Depression nutrition support,"Brain, Sleep & Wellbeing"
+hc087,Anxiety nutrition support,"Brain, Sleep & Wellbeing"
+hc088,ADHD-related nutrition needs,"Brain, Sleep & Wellbeing"
+hc089,Dementia nutrition support,"Brain, Sleep & Wellbeing"
+hc090,Fatigue,"Brain, Sleep & Wellbeing"
+hc091,Vegetarian diet,Diet Preferences & Lifestyle Goals
+hc092,Vegan diet,Diet Preferences & Lifestyle Goals
+hc093,Halal preferences,Diet Preferences & Lifestyle Goals
+hc094,Kosher preferences,Diet Preferences & Lifestyle Goals
+hc095,Increase dietary fibre,Diet Preferences & Lifestyle Goals
+hc096,Reduce added sugar,Diet Preferences & Lifestyle Goals
+hc097,Reduce sodium,Diet Preferences & Lifestyle Goals
+hc098,Increase protein,Diet Preferences & Lifestyle Goals
+hc099,Hydration,Diet Preferences & Lifestyle Goals
+hc100,Improve diet quality,Diet Preferences & Lifestyle Goals
+hc101,Healthy ageing / longevity,Diet Preferences & Lifestyle Goals
+hc102,Heart-healthy eating,Diet Preferences & Lifestyle Goals
+hc103,Better gut regularity,Diet Preferences & Lifestyle Goals
+hc104,Improve activity recovery,Diet Preferences & Lifestyle Goals
+hc105,Weight maintenance,Diet Preferences & Lifestyle Goals
+hc106,Sustainable food choices,Diet Preferences & Lifestyle Goals

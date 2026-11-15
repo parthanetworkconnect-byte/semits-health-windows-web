@@ -1,0 +1,517 @@
+﻿id,name,category,research_status,pdf_path,has_numeric_source_values
+1,Apple,Fruits,Imported unverified source draft,Food_PDFs/001_Apple_Food_Profile.pdf,True
+2,Banana,Fruits,Imported unverified source draft,Food_PDFs/002_Banana_Food_Profile.pdf,True
+3,Orange,Fruits,Imported unverified source draft,Food_PDFs/003_Orange_Food_Profile.pdf,True
+4,Mango,Fruits,Imported unverified source draft,Food_PDFs/004_Mango_Food_Profile.pdf,True
+5,Blueberry,Fruits,Imported unverified source draft,Food_PDFs/005_Blueberry_Food_Profile.pdf,True
+6,Strawberry,Fruits,Imported unverified source draft,Food_PDFs/006_Strawberry_Food_Profile.pdf,True
+7,Grapes,Fruits,Imported unverified source draft,Food_PDFs/007_Grapes_Food_Profile.pdf,True
+8,Pineapple,Fruits,Imported unverified source draft,Food_PDFs/008_Pineapple_Food_Profile.pdf,True
+9,Papaya,Fruits,Imported unverified source draft,Food_PDFs/009_Papaya_Food_Profile.pdf,True
+10,Avocado,Fruits,Imported unverified source draft,Food_PDFs/010_Avocado_Food_Profile.pdf,True
+11,Pomegranate,Fruits,Imported unverified source draft,Food_PDFs/011_Pomegranate_Food_Profile.pdf,True
+12,Watermelon,Fruits,Imported unverified source draft,Food_PDFs/012_Watermelon_Food_Profile.pdf,True
+13,Kiwifruit,Fruits,Imported unverified source draft,Food_PDFs/013_Kiwifruit_Food_Profile.pdf,True
+14,Date,Fruits,Imported unverified source draft,Food_PDFs/014_Date_Food_Profile.pdf,True
+15,Lemon,Fruits,Imported unverified source draft,Food_PDFs/015_Lemon_Food_Profile.pdf,True
+16,Coconut,Fruits,Imported unverified source draft,Food_PDFs/016_Coconut_Food_Profile.pdf,True
+17,Guava,Fruits,Imported unverified source draft,Food_PDFs/017_Guava_Food_Profile.pdf,True
+18,Jackfruit,Fruits,Imported unverified source draft,Food_PDFs/018_Jackfruit_Food_Profile.pdf,True
+19,Spinach,Vegetables,Imported unverified source draft,Food_PDFs/019_Spinach_Food_Profile.pdf,True
+20,Broccoli,Vegetables,Imported unverified source draft,Food_PDFs/020_Broccoli_Food_Profile.pdf,True
+21,Carrot,Vegetables,Imported unverified source draft,Food_PDFs/021_Carrot_Food_Profile.pdf,True
+22,Tomato,Vegetables,Imported unverified source draft,Food_PDFs/022_Tomato_Food_Profile.pdf,True
+23,Potato,Vegetables,Imported unverified source draft,Food_PDFs/023_Potato_Food_Profile.pdf,True
+24,Sweet Potato,Vegetables,Imported unverified source draft,Food_PDFs/024_Sweet_Potato_Food_Profile.pdf,True
+25,Onion,Vegetables,Imported unverified source draft,Food_PDFs/025_Onion_Food_Profile.pdf,True
+26,Garlic,Vegetables,Imported unverified source draft,Food_PDFs/026_Garlic_Food_Profile.pdf,True
+27,Kale,Vegetables,Imported unverified source draft,Food_PDFs/027_Kale_Food_Profile.pdf,True
+28,Cabbage,Vegetables,Imported unverified source draft,Food_PDFs/028_Cabbage_Food_Profile.pdf,True
+29,Cauliflower,Vegetables,Imported unverified source draft,Food_PDFs/029_Cauliflower_Food_Profile.pdf,True
+30,Beetroot,Vegetables,Imported unverified source draft,Food_PDFs/030_Beetroot_Food_Profile.pdf,True
+31,Cucumber,Vegetables,Imported unverified source draft,Food_PDFs/031_Cucumber_Food_Profile.pdf,True
+32,Red Bell Pepper,Vegetables,Imported unverified source draft,Food_PDFs/032_Red_Bell_Pepper_Food_Profile.pdf,True
+33,Pumpkin,Vegetables,Imported unverified source draft,Food_PDFs/033_Pumpkin_Food_Profile.pdf,True
+34,Eggplant (Aubergine),Vegetables,Imported unverified source draft,Food_PDFs/034_Eggplant_Aubergine_Food_Profile.pdf,True
+35,Okra,Vegetables,Imported unverified source draft,Food_PDFs/035_Okra_Food_Profile.pdf,True
+36,Bitter Gourd (Bitter Melon),Vegetables,Imported unverified source draft,Food_PDFs/036_Bitter_Gourd_Bitter_Melon_Food_Profile.pdf,True
+37,Asparagus,Vegetables,Imported unverified source draft,Food_PDFs/037_Asparagus_Food_Profile.pdf,True
+38,Green Peas,Vegetables,Imported unverified source draft,Food_PDFs/038_Green_Peas_Food_Profile.pdf,True
+39,Beef (lean),Meat,Imported unverified source draft,Food_PDFs/039_Beef_lean_Food_Profile.pdf,True
+40,Lamb,Meat,Imported unverified source draft,Food_PDFs/040_Lamb_Food_Profile.pdf,True
+41,Pork (loin),Meat,Imported unverified source draft,Food_PDFs/041_Pork_loin_Food_Profile.pdf,True
+42,Goat,Meat,Imported unverified source draft,Food_PDFs/042_Goat_Food_Profile.pdf,True
+43,Venison (Deer),Meat,Imported unverified source draft,Food_PDFs/043_Venison_Deer_Food_Profile.pdf,True
+44,Beef Liver,Meat,Imported unverified source draft,Food_PDFs/044_Beef_Liver_Food_Profile.pdf,True
+45,Bacon and Cured Meats,Meat,Imported unverified source draft,Food_PDFs/045_Bacon_and_Cured_Meats_Food_Profile.pdf,True
+46,Chicken Breast,Poultry,Imported unverified source draft,Food_PDFs/046_Chicken_Breast_Food_Profile.pdf,True
+47,Chicken Thigh,Poultry,Imported unverified source draft,Food_PDFs/047_Chicken_Thigh_Food_Profile.pdf,True
+48,Turkey Breast,Poultry,Imported unverified source draft,Food_PDFs/048_Turkey_Breast_Food_Profile.pdf,True
+49,Duck,Poultry,Imported unverified source draft,Food_PDFs/049_Duck_Food_Profile.pdf,True
+50,Quail,Poultry,Imported unverified source draft,Food_PDFs/050_Quail_Food_Profile.pdf,True
+51,Goose,Poultry,Imported unverified source draft,Food_PDFs/051_Goose_Food_Profile.pdf,True
+52,Salmon,Fish & Seafood,Imported unverified source draft,Food_PDFs/052_Salmon_Food_Profile.pdf,True
+53,Tuna,Fish & Seafood,Imported unverified source draft,Food_PDFs/053_Tuna_Food_Profile.pdf,True
+54,Sardines,Fish & Seafood,Imported unverified source draft,Food_PDFs/054_Sardines_Food_Profile.pdf,True
+55,Cod,Fish & Seafood,Imported unverified source draft,Food_PDFs/055_Cod_Food_Profile.pdf,True
+56,Mackerel,Fish & Seafood,Imported unverified source draft,Food_PDFs/056_Mackerel_Food_Profile.pdf,True
+57,Shrimp (Prawn),Fish & Seafood,Imported unverified source draft,Food_PDFs/057_Shrimp_Prawn_Food_Profile.pdf,True
+58,Oysters,Fish & Seafood,Imported unverified source draft,Food_PDFs/058_Oysters_Food_Profile.pdf,True
+59,Crab,Fish & Seafood,Imported unverified source draft,Food_PDFs/059_Crab_Food_Profile.pdf,True
+60,Tilapia,Fish & Seafood,Imported unverified source draft,Food_PDFs/060_Tilapia_Food_Profile.pdf,True
+61,Squid (Calamari),Fish & Seafood,Imported unverified source draft,Food_PDFs/061_Squid_Calamari_Food_Profile.pdf,True
+62,Lobster,Fish & Seafood,Imported unverified source draft,Food_PDFs/062_Lobster_Food_Profile.pdf,True
+63,Mussels,Fish & Seafood,Imported unverified source draft,Food_PDFs/063_Mussels_Food_Profile.pdf,True
+64,White Rice,Grains,Imported unverified source draft,Food_PDFs/064_White_Rice_Food_Profile.pdf,True
+65,Brown Rice,Grains,Imported unverified source draft,Food_PDFs/065_Brown_Rice_Food_Profile.pdf,True
+66,Whole Wheat,Grains,Imported unverified source draft,Food_PDFs/066_Whole_Wheat_Food_Profile.pdf,True
+67,Oats,Grains,Imported unverified source draft,Food_PDFs/067_Oats_Food_Profile.pdf,True
+68,Quinoa,Grains,Imported unverified source draft,Food_PDFs/068_Quinoa_Food_Profile.pdf,True
+69,Barley,Grains,Imported unverified source draft,Food_PDFs/069_Barley_Food_Profile.pdf,True
+70,Maize (Corn),Grains,Imported unverified source draft,Food_PDFs/070_Maize_Corn_Food_Profile.pdf,True
+71,Millet,Grains,Imported unverified source draft,Food_PDFs/071_Millet_Food_Profile.pdf,True
+72,Sorghum,Grains,Imported unverified source draft,Food_PDFs/072_Sorghum_Food_Profile.pdf,True
+73,Buckwheat,Grains,Imported unverified source draft,Food_PDFs/073_Buckwheat_Food_Profile.pdf,True
+74,Rye,Grains,Imported unverified source draft,Food_PDFs/074_Rye_Food_Profile.pdf,True
+75,Teff,Grains,Imported unverified source draft,Food_PDFs/075_Teff_Food_Profile.pdf,True
+76,Finger Millet (Ragi),Grains,Imported unverified source draft,Food_PDFs/076_Finger_Millet_Ragi_Food_Profile.pdf,True
+77,Lentils,Legumes,Imported unverified source draft,Food_PDFs/077_Lentils_Food_Profile.pdf,True
+78,Chickpeas,Legumes,Imported unverified source draft,Food_PDFs/078_Chickpeas_Food_Profile.pdf,True
+79,Black Beans,Legumes,Imported unverified source draft,Food_PDFs/079_Black_Beans_Food_Profile.pdf,True
+80,Kidney Beans,Legumes,Imported unverified source draft,Food_PDFs/080_Kidney_Beans_Food_Profile.pdf,True
+81,Soybeans,Legumes,Imported unverified source draft,Food_PDFs/081_Soybeans_Food_Profile.pdf,True
+82,Tofu,Legumes,Imported unverified source draft,Food_PDFs/082_Tofu_Food_Profile.pdf,True
+83,Tempeh,Legumes,Imported unverified source draft,Food_PDFs/083_Tempeh_Food_Profile.pdf,True
+84,Mung Beans,Legumes,Imported unverified source draft,Food_PDFs/084_Mung_Beans_Food_Profile.pdf,True
+85,Peanuts,Legumes,Imported unverified source draft,Food_PDFs/085_Peanuts_Food_Profile.pdf,True
+86,Edamame,Legumes,Imported unverified source draft,Food_PDFs/086_Edamame_Food_Profile.pdf,True
+87,Pigeon Pea (Toor Dal),Legumes,Imported unverified source draft,Food_PDFs/087_Pigeon_Pea_Toor_Dal_Food_Profile.pdf,True
+88,Almonds,Nuts & Seeds,Imported unverified source draft,Food_PDFs/088_Almonds_Food_Profile.pdf,True
+89,Walnuts,Nuts & Seeds,Imported unverified source draft,Food_PDFs/089_Walnuts_Food_Profile.pdf,True
+90,Cashews,Nuts & Seeds,Imported unverified source draft,Food_PDFs/090_Cashews_Food_Profile.pdf,True
+91,Pistachios,Nuts & Seeds,Imported unverified source draft,Food_PDFs/091_Pistachios_Food_Profile.pdf,True
+92,Brazil Nuts,Nuts & Seeds,Imported unverified source draft,Food_PDFs/092_Brazil_Nuts_Food_Profile.pdf,True
+93,Hazelnuts,Nuts & Seeds,Imported unverified source draft,Food_PDFs/093_Hazelnuts_Food_Profile.pdf,True
+94,Macadamia,Nuts & Seeds,Imported unverified source draft,Food_PDFs/094_Macadamia_Food_Profile.pdf,True
+95,Pecans,Nuts & Seeds,Imported unverified source draft,Food_PDFs/095_Pecans_Food_Profile.pdf,True
+96,Chia Seeds,Nuts & Seeds,Imported unverified source draft,Food_PDFs/096_Chia_Seeds_Food_Profile.pdf,True
+97,Flaxseed,Nuts & Seeds,Imported unverified source draft,Food_PDFs/097_Flaxseed_Food_Profile.pdf,True
+98,Pumpkin Seeds,Nuts & Seeds,Imported unverified source draft,Food_PDFs/098_Pumpkin_Seeds_Food_Profile.pdf,True
+99,Sunflower Seeds,Nuts & Seeds,Imported unverified source draft,Food_PDFs/099_Sunflower_Seeds_Food_Profile.pdf,True
+100,Sesame Seeds,Nuts & Seeds,Imported unverified source draft,Food_PDFs/100_Sesame_Seeds_Food_Profile.pdf,True
+101,Hemp Seeds,Nuts & Seeds,Imported unverified source draft,Food_PDFs/101_Hemp_Seeds_Food_Profile.pdf,True
+102,Chestnuts,Nuts & Seeds,Imported unverified source draft,Food_PDFs/102_Chestnuts_Food_Profile.pdf,True
+103,Eggs,Dairy & Eggs,Imported unverified source draft,Food_PDFs/103_Eggs_Food_Profile.pdf,True
+104,Whole Milk,Dairy & Eggs,Imported unverified source draft,Food_PDFs/104_Whole_Milk_Food_Profile.pdf,True
+105,Yogurt (Plain),Dairy & Eggs,Imported unverified source draft,Food_PDFs/105_Yogurt_Plain_Food_Profile.pdf,True
+106,Cheddar Cheese,Dairy & Eggs,Imported unverified source draft,Food_PDFs/106_Cheddar_Cheese_Food_Profile.pdf,True
+107,Paneer (Cottage Cheese),Dairy & Eggs,Imported unverified source draft,Food_PDFs/107_Paneer_Cottage_Cheese_Food_Profile.pdf,True
+108,Butter,Dairy & Eggs,Imported unverified source draft,Food_PDFs/108_Butter_Food_Profile.pdf,True
+109,Ghee,Dairy & Eggs,Imported unverified source draft,Food_PDFs/109_Ghee_Food_Profile.pdf,True
+110,Kefir,Dairy & Eggs,Imported unverified source draft,Food_PDFs/110_Kefir_Food_Profile.pdf,True
+111,Mozzarella,Dairy & Eggs,Imported unverified source draft,Food_PDFs/111_Mozzarella_Food_Profile.pdf,True
+112,Turmeric,Herbs & Spices,Imported unverified source draft,Food_PDFs/112_Turmeric_Food_Profile.pdf,True
+113,Ginger,Herbs & Spices,Imported unverified source draft,Food_PDFs/113_Ginger_Food_Profile.pdf,True
+114,Cinnamon,Herbs & Spices,Imported unverified source draft,Food_PDFs/114_Cinnamon_Food_Profile.pdf,True
+115,Black Pepper,Herbs & Spices,Imported unverified source draft,Food_PDFs/115_Black_Pepper_Food_Profile.pdf,True
+116,Cumin,Herbs & Spices,Imported unverified source draft,Food_PDFs/116_Cumin_Food_Profile.pdf,True
+117,Cloves,Herbs & Spices,Imported unverified source draft,Food_PDFs/117_Cloves_Food_Profile.pdf,True
+118,Cardamom,Herbs & Spices,Imported unverified source draft,Food_PDFs/118_Cardamom_Food_Profile.pdf,True
+119,Fenugreek,Herbs & Spices,Imported unverified source draft,Food_PDFs/119_Fenugreek_Food_Profile.pdf,True
+120,Basil,Herbs & Spices,Imported unverified source draft,Food_PDFs/120_Basil_Food_Profile.pdf,True
+121,Mint,Herbs & Spices,Imported unverified source draft,Food_PDFs/121_Mint_Food_Profile.pdf,True
+122,Coriander (Cilantro),Herbs & Spices,Imported unverified source draft,Food_PDFs/122_Coriander_Cilantro_Food_Profile.pdf,True
+123,Parsley,Herbs & Spices,Imported unverified source draft,Food_PDFs/123_Parsley_Food_Profile.pdf,True
+124,Rosemary,Herbs & Spices,Imported unverified source draft,Food_PDFs/124_Rosemary_Food_Profile.pdf,True
+125,Saffron,Herbs & Spices,Imported unverified source draft,Food_PDFs/125_Saffron_Food_Profile.pdf,True
+126,Chilli Pepper,Herbs & Spices,Imported unverified source draft,Food_PDFs/126_Chilli_Pepper_Food_Profile.pdf,True
+127,Mustard Seeds,Herbs & Spices,Imported unverified source draft,Food_PDFs/127_Mustard_Seeds_Food_Profile.pdf,True
+128,Moringa Leaves,Herbs & Spices,Imported unverified source draft,Food_PDFs/128_Moringa_Leaves_Food_Profile.pdf,True
+129,Button Mushroom,Fungi,Imported unverified source draft,Food_PDFs/129_Button_Mushroom_Food_Profile.pdf,True
+130,Shiitake,Fungi,Imported unverified source draft,Food_PDFs/130_Shiitake_Food_Profile.pdf,True
+131,Oyster Mushroom,Fungi,Imported unverified source draft,Food_PDFs/131_Oyster_Mushroom_Food_Profile.pdf,True
+132,Enoki,Fungi,Imported unverified source draft,Food_PDFs/132_Enoki_Food_Profile.pdf,True
+133,Lion's Mane,Fungi,Imported unverified source draft,Food_PDFs/133_Lion_s_Mane_Food_Profile.pdf,True
+134,Honey,Other Edibles,Imported unverified source draft,Food_PDFs/134_Honey_Food_Profile.pdf,True
+135,Extra Virgin Olive Oil,Other Edibles,Imported unverified source draft,Food_PDFs/135_Extra_Virgin_Olive_Oil_Food_Profile.pdf,True
+136,Coconut Oil,Other Edibles,Imported unverified source draft,Food_PDFs/136_Coconut_Oil_Food_Profile.pdf,True
+137,Dark Chocolate (70–85%),Other Edibles,Imported unverified source draft,Food_PDFs/137_Dark_Chocolate_70_85_Food_Profile.pdf,True
+138,Green Tea,Other Edibles,Imported unverified source draft,Food_PDFs/138_Green_Tea_Food_Profile.pdf,True
+139,Coffee,Other Edibles,Imported unverified source draft,Food_PDFs/139_Coffee_Food_Profile.pdf,True
+140,Nori Seaweed,Other Edibles,Imported unverified source draft,Food_PDFs/140_Nori_Seaweed_Food_Profile.pdf,True
+141,Spirulina,Other Edibles,Imported unverified source draft,Food_PDFs/141_Spirulina_Food_Profile.pdf,True
+142,Miso,Other Edibles,Imported unverified source draft,Food_PDFs/142_Miso_Food_Profile.pdf,True
+143,Kimchi,Other Edibles,Imported unverified source draft,Food_PDFs/143_Kimchi_Food_Profile.pdf,True
+144,Sauerkraut,Other Edibles,Imported unverified source draft,Food_PDFs/144_Sauerkraut_Food_Profile.pdf,True
+145,Apple Cider Vinegar,Other Edibles,Imported unverified source draft,Food_PDFs/145_Apple_Cider_Vinegar_Food_Profile.pdf,True
+146,Maple Syrup,Other Edibles,Imported unverified source draft,Food_PDFs/146_Maple_Syrup_Food_Profile.pdf,True
+147,Jaggery,Other Edibles,Imported unverified source draft,Food_PDFs/147_Jaggery_Food_Profile.pdf,True
+148,Edible Insects (Crickets),Other Edibles,Imported unverified source draft,Food_PDFs/148_Edible_Insects_Crickets_Food_Profile.pdf,True
+149,Apricot,Fruits,Imported unverified source draft,Food_PDFs/149_Apricot_Food_Profile.pdf,True
+150,Peach,Fruits,Imported unverified source draft,Food_PDFs/150_Peach_Food_Profile.pdf,True
+151,Nectarine,Fruits,Preliminary,Food_PDFs/151_Nectarine_Food_Profile.pdf,False
+152,Plum,Fruits,Preliminary,Food_PDFs/152_Plum_Food_Profile.pdf,False
+153,Black Plum (Jamun),Fruits,Preliminary,Food_PDFs/153_Black_Plum_Jamun_Food_Profile.pdf,False
+154,Cherry,Fruits,Imported unverified source draft,Food_PDFs/154_Cherry_Food_Profile.pdf,True
+155,Sour Cherry,Fruits,Preliminary,Food_PDFs/155_Sour_Cherry_Food_Profile.pdf,False
+156,Pear,Fruits,Imported unverified source draft,Food_PDFs/156_Pear_Food_Profile.pdf,True
+157,Asian Pear,Fruits,Preliminary,Food_PDFs/157_Asian_Pear_Food_Profile.pdf,False
+158,Quince,Fruits,Preliminary,Food_PDFs/158_Quince_Food_Profile.pdf,False
+159,Persimmon,Fruits,Preliminary,Food_PDFs/159_Persimmon_Food_Profile.pdf,False
+160,Dragon Fruit,Fruits,Preliminary,Food_PDFs/160_Dragon_Fruit_Food_Profile.pdf,False
+161,Passion Fruit,Fruits,Imported unverified source draft,Food_PDFs/161_Passion_Fruit_Food_Profile.pdf,True
+162,Star Fruit (Carambola),Fruits,Preliminary,Food_PDFs/162_Star_Fruit_Carambola_Food_Profile.pdf,False
+163,Soursop,Fruits,Preliminary,Food_PDFs/163_Soursop_Food_Profile.pdf,False
+164,Custard Apple,Fruits,Preliminary,Food_PDFs/164_Custard_Apple_Food_Profile.pdf,False
+165,Sugar Apple,Fruits,Preliminary,Food_PDFs/165_Sugar_Apple_Food_Profile.pdf,False
+166,Cherimoya,Fruits,Preliminary,Food_PDFs/166_Cherimoya_Food_Profile.pdf,False
+167,Atemoya,Fruits,Preliminary,Food_PDFs/167_Atemoya_Food_Profile.pdf,False
+168,Breadfruit,Fruits,Preliminary,Food_PDFs/168_Breadfruit_Food_Profile.pdf,False
+169,Durian,Fruits,Preliminary,Food_PDFs/169_Durian_Food_Profile.pdf,False
+170,Lychee,Fruits,Imported unverified source draft,Food_PDFs/170_Lychee_Food_Profile.pdf,True
+171,Longan,Fruits,Preliminary,Food_PDFs/171_Longan_Food_Profile.pdf,False
+172,Rambutan,Fruits,Preliminary,Food_PDFs/172_Rambutan_Food_Profile.pdf,False
+173,Mangosteen,Fruits,Preliminary,Food_PDFs/173_Mangosteen_Food_Profile.pdf,False
+174,Salak (Snake Fruit),Fruits,Preliminary,Food_PDFs/174_Salak_Snake_Fruit_Food_Profile.pdf,False
+175,Langsat,Fruits,Preliminary,Food_PDFs/175_Langsat_Food_Profile.pdf,False
+176,Duku,Fruits,Preliminary,Food_PDFs/176_Duku_Food_Profile.pdf,False
+177,Santol,Fruits,Preliminary,Food_PDFs/177_Santol_Food_Profile.pdf,False
+178,Rose Apple,Fruits,Preliminary,Food_PDFs/178_Rose_Apple_Food_Profile.pdf,False
+179,Wax Apple,Fruits,Preliminary,Food_PDFs/179_Wax_Apple_Food_Profile.pdf,False
+180,Java Apple,Fruits,Preliminary,Food_PDFs/180_Java_Apple_Food_Profile.pdf,False
+181,Jujube,Fruits,Preliminary,Food_PDFs/181_Jujube_Food_Profile.pdf,False
+182,Indian Gooseberry (Amla),Fruits,Imported unverified source draft,Food_PDFs/182_Indian_Gooseberry_Amla_Food_Profile.pdf,True
+183,Cape Gooseberry (Goldenberry),Fruits,Preliminary,Food_PDFs/183_Cape_Gooseberry_Goldenberry_Food_Profile.pdf,False
+184,Gooseberry,Fruits,Preliminary,Food_PDFs/184_Gooseberry_Food_Profile.pdf,False
+185,Blackcurrant,Fruits,Preliminary,Food_PDFs/185_Blackcurrant_Food_Profile.pdf,False
+186,Redcurrant,Fruits,Preliminary,Food_PDFs/186_Redcurrant_Food_Profile.pdf,False
+187,Whitecurrant,Fruits,Preliminary,Food_PDFs/187_Whitecurrant_Food_Profile.pdf,False
+188,Raspberry,Fruits,Imported unverified source draft,Food_PDFs/188_Raspberry_Food_Profile.pdf,True
+189,Blackberry,Fruits,Imported unverified source draft,Food_PDFs/189_Blackberry_Food_Profile.pdf,True
+190,Boysenberry,Fruits,Preliminary,Food_PDFs/190_Boysenberry_Food_Profile.pdf,False
+191,Loganberry,Fruits,Preliminary,Food_PDFs/191_Loganberry_Food_Profile.pdf,False
+192,Mulberry,Fruits,Preliminary,Food_PDFs/192_Mulberry_Food_Profile.pdf,False
+193,Elderberry,Fruits,Preliminary,Food_PDFs/193_Elderberry_Food_Profile.pdf,False
+194,Cranberry,Fruits,Imported unverified source draft,Food_PDFs/194_Cranberry_Food_Profile.pdf,True
+195,Cloudberry,Fruits,Preliminary,Food_PDFs/195_Cloudberry_Food_Profile.pdf,False
+196,Huckleberry,Fruits,Preliminary,Food_PDFs/196_Huckleberry_Food_Profile.pdf,False
+197,Acai Berry,Fruits,Preliminary,Food_PDFs/197_Acai_Berry_Food_Profile.pdf,False
+198,Aronia Berry (Chokeberry),Fruits,Preliminary,Food_PDFs/198_Aronia_Berry_Chokeberry_Food_Profile.pdf,False
+199,Sea Buckthorn Berry,Fruits,Preliminary,Food_PDFs/199_Sea_Buckthorn_Berry_Food_Profile.pdf,False
+200,Goji Berry,Fruits,Preliminary,Food_PDFs/200_Goji_Berry_Food_Profile.pdf,False
+201,Barberry,Fruits,Preliminary,Food_PDFs/201_Barberry_Food_Profile.pdf,False
+202,Bilberry,Fruits,Preliminary,Food_PDFs/202_Bilberry_Food_Profile.pdf,False
+203,Serviceberry (Saskatoon),Fruits,Preliminary,Food_PDFs/203_Serviceberry_Saskatoon_Food_Profile.pdf,False
+204,Prickly Pear,Fruits,Preliminary,Food_PDFs/204_Prickly_Pear_Food_Profile.pdf,False
+205,Feijoa,Fruits,Preliminary,Food_PDFs/205_Feijoa_Food_Profile.pdf,False
+206,Tamarillo,Fruits,Preliminary,Food_PDFs/206_Tamarillo_Food_Profile.pdf,False
+207,Pepino Melon,Fruits,Preliminary,Food_PDFs/207_Pepino_Melon_Food_Profile.pdf,False
+208,Horned Melon (Kiwano),Fruits,Preliminary,Food_PDFs/208_Horned_Melon_Kiwano_Food_Profile.pdf,False
+209,Cantaloupe,Fruits,Preliminary,Food_PDFs/209_Cantaloupe_Food_Profile.pdf,False
+210,Honeydew Melon,Fruits,Preliminary,Food_PDFs/210_Honeydew_Melon_Food_Profile.pdf,False
+211,Galia Melon,Fruits,Preliminary,Food_PDFs/211_Galia_Melon_Food_Profile.pdf,False
+212,Canary Melon,Fruits,Preliminary,Food_PDFs/212_Canary_Melon_Food_Profile.pdf,False
+213,Cucumber Melon,Fruits,Preliminary,Food_PDFs/213_Cucumber_Melon_Food_Profile.pdf,False
+214,Pomelo,Fruits,Preliminary,Food_PDFs/214_Pomelo_Food_Profile.pdf,False
+215,Grapefruit,Fruits,Imported unverified source draft,Food_PDFs/215_Grapefruit_Food_Profile.pdf,True
+216,Blood Orange,Fruits,Preliminary,Food_PDFs/216_Blood_Orange_Food_Profile.pdf,False
+217,Mandarin,Fruits,Preliminary,Food_PDFs/217_Mandarin_Food_Profile.pdf,False
+218,Clementine,Fruits,Preliminary,Food_PDFs/218_Clementine_Food_Profile.pdf,False
+219,Tangerine,Fruits,Preliminary,Food_PDFs/219_Tangerine_Food_Profile.pdf,False
+220,Kumquat,Fruits,Preliminary,Food_PDFs/220_Kumquat_Food_Profile.pdf,False
+221,Yuzu,Fruits,Preliminary,Food_PDFs/221_Yuzu_Food_Profile.pdf,False
+222,Calamansi,Fruits,Preliminary,Food_PDFs/222_Calamansi_Food_Profile.pdf,False
+223,Finger Lime,Fruits,Preliminary,Food_PDFs/223_Finger_Lime_Food_Profile.pdf,False
+224,Makrut Lime,Fruits,Preliminary,Food_PDFs/224_Makrut_Lime_Food_Profile.pdf,False
+225,Key Lime,Fruits,Preliminary,Food_PDFs/225_Key_Lime_Food_Profile.pdf,False
+226,Buddha's Hand Citron,Fruits,Preliminary,Food_PDFs/226_Buddha_s_Hand_Citron_Food_Profile.pdf,False
+227,Citron,Fruits,Preliminary,Food_PDFs/227_Citron_Food_Profile.pdf,False
+228,Ugli Fruit,Fruits,Preliminary,Food_PDFs/228_Ugli_Fruit_Food_Profile.pdf,False
+229,Tangelo,Fruits,Preliminary,Food_PDFs/229_Tangelo_Food_Profile.pdf,False
+230,Tamarind,Fruits,Preliminary,Food_PDFs/230_Tamarind_Food_Profile.pdf,False
+231,Bael Fruit,Fruits,Preliminary,Food_PDFs/231_Bael_Fruit_Food_Profile.pdf,False
+232,Wood Apple,Fruits,Preliminary,Food_PDFs/232_Wood_Apple_Food_Profile.pdf,False
+233,Sapodilla,Fruits,Preliminary,Food_PDFs/233_Sapodilla_Food_Profile.pdf,False
+234,Mamey Sapote,Fruits,Preliminary,Food_PDFs/234_Mamey_Sapote_Food_Profile.pdf,False
+235,Black Sapote,Fruits,Preliminary,Food_PDFs/235_Black_Sapote_Food_Profile.pdf,False
+236,White Sapote,Fruits,Preliminary,Food_PDFs/236_White_Sapote_Food_Profile.pdf,False
+237,Lucuma,Fruits,Preliminary,Food_PDFs/237_Lucuma_Food_Profile.pdf,False
+238,Canistel (Eggfruit),Fruits,Preliminary,Food_PDFs/238_Canistel_Eggfruit_Food_Profile.pdf,False
+239,Noni,Fruits,Preliminary,Food_PDFs/239_Noni_Food_Profile.pdf,False
+240,Miracle Fruit,Fruits,Preliminary,Food_PDFs/240_Miracle_Fruit_Food_Profile.pdf,False
+241,Monstera Deliciosa Fruit,Fruits,Preliminary,Food_PDFs/241_Monstera_Deliciosa_Fruit_Food_Profile.pdf,False
+242,Cacao Pulp,Fruits,Preliminary,Food_PDFs/242_Cacao_Pulp_Food_Profile.pdf,False
+243,Camu Camu,Fruits,Preliminary,Food_PDFs/243_Camu_Camu_Food_Profile.pdf,False
+244,Acerola Cherry,Fruits,Preliminary,Food_PDFs/244_Acerola_Cherry_Food_Profile.pdf,False
+245,Surinam Cherry,Fruits,Preliminary,Food_PDFs/245_Surinam_Cherry_Food_Profile.pdf,False
+246,Indian Almond Fruit,Fruits,Preliminary,Food_PDFs/246_Indian_Almond_Fruit_Food_Profile.pdf,False
+247,Marula,Fruits,Preliminary,Food_PDFs/247_Marula_Food_Profile.pdf,False
+248,African Star Apple,Fruits,Preliminary,Food_PDFs/248_African_Star_Apple_Food_Profile.pdf,False
+249,Monkey Orange,Fruits,Preliminary,Food_PDFs/249_Monkey_Orange_Food_Profile.pdf,False
+250,Kokum,Fruits,Preliminary,Food_PDFs/250_Kokum_Food_Profile.pdf,False
+251,Ambarella,Fruits,Preliminary,Food_PDFs/251_Ambarella_Food_Profile.pdf,False
+252,Bilimbi,Fruits,Preliminary,Food_PDFs/252_Bilimbi_Food_Profile.pdf,False
+253,Bignay,Fruits,Preliminary,Food_PDFs/253_Bignay_Food_Profile.pdf,False
+254,Red Cabbage,Vegetables,Preliminary,Food_PDFs/254_Red_Cabbage_Food_Profile.pdf,False
+255,Bok Choy,Vegetables,Preliminary,Food_PDFs/255_Bok_Choy_Food_Profile.pdf,False
+256,Napa Cabbage,Vegetables,Preliminary,Food_PDFs/256_Napa_Cabbage_Food_Profile.pdf,False
+257,Savoy Cabbage,Vegetables,Preliminary,Food_PDFs/257_Savoy_Cabbage_Food_Profile.pdf,False
+258,Brussels Sprouts,Vegetables,Imported unverified source draft,Food_PDFs/258_Brussels_Sprouts_Food_Profile.pdf,True
+259,Kohlrabi,Vegetables,Preliminary,Food_PDFs/259_Kohlrabi_Food_Profile.pdf,False
+260,Romanesco,Vegetables,Preliminary,Food_PDFs/260_Romanesco_Food_Profile.pdf,False
+261,Collard Greens,Vegetables,Preliminary,Food_PDFs/261_Collard_Greens_Food_Profile.pdf,False
+262,Mustard Greens,Vegetables,Preliminary,Food_PDFs/262_Mustard_Greens_Food_Profile.pdf,False
+263,Turnip Greens,Vegetables,Preliminary,Food_PDFs/263_Turnip_Greens_Food_Profile.pdf,False
+264,Beet Greens,Vegetables,Preliminary,Food_PDFs/264_Beet_Greens_Food_Profile.pdf,False
+265,Swiss Chard,Vegetables,Preliminary,Food_PDFs/265_Swiss_Chard_Food_Profile.pdf,False
+266,Water Spinach (Kangkong),Vegetables,Preliminary,Food_PDFs/266_Water_Spinach_Kangkong_Food_Profile.pdf,False
+267,Malabar Spinach,Vegetables,Preliminary,Food_PDFs/267_Malabar_Spinach_Food_Profile.pdf,False
+268,Amaranth Leaves,Vegetables,Preliminary,Food_PDFs/268_Amaranth_Leaves_Food_Profile.pdf,False
+269,Cassava Leaves,Vegetables,Preliminary,Food_PDFs/269_Cassava_Leaves_Food_Profile.pdf,False
+270,Taro Leaves,Vegetables,Preliminary,Food_PDFs/270_Taro_Leaves_Food_Profile.pdf,False
+271,Watercress,Vegetables,Imported unverified source draft,Food_PDFs/271_Watercress_Food_Profile.pdf,True
+272,Arugula (Rocket),Vegetables,Preliminary,Food_PDFs/272_Arugula_Rocket_Food_Profile.pdf,False
+273,Romaine Lettuce,Vegetables,Preliminary,Food_PDFs/273_Romaine_Lettuce_Food_Profile.pdf,False
+274,Iceberg Lettuce,Vegetables,Preliminary,Food_PDFs/274_Iceberg_Lettuce_Food_Profile.pdf,False
+275,Butterhead Lettuce,Vegetables,Preliminary,Food_PDFs/275_Butterhead_Lettuce_Food_Profile.pdf,False
+276,Endive,Vegetables,Preliminary,Food_PDFs/276_Endive_Food_Profile.pdf,False
+277,Escarole,Vegetables,Preliminary,Food_PDFs/277_Escarole_Food_Profile.pdf,False
+278,Radicchio,Vegetables,Preliminary,Food_PDFs/278_Radicchio_Food_Profile.pdf,False
+279,Chicory Greens,Vegetables,Preliminary,Food_PDFs/279_Chicory_Greens_Food_Profile.pdf,False
+280,Dandelion Greens,Vegetables,Preliminary,Food_PDFs/280_Dandelion_Greens_Food_Profile.pdf,False
+281,Purslane,Vegetables,Preliminary,Food_PDFs/281_Purslane_Food_Profile.pdf,False
+282,Sorrel,Vegetables,Preliminary,Food_PDFs/282_Sorrel_Food_Profile.pdf,False
+283,Fennel Bulb,Vegetables,Preliminary,Food_PDFs/283_Fennel_Bulb_Food_Profile.pdf,False
+284,Celery,Vegetables,Imported unverified source draft,Food_PDFs/284_Celery_Food_Profile.pdf,True
+285,Celeriac,Vegetables,Preliminary,Food_PDFs/285_Celeriac_Food_Profile.pdf,False
+286,Parsnip,Vegetables,Preliminary,Food_PDFs/286_Parsnip_Food_Profile.pdf,False
+287,Turnip,Vegetables,Preliminary,Food_PDFs/287_Turnip_Food_Profile.pdf,False
+288,Rutabaga (Swede),Vegetables,Preliminary,Food_PDFs/288_Rutabaga_Swede_Food_Profile.pdf,False
+289,Radish,Vegetables,Imported unverified source draft,Food_PDFs/289_Radish_Food_Profile.pdf,True
+290,Daikon,Vegetables,Preliminary,Food_PDFs/290_Daikon_Food_Profile.pdf,False
+291,Watermelon Radish,Vegetables,Preliminary,Food_PDFs/291_Watermelon_Radish_Food_Profile.pdf,False
+292,Jicama,Vegetables,Preliminary,Food_PDFs/292_Jicama_Food_Profile.pdf,False
+293,Jerusalem Artichoke,Vegetables,Preliminary,Food_PDFs/293_Jerusalem_Artichoke_Food_Profile.pdf,False
+294,Artichoke,Vegetables,Imported unverified source draft,Food_PDFs/294_Artichoke_Food_Profile.pdf,True
+295,Salsify,Vegetables,Preliminary,Food_PDFs/295_Salsify_Food_Profile.pdf,False
+296,Scorzonera,Vegetables,Preliminary,Food_PDFs/296_Scorzonera_Food_Profile.pdf,False
+297,Lotus Root,Vegetables,Preliminary,Food_PDFs/297_Lotus_Root_Food_Profile.pdf,False
+298,Burdock Root,Vegetables,Preliminary,Food_PDFs/298_Burdock_Root_Food_Profile.pdf,False
+299,Cassava Root,Vegetables,Preliminary,Food_PDFs/299_Cassava_Root_Food_Profile.pdf,False
+300,Taro Root,Vegetables,Preliminary,Food_PDFs/300_Taro_Root_Food_Profile.pdf,False
+301,Yam (Dioscorea),Vegetables,Preliminary,Food_PDFs/301_Yam_Dioscorea_Food_Profile.pdf,False
+302,Purple Yam (Ube),Vegetables,Preliminary,Food_PDFs/302_Purple_Yam_Ube_Food_Profile.pdf,False
+303,Elephant Foot Yam,Vegetables,Preliminary,Food_PDFs/303_Elephant_Foot_Yam_Food_Profile.pdf,False
+304,Konjac Corm,Vegetables,Preliminary,Food_PDFs/304_Konjac_Corm_Food_Profile.pdf,False
+305,Water Chestnut,Vegetables,Preliminary,Food_PDFs/305_Water_Chestnut_Food_Profile.pdf,False
+306,Bamboo Shoots,Vegetables,Preliminary,Food_PDFs/306_Bamboo_Shoots_Food_Profile.pdf,False
+307,Hearts of Palm,Vegetables,Preliminary,Food_PDFs/307_Hearts_of_Palm_Food_Profile.pdf,False
+308,Banana Blossom,Vegetables,Preliminary,Food_PDFs/308_Banana_Blossom_Food_Profile.pdf,False
+309,Plantain (Green),Vegetables,Preliminary,Food_PDFs/309_Plantain_Green_Food_Profile.pdf,False
+310,Green Papaya,Vegetables,Preliminary,Food_PDFs/310_Green_Papaya_Food_Profile.pdf,False
+311,Breadfruit (Unripe),Vegetables,Preliminary,Food_PDFs/311_Breadfruit_Unripe_Food_Profile.pdf,False
+312,Chayote,Vegetables,Preliminary,Food_PDFs/312_Chayote_Food_Profile.pdf,False
+313,Bottle Gourd,Vegetables,Preliminary,Food_PDFs/313_Bottle_Gourd_Food_Profile.pdf,False
+314,Ridge Gourd,Vegetables,Preliminary,Food_PDFs/314_Ridge_Gourd_Food_Profile.pdf,False
+315,Snake Gourd,Vegetables,Preliminary,Food_PDFs/315_Snake_Gourd_Food_Profile.pdf,False
+316,Ash Gourd,Vegetables,Preliminary,Food_PDFs/316_Ash_Gourd_Food_Profile.pdf,False
+317,Sponge Gourd,Vegetables,Preliminary,Food_PDFs/317_Sponge_Gourd_Food_Profile.pdf,False
+318,Pointed Gourd,Vegetables,Preliminary,Food_PDFs/318_Pointed_Gourd_Food_Profile.pdf,False
+319,Ivy Gourd,Vegetables,Preliminary,Food_PDFs/319_Ivy_Gourd_Food_Profile.pdf,False
+320,Zucchini,Vegetables,Imported unverified source draft,Food_PDFs/320_Zucchini_Food_Profile.pdf,True
+321,Yellow Summer Squash,Vegetables,Preliminary,Food_PDFs/321_Yellow_Summer_Squash_Food_Profile.pdf,False
+322,Butternut Squash,Vegetables,Imported unverified source draft,Food_PDFs/322_Butternut_Squash_Food_Profile.pdf,True
+323,Acorn Squash,Vegetables,Preliminary,Food_PDFs/323_Acorn_Squash_Food_Profile.pdf,False
+324,Spaghetti Squash,Vegetables,Preliminary,Food_PDFs/324_Spaghetti_Squash_Food_Profile.pdf,False
+325,Kabocha Squash,Vegetables,Preliminary,Food_PDFs/325_Kabocha_Squash_Food_Profile.pdf,False
+326,Delicata Squash,Vegetables,Preliminary,Food_PDFs/326_Delicata_Squash_Food_Profile.pdf,False
+327,Pattypan Squash,Vegetables,Preliminary,Food_PDFs/327_Pattypan_Squash_Food_Profile.pdf,False
+328,Green Bell Pepper,Vegetables,Preliminary,Food_PDFs/328_Green_Bell_Pepper_Food_Profile.pdf,False
+329,Yellow Bell Pepper,Vegetables,Preliminary,Food_PDFs/329_Yellow_Bell_Pepper_Food_Profile.pdf,False
+330,Orange Bell Pepper,Vegetables,Preliminary,Food_PDFs/330_Orange_Bell_Pepper_Food_Profile.pdf,False
+331,Jalapeno Pepper,Vegetables,Preliminary,Food_PDFs/331_Jalapeno_Pepper_Food_Profile.pdf,False
+332,Serrano Pepper,Vegetables,Preliminary,Food_PDFs/332_Serrano_Pepper_Food_Profile.pdf,False
+333,Habanero Pepper,Vegetables,Preliminary,Food_PDFs/333_Habanero_Pepper_Food_Profile.pdf,False
+334,Poblano Pepper,Vegetables,Preliminary,Food_PDFs/334_Poblano_Pepper_Food_Profile.pdf,False
+335,Bird's Eye Chilli,Vegetables,Preliminary,Food_PDFs/335_Bird_s_Eye_Chilli_Food_Profile.pdf,False
+336,Green Chilli Pepper,Vegetables,Preliminary,Food_PDFs/336_Green_Chilli_Pepper_Food_Profile.pdf,False
+337,Leek,Vegetables,Preliminary,Food_PDFs/337_Leek_Food_Profile.pdf,False
+338,Spring Onion (Scallion),Vegetables,Preliminary,Food_PDFs/338_Spring_Onion_Scallion_Food_Profile.pdf,False
+339,Shallot,Vegetables,Preliminary,Food_PDFs/339_Shallot_Food_Profile.pdf,False
+340,Chives,Vegetables,Preliminary,Food_PDFs/340_Chives_Food_Profile.pdf,False
+341,Garlic Scapes,Vegetables,Preliminary,Food_PDFs/341_Garlic_Scapes_Food_Profile.pdf,False
+342,Fiddlehead Ferns,Vegetables,Preliminary,Food_PDFs/342_Fiddlehead_Ferns_Food_Profile.pdf,False
+343,Nopales (Cactus Pads),Vegetables,Preliminary,Food_PDFs/343_Nopales_Cactus_Pads_Food_Profile.pdf,False
+344,Sea Asparagus (Samphire),Vegetables,Preliminary,Food_PDFs/344_Sea_Asparagus_Samphire_Food_Profile.pdf,False
+345,Atlantic Salmon,Fish & Seafood,Preliminary,Food_PDFs/345_Atlantic_Salmon_Food_Profile.pdf,False
+346,Pink Salmon,Fish & Seafood,Preliminary,Food_PDFs/346_Pink_Salmon_Food_Profile.pdf,False
+347,Sockeye Salmon,Fish & Seafood,Preliminary,Food_PDFs/347_Sockeye_Salmon_Food_Profile.pdf,False
+348,Chinook Salmon,Fish & Seafood,Preliminary,Food_PDFs/348_Chinook_Salmon_Food_Profile.pdf,False
+349,Coho Salmon,Fish & Seafood,Preliminary,Food_PDFs/349_Coho_Salmon_Food_Profile.pdf,False
+350,Rainbow Trout,Fish & Seafood,Imported unverified source draft,Food_PDFs/350_Rainbow_Trout_Food_Profile.pdf,True
+351,Brown Trout,Fish & Seafood,Preliminary,Food_PDFs/351_Brown_Trout_Food_Profile.pdf,False
+352,Arctic Char,Fish & Seafood,Preliminary,Food_PDFs/352_Arctic_Char_Food_Profile.pdf,False
+353,Atlantic Herring,Fish & Seafood,Imported unverified source draft,Food_PDFs/353_Atlantic_Herring_Food_Profile.pdf,True
+354,Pacific Herring,Fish & Seafood,Preliminary,Food_PDFs/354_Pacific_Herring_Food_Profile.pdf,False
+355,Anchovy,Fish & Seafood,Imported unverified source draft,Food_PDFs/355_Anchovy_Food_Profile.pdf,True
+356,European Pilchard,Fish & Seafood,Preliminary,Food_PDFs/356_European_Pilchard_Food_Profile.pdf,False
+357,Sprat,Fish & Seafood,Preliminary,Food_PDFs/357_Sprat_Food_Profile.pdf,False
+358,Smelt,Fish & Seafood,Preliminary,Food_PDFs/358_Smelt_Food_Profile.pdf,False
+359,Eel,Fish & Seafood,Preliminary,Food_PDFs/359_Eel_Food_Profile.pdf,False
+360,Conger Eel,Fish & Seafood,Preliminary,Food_PDFs/360_Conger_Eel_Food_Profile.pdf,False
+361,Barramundi,Fish & Seafood,Preliminary,Food_PDFs/361_Barramundi_Food_Profile.pdf,False
+362,Basa (Pangasius),Fish & Seafood,Preliminary,Food_PDFs/362_Basa_Pangasius_Food_Profile.pdf,False
+363,Catfish,Fish & Seafood,Preliminary,Food_PDFs/363_Catfish_Food_Profile.pdf,False
+364,Carp,Fish & Seafood,Preliminary,Food_PDFs/364_Carp_Food_Profile.pdf,False
+365,Grass Carp,Fish & Seafood,Preliminary,Food_PDFs/365_Grass_Carp_Food_Profile.pdf,False
+366,Silver Carp,Fish & Seafood,Preliminary,Food_PDFs/366_Silver_Carp_Food_Profile.pdf,False
+367,Perch,Fish & Seafood,Preliminary,Food_PDFs/367_Perch_Food_Profile.pdf,False
+368,Yellow Perch,Fish & Seafood,Preliminary,Food_PDFs/368_Yellow_Perch_Food_Profile.pdf,False
+369,Nile Perch,Fish & Seafood,Preliminary,Food_PDFs/369_Nile_Perch_Food_Profile.pdf,False
+370,Snapper,Fish & Seafood,Preliminary,Food_PDFs/370_Snapper_Food_Profile.pdf,False
+371,Red Snapper,Fish & Seafood,Preliminary,Food_PDFs/371_Red_Snapper_Food_Profile.pdf,False
+372,Grouper,Fish & Seafood,Preliminary,Food_PDFs/372_Grouper_Food_Profile.pdf,False
+373,Sea Bass,Fish & Seafood,Preliminary,Food_PDFs/373_Sea_Bass_Food_Profile.pdf,False
+374,Branzino,Fish & Seafood,Preliminary,Food_PDFs/374_Branzino_Food_Profile.pdf,False
+375,Bream,Fish & Seafood,Preliminary,Food_PDFs/375_Bream_Food_Profile.pdf,False
+376,Sea Bream,Fish & Seafood,Preliminary,Food_PDFs/376_Sea_Bream_Food_Profile.pdf,False
+377,Haddock,Fish & Seafood,Imported unverified source draft,Food_PDFs/377_Haddock_Food_Profile.pdf,True
+378,Pollock,Fish & Seafood,Preliminary,Food_PDFs/378_Pollock_Food_Profile.pdf,False
+379,Hake,Fish & Seafood,Preliminary,Food_PDFs/379_Hake_Food_Profile.pdf,False
+380,Halibut,Fish & Seafood,Preliminary,Food_PDFs/380_Halibut_Food_Profile.pdf,False
+381,Flounder,Fish & Seafood,Preliminary,Food_PDFs/381_Flounder_Food_Profile.pdf,False
+382,Sole,Fish & Seafood,Preliminary,Food_PDFs/382_Sole_Food_Profile.pdf,False
+383,Plaice,Fish & Seafood,Preliminary,Food_PDFs/383_Plaice_Food_Profile.pdf,False
+384,Turbot,Fish & Seafood,Preliminary,Food_PDFs/384_Turbot_Food_Profile.pdf,False
+385,Swordfish,Fish & Seafood,Preliminary,Food_PDFs/385_Swordfish_Food_Profile.pdf,False
+386,Marlin,Fish & Seafood,Preliminary,Food_PDFs/386_Marlin_Food_Profile.pdf,False
+387,Mahi Mahi,Fish & Seafood,Preliminary,Food_PDFs/387_Mahi_Mahi_Food_Profile.pdf,False
+388,Wahoo,Fish & Seafood,Preliminary,Food_PDFs/388_Wahoo_Food_Profile.pdf,False
+389,Kingfish (Yellowtail Amberjack),Fish & Seafood,Preliminary,Food_PDFs/389_Kingfish_Yellowtail_Amberjack_Food_Profile.pdf,False
+390,Yellowtail Snapper,Fish & Seafood,Preliminary,Food_PDFs/390_Yellowtail_Snapper_Food_Profile.pdf,False
+391,Monkfish,Fish & Seafood,Preliminary,Food_PDFs/391_Monkfish_Food_Profile.pdf,False
+392,Milkfish,Fish & Seafood,Preliminary,Food_PDFs/392_Milkfish_Food_Profile.pdf,False
+393,Rohu,Fish & Seafood,Preliminary,Food_PDFs/393_Rohu_Food_Profile.pdf,False
+394,Catla,Fish & Seafood,Preliminary,Food_PDFs/394_Catla_Food_Profile.pdf,False
+395,Hilsa,Fish & Seafood,Preliminary,Food_PDFs/395_Hilsa_Food_Profile.pdf,False
+396,Pomfret,Fish & Seafood,Preliminary,Food_PDFs/396_Pomfret_Food_Profile.pdf,False
+397,Silver Pomfret,Fish & Seafood,Preliminary,Food_PDFs/397_Silver_Pomfret_Food_Profile.pdf,False
+398,Black Pomfret,Fish & Seafood,Preliminary,Food_PDFs/398_Black_Pomfret_Food_Profile.pdf,False
+399,Spanish Mackerel,Fish & Seafood,Preliminary,Food_PDFs/399_Spanish_Mackerel_Food_Profile.pdf,False
+400,Atlantic Mackerel,Fish & Seafood,Preliminary,Food_PDFs/400_Atlantic_Mackerel_Food_Profile.pdf,False
+401,King Mackerel,Fish & Seafood,Preliminary,Food_PDFs/401_King_Mackerel_Food_Profile.pdf,False
+402,Bluefin Tuna,Fish & Seafood,Preliminary,Food_PDFs/402_Bluefin_Tuna_Food_Profile.pdf,False
+403,Skipjack Tuna,Fish & Seafood,Preliminary,Food_PDFs/403_Skipjack_Tuna_Food_Profile.pdf,False
+404,Albacore Tuna,Fish & Seafood,Preliminary,Food_PDFs/404_Albacore_Tuna_Food_Profile.pdf,False
+405,Canned Light Tuna,Fish & Seafood,Preliminary,Food_PDFs/405_Canned_Light_Tuna_Food_Profile.pdf,False
+406,Octopus,Fish & Seafood,Imported unverified source draft,Food_PDFs/406_Octopus_Food_Profile.pdf,True
+407,Cuttlefish,Fish & Seafood,Preliminary,Food_PDFs/407_Cuttlefish_Food_Profile.pdf,False
+408,Scallops,Fish & Seafood,Imported unverified source draft,Food_PDFs/408_Scallops_Food_Profile.pdf,True
+409,Clams,Fish & Seafood,Imported unverified source draft,Food_PDFs/409_Clams_Food_Profile.pdf,True
+410,Cockles,Fish & Seafood,Preliminary,Food_PDFs/410_Cockles_Food_Profile.pdf,False
+411,Abalone,Fish & Seafood,Preliminary,Food_PDFs/411_Abalone_Food_Profile.pdf,False
+412,Sea Urchin Roe,Fish & Seafood,Preliminary,Food_PDFs/412_Sea_Urchin_Roe_Food_Profile.pdf,False
+413,Sea Cucumber,Fish & Seafood,Preliminary,Food_PDFs/413_Sea_Cucumber_Food_Profile.pdf,False
+414,Crayfish,Fish & Seafood,Preliminary,Food_PDFs/414_Crayfish_Food_Profile.pdf,False
+415,Langoustine,Fish & Seafood,Preliminary,Food_PDFs/415_Langoustine_Food_Profile.pdf,False
+416,Krill,Fish & Seafood,Preliminary,Food_PDFs/416_Krill_Food_Profile.pdf,False
+417,Beef Sirloin,Meat,Preliminary,Food_PDFs/417_Beef_Sirloin_Food_Profile.pdf,False
+418,Beef Tenderloin,Meat,Preliminary,Food_PDFs/418_Beef_Tenderloin_Food_Profile.pdf,False
+419,Beef Brisket,Meat,Preliminary,Food_PDFs/419_Beef_Brisket_Food_Profile.pdf,False
+420,Beef Chuck,Meat,Preliminary,Food_PDFs/420_Beef_Chuck_Food_Profile.pdf,False
+421,Beef Mince (Ground Beef),Meat,Preliminary,Food_PDFs/421_Beef_Mince_Ground_Beef_Food_Profile.pdf,False
+422,Beef Kidney,Meat,Preliminary,Food_PDFs/422_Beef_Kidney_Food_Profile.pdf,False
+423,Beef Heart,Meat,Preliminary,Food_PDFs/423_Beef_Heart_Food_Profile.pdf,False
+424,Beef Tongue,Meat,Preliminary,Food_PDFs/424_Beef_Tongue_Food_Profile.pdf,False
+425,Beef Tripe,Meat,Preliminary,Food_PDFs/425_Beef_Tripe_Food_Profile.pdf,False
+426,Beef Bone Marrow,Meat,Preliminary,Food_PDFs/426_Beef_Bone_Marrow_Food_Profile.pdf,False
+427,Veal,Meat,Preliminary,Food_PDFs/427_Veal_Food_Profile.pdf,False
+428,Veal Liver,Meat,Preliminary,Food_PDFs/428_Veal_Liver_Food_Profile.pdf,False
+429,Lamb Shoulder,Meat,Preliminary,Food_PDFs/429_Lamb_Shoulder_Food_Profile.pdf,False
+430,Lamb Leg,Meat,Preliminary,Food_PDFs/430_Lamb_Leg_Food_Profile.pdf,False
+431,Lamb Liver,Meat,Preliminary,Food_PDFs/431_Lamb_Liver_Food_Profile.pdf,False
+432,Lamb Kidney,Meat,Preliminary,Food_PDFs/432_Lamb_Kidney_Food_Profile.pdf,False
+433,Mutton,Meat,Preliminary,Food_PDFs/433_Mutton_Food_Profile.pdf,False
+434,Goat Liver,Meat,Preliminary,Food_PDFs/434_Goat_Liver_Food_Profile.pdf,False
+435,Pork Belly,Meat,Preliminary,Food_PDFs/435_Pork_Belly_Food_Profile.pdf,False
+436,Pork Shoulder,Meat,Preliminary,Food_PDFs/436_Pork_Shoulder_Food_Profile.pdf,False
+437,Pork Tenderloin,Meat,Preliminary,Food_PDFs/437_Pork_Tenderloin_Food_Profile.pdf,False
+438,Pork Liver,Meat,Preliminary,Food_PDFs/438_Pork_Liver_Food_Profile.pdf,False
+439,Pork Kidney,Meat,Preliminary,Food_PDFs/439_Pork_Kidney_Food_Profile.pdf,False
+440,Rabbit,Meat,Preliminary,Food_PDFs/440_Rabbit_Food_Profile.pdf,False
+441,Hare,Meat,Preliminary,Food_PDFs/441_Hare_Food_Profile.pdf,False
+442,Bison,Meat,Preliminary,Food_PDFs/442_Bison_Food_Profile.pdf,False
+443,Buffalo Meat,Meat,Preliminary,Food_PDFs/443_Buffalo_Meat_Food_Profile.pdf,False
+444,Wild Boar,Meat,Preliminary,Food_PDFs/444_Wild_Boar_Food_Profile.pdf,False
+445,Kangaroo Meat,Meat,Preliminary,Food_PDFs/445_Kangaroo_Meat_Food_Profile.pdf,False
+446,Camel Meat,Meat,Preliminary,Food_PDFs/446_Camel_Meat_Food_Profile.pdf,False
+447,Horse Meat,Meat,Preliminary,Food_PDFs/447_Horse_Meat_Food_Profile.pdf,False
+448,Elk Meat,Meat,Preliminary,Food_PDFs/448_Elk_Meat_Food_Profile.pdf,False
+449,Moose Meat,Meat,Preliminary,Food_PDFs/449_Moose_Meat_Food_Profile.pdf,False
+450,Ostrich Meat,Meat,Preliminary,Food_PDFs/450_Ostrich_Meat_Food_Profile.pdf,False
+451,Emu Meat,Meat,Preliminary,Food_PDFs/451_Emu_Meat_Food_Profile.pdf,False
+452,Chicken Liver,Poultry,Preliminary,Food_PDFs/452_Chicken_Liver_Food_Profile.pdf,False
+453,Chicken Heart,Poultry,Preliminary,Food_PDFs/453_Chicken_Heart_Food_Profile.pdf,False
+454,Chicken Gizzard,Poultry,Preliminary,Food_PDFs/454_Chicken_Gizzard_Food_Profile.pdf,False
+455,Chicken Wings,Poultry,Preliminary,Food_PDFs/455_Chicken_Wings_Food_Profile.pdf,False
+456,Chicken Drumstick,Poultry,Preliminary,Food_PDFs/456_Chicken_Drumstick_Food_Profile.pdf,False
+457,Chicken Skin,Poultry,Preliminary,Food_PDFs/457_Chicken_Skin_Food_Profile.pdf,False
+458,Turkey Thigh,Poultry,Preliminary,Food_PDFs/458_Turkey_Thigh_Food_Profile.pdf,False
+459,Turkey Liver,Poultry,Preliminary,Food_PDFs/459_Turkey_Liver_Food_Profile.pdf,False
+460,Duck Breast,Poultry,Preliminary,Food_PDFs/460_Duck_Breast_Food_Profile.pdf,False
+461,Duck Liver,Poultry,Preliminary,Food_PDFs/461_Duck_Liver_Food_Profile.pdf,False
+462,Guinea Fowl,Poultry,Preliminary,Food_PDFs/462_Guinea_Fowl_Food_Profile.pdf,False
+463,Pheasant,Poultry,Preliminary,Food_PDFs/463_Pheasant_Food_Profile.pdf,False
+464,Partridge,Poultry,Preliminary,Food_PDFs/464_Partridge_Food_Profile.pdf,False
+465,Pigeon (Squab),Poultry,Preliminary,Food_PDFs/465_Pigeon_Squab_Food_Profile.pdf,False
+466,Black Rice,Grains,Imported unverified source draft,Food_PDFs/466_Black_Rice_Food_Profile.pdf,True
+467,Red Rice,Grains,Preliminary,Food_PDFs/467_Red_Rice_Food_Profile.pdf,False
+468,Wild Rice,Grains,Imported unverified source draft,Food_PDFs/468_Wild_Rice_Food_Profile.pdf,True
+469,Basmati Rice,Grains,Preliminary,Food_PDFs/469_Basmati_Rice_Food_Profile.pdf,False
+470,Jasmine Rice,Grains,Preliminary,Food_PDFs/470_Jasmine_Rice_Food_Profile.pdf,False
+471,Sticky Rice (Glutinous),Grains,Preliminary,Food_PDFs/471_Sticky_Rice_Glutinous_Food_Profile.pdf,False
+472,Arborio Rice,Grains,Preliminary,Food_PDFs/472_Arborio_Rice_Food_Profile.pdf,False
+473,Parboiled Rice,Grains,Preliminary,Food_PDFs/473_Parboiled_Rice_Food_Profile.pdf,False
+474,Rice Bran,Grains,Preliminary,Food_PDFs/474_Rice_Bran_Food_Profile.pdf,False
+475,Rice Flour,Grains,Preliminary,Food_PDFs/475_Rice_Flour_Food_Profile.pdf,False
+476,Wheat Bran,Grains,Preliminary,Food_PDFs/476_Wheat_Bran_Food_Profile.pdf,False
+477,Wheat Germ,Grains,Preliminary,Food_PDFs/477_Wheat_Germ_Food_Profile.pdf,False
+478,Bulgur Wheat,Grains,Imported unverified source draft,Food_PDFs/478_Bulgur_Wheat_Food_Profile.pdf,True
+479,Couscous,Grains,Preliminary,Food_PDFs/479_Couscous_Food_Profile.pdf,False
+480,Semolina,Grains,Preliminary,Food_PDFs/480_Semolina_Food_Profile.pdf,False
+481,Farro,Grains,Preliminary,Food_PDFs/481_Farro_Food_Profile.pdf,False
+482,Spelt,Grains,Preliminary,Food_PDFs/482_Spelt_Food_Profile.pdf,False
+483,Einkorn Wheat,Grains,Preliminary,Food_PDFs/483_Einkorn_Wheat_Food_Profile.pdf,False
+484,Emmer Wheat,Grains,Preliminary,Food_PDFs/484_Emmer_Wheat_Food_Profile.pdf,False
+485,Kamut (Khorasan Wheat),Grains,Preliminary,Food_PDFs/485_Kamut_Khorasan_Wheat_Food_Profile.pdf,False
+486,Freekeh,Grains,Preliminary,Food_PDFs/486_Freekeh_Food_Profile.pdf,False
+487,Triticale,Grains,Preliminary,Food_PDFs/487_Triticale_Food_Profile.pdf,False
+488,Amaranth Grain,Grains,Preliminary,Food_PDFs/488_Amaranth_Grain_Food_Profile.pdf,False
+489,Fonio,Grains,Preliminary,Food_PDFs/489_Fonio_Food_Profile.pdf,False
+490,Job's Tears,Grains,Preliminary,Food_PDFs/490_Job_s_Tears_Food_Profile.pdf,False
+491,Pearl Millet,Grains,Preliminary,Food_PDFs/491_Pearl_Millet_Food_Profile.pdf,False
+492,Foxtail Millet,Grains,Preliminary,Food_PDFs/492_Foxtail_Millet_Food_Profile.pdf,False
+493,Proso Millet,Grains,Preliminary,Food_PDFs/493_Proso_Millet_Food_Profile.pdf,False
+494,Barnyard Millet,Grains,Preliminary,Food_PDFs/494_Barnyard_Millet_Food_Profile.pdf,False
+495,Little Millet,Grains,Preliminary,Food_PDFs/495_Little_Millet_Food_Profile.pdf,False
+496,Kodo Millet,Grains,Preliminary,Food_PDFs/496_Kodo_Millet_Food_Profile.pdf,False
+497,Finger Millet Flour,Grains,Preliminary,Food_PDFs/497_Finger_Millet_Flour_Food_Profile.pdf,False
+498,Maize Grits (Polenta),Grains,Preliminary,Food_PDFs/498_Maize_Grits_Polenta_Food_Profile.pdf,False
+499,Popcorn Kernels,Grains,Preliminary,Food_PDFs/499_Popcorn_Kernels_Food_Profile.pdf,False
+500,Wholegrain Cornmeal,Grains,Preliminary,Food_PDFs/500_Wholegrain_Cornmeal_Food_Profile.pdf,False
+501,Oat Bran,Grains,Preliminary,Food_PDFs/501_Oat_Bran_Food_Profile.pdf,False
+502,Steel-Cut Oats,Grains,Preliminary,Food_PDFs/502_Steel_Cut_Oats_Food_Profile.pdf,False
+503,Rolled Oats,Grains,Preliminary,Food_PDFs/503_Rolled_Oats_Food_Profile.pdf,False
+504,Red Lentils,Legumes,Imported unverified source draft,Food_PDFs/504_Red_Lentils_Food_Profile.pdf,True
+505,Green Lentils,Legumes,Preliminary,Food_PDFs/505_Green_Lentils_Food_Profile.pdf,False
+506,Black Lentils (Beluga),Legumes,Preliminary,Food_PDFs/506_Black_Lentils_Beluga_Food_Profile.pdf,False
+507,Yellow Split Peas,Legumes,Preliminary,Food_PDFs/507_Yellow_Split_Peas_Food_Profile.pdf,False
+508,Green Split Peas,Legumes,Preliminary,Food_PDFs/508_Green_Split_Peas_Food_Profile.pdf,False
+509,Black-Eyed Peas,Legumes,Imported unverified source draft,Food_PDFs/509_Black_Eyed_Peas_Food_Profile.pdf,True
+510,Cowpeas,Legumes,Preliminary,Food_PDFs/510_Cowpeas_Food_Profile.pdf,False
+511,Fava Beans (Broad Beans),Legumes,Imported unverified source draft,Food_PDFs/511_Fava_Beans_Broad_Beans_Food_Profile.pdf,True
+512,Lima Beans,Legumes,Preliminary,Food_PDFs/512_Lima_Beans_Food_Profile.pdf,False
+513,Butter Beans,Legumes,Preliminary,Food_PDFs/513_Butter_Beans_Food_Profile.pdf,False
+514,Navy Beans,Legumes,Imported unverified source draft,Food_PDFs/514_Navy_Beans_Food_Profile.pdf,True
+515,Cannellini Beans,Legumes,Preliminary,Food_PDFs/515_Cannellini_Beans_Food_Profile.pdf,False
+516,Pinto Beans,Legumes,Imported unverified source draft,Food_PDFs/516_Pinto_Beans_Food_Profile.pdf,True

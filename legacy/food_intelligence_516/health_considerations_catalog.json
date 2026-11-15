@@ -1,0 +1,532 @@
+[
+  {
+    "id": "hc001",
+    "name": "High blood pressure (hypertension)",
+    "category": "Cardiovascular & Circulation"
+  },
+  {
+    "id": "hc002",
+    "name": "Low blood pressure",
+    "category": "Cardiovascular & Circulation"
+  },
+  {
+    "id": "hc003",
+    "name": "High LDL cholesterol",
+    "category": "Cardiovascular & Circulation"
+  },
+  {
+    "id": "hc004",
+    "name": "High triglycerides",
+    "category": "Cardiovascular & Circulation"
+  },
+  {
+    "id": "hc005",
+    "name": "Coronary artery disease",
+    "category": "Cardiovascular & Circulation"
+  },
+  {
+    "id": "hc006",
+    "name": "Heart failure",
+    "category": "Cardiovascular & Circulation"
+  },
+  {
+    "id": "hc007",
+    "name": "Atrial fibrillation",
+    "category": "Cardiovascular & Circulation"
+  },
+  {
+    "id": "hc008",
+    "name": "Previous stroke / TIA",
+    "category": "Cardiovascular & Circulation"
+  },
+  {
+    "id": "hc009",
+    "name": "Peripheral artery disease",
+    "category": "Cardiovascular & Circulation"
+  },
+  {
+    "id": "hc010",
+    "name": "Sodium restriction",
+    "category": "Cardiovascular & Circulation"
+  },
+  {
+    "id": "hc011",
+    "name": "Fluid restriction",
+    "category": "Cardiovascular & Circulation"
+  },
+  {
+    "id": "hc012",
+    "name": "Anticoagulant treatment",
+    "category": "Cardiovascular & Circulation"
+  },
+  {
+    "id": "hc013",
+    "name": "Prediabetes",
+    "category": "Diabetes & Metabolic"
+  },
+  {
+    "id": "hc014",
+    "name": "Type 1 diabetes",
+    "category": "Diabetes & Metabolic"
+  },
+  {
+    "id": "hc015",
+    "name": "Type 2 diabetes",
+    "category": "Diabetes & Metabolic"
+  },
+  {
+    "id": "hc016",
+    "name": "Gestational diabetes",
+    "category": "Diabetes & Metabolic"
+  },
+  {
+    "id": "hc017",
+    "name": "Insulin resistance",
+    "category": "Diabetes & Metabolic"
+  },
+  {
+    "id": "hc018",
+    "name": "Metabolic syndrome",
+    "category": "Diabetes & Metabolic"
+  },
+  {
+    "id": "hc019",
+    "name": "Weight management",
+    "category": "Diabetes & Metabolic"
+  },
+  {
+    "id": "hc020",
+    "name": "Underweight / weight gain",
+    "category": "Diabetes & Metabolic"
+  },
+  {
+    "id": "hc021",
+    "name": "PCOS",
+    "category": "Diabetes & Metabolic"
+  },
+  {
+    "id": "hc022",
+    "name": "Hypoglycaemia",
+    "category": "Diabetes & Metabolic"
+  },
+  {
+    "id": "hc023",
+    "name": "High blood glucose",
+    "category": "Diabetes & Metabolic"
+  },
+  {
+    "id": "hc024",
+    "name": "Chronic kidney disease",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc025",
+    "name": "Dialysis nutrition",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc026",
+    "name": "Kidney stones",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc027",
+    "name": "High potassium",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc028",
+    "name": "Low potassium",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc029",
+    "name": "High phosphate",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc030",
+    "name": "Fatty liver (MASLD)",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc031",
+    "name": "Cirrhosis",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc032",
+    "name": "Acid reflux (GERD)",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc033",
+    "name": "Irritable bowel syndrome (IBS)",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc034",
+    "name": "Constipation",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc035",
+    "name": "Diarrhoea",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc036",
+    "name": "Inflammatory bowel disease",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc037",
+    "name": "Coeliac disease",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc038",
+    "name": "Gallbladder disease",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc039",
+    "name": "Pancreatitis",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc040",
+    "name": "Diverticular disease",
+    "category": "Kidney, Liver & Digestive"
+  },
+  {
+    "id": "hc041",
+    "name": "Peanut allergy",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc042",
+    "name": "Tree nut allergy",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc043",
+    "name": "Milk allergy",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc044",
+    "name": "Egg allergy",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc045",
+    "name": "Fish allergy",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc046",
+    "name": "Shellfish allergy",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc047",
+    "name": "Sesame allergy",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc048",
+    "name": "Soy allergy",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc049",
+    "name": "Wheat allergy",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc050",
+    "name": "Lactose intolerance",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc051",
+    "name": "Fructose malabsorption",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc052",
+    "name": "Histamine-related food reactions",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc053",
+    "name": "FODMAP sensitivity",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc054",
+    "name": "Gluten avoidance without coeliac diagnosis",
+    "category": "Allergies & Intolerances"
+  },
+  {
+    "id": "hc055",
+    "name": "Hypothyroidism",
+    "category": "Endocrine, Bone & Deficiencies"
+  },
+  {
+    "id": "hc056",
+    "name": "Hyperthyroidism",
+    "category": "Endocrine, Bone & Deficiencies"
+  },
+  {
+    "id": "hc057",
+    "name": "Hashimoto thyroiditis",
+    "category": "Endocrine, Bone & Deficiencies"
+  },
+  {
+    "id": "hc058",
+    "name": "Graves disease",
+    "category": "Endocrine, Bone & Deficiencies"
+  },
+  {
+    "id": "hc059",
+    "name": "Osteoporosis",
+    "category": "Endocrine, Bone & Deficiencies"
+  },
+  {
+    "id": "hc060",
+    "name": "Osteopenia",
+    "category": "Endocrine, Bone & Deficiencies"
+  },
+  {
+    "id": "hc061",
+    "name": "Vitamin D deficiency",
+    "category": "Endocrine, Bone & Deficiencies"
+  },
+  {
+    "id": "hc062",
+    "name": "Vitamin B12 deficiency",
+    "category": "Endocrine, Bone & Deficiencies"
+  },
+  {
+    "id": "hc063",
+    "name": "Iron deficiency",
+    "category": "Endocrine, Bone & Deficiencies"
+  },
+  {
+    "id": "hc064",
+    "name": "Iron deficiency anaemia",
+    "category": "Endocrine, Bone & Deficiencies"
+  },
+  {
+    "id": "hc065",
+    "name": "Folate deficiency",
+    "category": "Endocrine, Bone & Deficiencies"
+  },
+  {
+    "id": "hc066",
+    "name": "Gout / high uric acid",
+    "category": "Endocrine, Bone & Deficiencies"
+  },
+  {
+    "id": "hc067",
+    "name": "Haemochromatosis",
+    "category": "Endocrine, Bone & Deficiencies"
+  },
+  {
+    "id": "hc068",
+    "name": "Pregnancy",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc069",
+    "name": "Breastfeeding",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc070",
+    "name": "Child nutrition",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc071",
+    "name": "Adolescent nutrition",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc072",
+    "name": "Older-adult nutrition",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc073",
+    "name": "Menopause",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc074",
+    "name": "Perimenopause",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc075",
+    "name": "Sports performance",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc076",
+    "name": "Muscle building",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc077",
+    "name": "Post-surgery recovery",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc078",
+    "name": "Cancer-treatment nutrition support",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc079",
+    "name": "Swallowing difficulties",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc080",
+    "name": "Pressure injury nutrition",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc081",
+    "name": "Shift-worker meals",
+    "category": "Life Stage & Specific Needs"
+  },
+  {
+    "id": "hc082",
+    "name": "Insomnia",
+    "category": "Brain, Sleep & Wellbeing"
+  },
+  {
+    "id": "hc083",
+    "name": "Sleep improvement",
+    "category": "Brain, Sleep & Wellbeing"
+  },
+  {
+    "id": "hc084",
+    "name": "Migraine food triggers",
+    "category": "Brain, Sleep & Wellbeing"
+  },
+  {
+    "id": "hc085",
+    "name": "Cognitive health",
+    "category": "Brain, Sleep & Wellbeing"
+  },
+  {
+    "id": "hc086",
+    "name": "Depression nutrition support",
+    "category": "Brain, Sleep & Wellbeing"
+  },
+  {
+    "id": "hc087",
+    "name": "Anxiety nutrition support",
+    "category": "Brain, Sleep & Wellbeing"
+  },
+  {
+    "id": "hc088",
+    "name": "ADHD-related nutrition needs",
+    "category": "Brain, Sleep & Wellbeing"
+  },
+  {
+    "id": "hc089",
+    "name": "Dementia nutrition support",
+    "category": "Brain, Sleep & Wellbeing"
+  },
+  {
+    "id": "hc090",
+    "name": "Fatigue",
+    "category": "Brain, Sleep & Wellbeing"
+  },
+  {
+    "id": "hc091",
+    "name": "Vegetarian diet",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc092",
+    "name": "Vegan diet",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc093",
+    "name": "Halal preferences",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc094",
+    "name": "Kosher preferences",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc095",
+    "name": "Increase dietary fibre",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc096",
+    "name": "Reduce added sugar",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc097",
+    "name": "Reduce sodium",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc098",
+    "name": "Increase protein",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc099",
+    "name": "Hydration",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc100",
+    "name": "Improve diet quality",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc101",
+    "name": "Healthy ageing / longevity",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc102",
+    "name": "Heart-healthy eating",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc103",
+    "name": "Better gut regularity",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc104",
+    "name": "Improve activity recovery",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc105",
+    "name": "Weight maintenance",
+    "category": "Diet Preferences & Lifestyle Goals"
+  },
+  {
+    "id": "hc106",
+    "name": "Sustainable food choices",
+    "category": "Diet Preferences & Lifestyle Goals"
+  }
+]

@@ -1,0 +1,19 @@
+SEMITS HEALTH V523 — STANDALONE WINDOWS TRIAL
+
+1. Extract this ZIP into a NEW folder. Do not extract over V522.
+2. Double-click INSTALL_ON_THIS_PC.bat to copy to your own Windows profile and create Desktop and Start Menu shortcuts.
+3. Double-click the desktop shortcut SEMITS Health V523 Trial.
+4. The app opens on http://127.0.0.1:8783/; leave its console open while using it.
+5. To display downloaded V521 food photos, run IMPORT_MY_DOWNLOADED_PHOTOS.bat in the INSTALLED folder (right-click shortcut > Open file location).
+6. Alternatively, skip installation and run START_SEMITS_HEALTH_V523.bat from the extracted directory.
+
+No Python or GitHub connection is required for the V523 UI, food library, PDFs and local encrypted demo. An internet connection is needed for external reference websites.
+
+IMPORTANT LIMITATIONS: This is a local web app hosted by Windows PowerShell, not a compiled native .exe/MSI.
+The bundled V522 workspace includes features that depend on its original Python PDF extraction backend; these advanced legacy features will not work on the static PowerShell server.
+Medical vault is a proof of concept and not suitable for real medical documents; no audited E2EE accounts, secure remote sync or on-device medical AI exist yet. Never place real health records in the trial.
+Windows built-in security policies may restrict script execution. The launcher applies a per-process bypass; your organisation's controls may still prevent it.
+Only listens on loopback 127.0.0.1, port 8783. This does not expose the software as a network server.
+DO NOT publish the local data folders or any private information to GitHub.
+
+Stable V522 is not changed by the installer.

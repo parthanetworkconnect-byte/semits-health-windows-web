@@ -1,0 +1,27 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const base=__dirname+'/../';
+let context={console,window:{},document:undefined};vm.createContext(context);
+vm.runInContext(fs.readFileSync(base+'food_catalog_v912.js','utf8')+'\n'+fs.readFileSync(base+'food_intelligence_v912.js','utf8')+'\n'+`globalThis.exported={count:FOOD_CATALOG_V912.length,groups:new Set(FOOD_CATALOG_V912.map(x=>x.category)).size,photos:FOOD_CATALOG_V912.filter(x=>x.photo).length,values:FOOD_CATALOG_V912.filter(x=>x.nutrition).length,filter:f12Filter,find:f12Find,calc:f12Calc,escape:f12Safe,card:f12Card,detail:f12Details};`,context);
+const a=context.exported;
+assert(a.count>=500);assert(a.groups>=12);assert(a.photos>=10);assert(a.values>=27);
+assert(a.filter('barramundi','All categories').some(x=>x.name==='Barramundi'));
+assert(a.filter('salmon','Fish').length>0);
+assert(a.filter('lentils','Legumes').length>0);
+assert(a.filter('almond','Nuts & seeds').length>0);
+assert(a.filter('fish','Fruits').length===0);
+assert(a.filter('','All categories',true).length===a.values);
+assert(a.find('SF0001'));assert(!a.find('NONE'));
+assert(a.calc(a.find('SF0001'),0)===null);
+const f=context.exported.filter('Apple','Fruits')[0];const calc=a.calc(f,200);assert(calc&&calc.kcal===104);
+assert(a.escape('<img src=x>')==='&lt;img src=x&gt;');
+assert(a.detail(a.find('SF0001')).includes('nutrition')); // note or missing
+assert(!a.card(f).includes('onclick='));
+const all=JSON.parse(fs.readFileSync(base+'food_catalog_v912.json'));
+assert(new Set(all.map(x=>x.id)).size===all.length);
+assert(all.every(x=>x.name && x.category && x.status && x.source));
+assert(all.filter(x=>x.nutrition).every(x=>(x.status.includes('illustrative') || x.status.includes('source matched'))));
+assert(all.filter(x=>!x.nutrition).every(x=>x.status.includes('pending')));
+assert(fs.readFileSync(base+'index.html','utf8').includes('food_intelligence_v912.js'));
+assert(fs.readFileSync(base+'app.js','utf8').includes('foodcountry:foodLibrary'));
+assert(fs.readFileSync(base+'sw.js','utf8').includes('food_catalog_v912.js'));
+console.log('V9.12 24 checks passed, catalogue '+a.count+' foods / '+a.groups+' groups / '+a.values+' illustrative nutrient values');

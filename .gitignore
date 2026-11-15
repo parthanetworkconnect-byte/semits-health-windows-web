@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.env
+.env*
+private/
+medical_uploads/
+user_data/
+*.db
+*.sqlite

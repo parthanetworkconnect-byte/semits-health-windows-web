@@ -1,0 +1,15 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const file=fs.readFileSync(__dirname+'/../care_plan_v99.js','utf8');
+const context={uid:()=> 'abcdefff-1111-2222-3333-444455556666',mine:()=>[],safe:x=>String(x),button:()=>'',head:()=>'',card:()=>'',date:()=>'',Blob:global.Blob,console};vm.createContext(context);vm.runInContext(file,context);
+const patient={name:'Synthetic Test',age:'51',sex:'Male',medicalId:'',conditions:'',medications:'',healthy:{diet:'Malaysian',preferences:'night shift'}};
+const plan=context.careBuild(patient,null);
+assert.equal(plan.days.length,7);assert.equal(plan.medical,false);assert(plan.flags.some(x=>x.includes('No reviewed')));assert(plan.days.every(d=>d.meals.length===3));
+assert.equal(context.careAgeGroup(13),'young');assert.equal(context.careAgeGroup(78),'older');
+assert.throws(()=>context.careBuild({name:'x',age:''},null));
+const report={id:'test',age:'51',condition:'Type 2 diabetes',medications:'metformin',filename:'synthetic.txt'};
+const diabetes=context.careBuild(patient,report);
+assert(diabetes.flags.some(x=>x.includes('diabetes')));assert(diabetes.screening.some(x=>x.includes('HbA1c')));
+assert(!plan.screening.some(x=>x.includes('CT MRI for all')));
+assert(context.careText(diabetes,patient).includes('7-DAY'));
+assert(context.makePermanentMedicalId().match(/^SEMITS-[A-F0-9]{32}$/));
+console.log('V9.9 planner checks passed: 10');

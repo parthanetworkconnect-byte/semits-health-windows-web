@@ -1,0 +1,272 @@
+[
+  {
+    "food": "Apple",
+    "category": "fruit",
+    "kcal_100g": 52,
+    "protein_g_100g": 0.3,
+    "carbs_g_100g": 13.8,
+    "fiber_g_100g": 2.4,
+    "nutrient_note": "Fibre; varies by variety",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Banana",
+    "category": "fruit",
+    "kcal_100g": 89,
+    "protein_g_100g": 1.1,
+    "carbs_g_100g": 22.8,
+    "fiber_g_100g": 2.6,
+    "nutrient_note": "Potassium and carbohydrate",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Orange",
+    "category": "fruit",
+    "kcal_100g": 47,
+    "protein_g_100g": 0.9,
+    "carbs_g_100g": 11.8,
+    "fiber_g_100g": 2.4,
+    "nutrient_note": "Vitamin C",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Mango",
+    "category": "fruit",
+    "kcal_100g": 60,
+    "protein_g_100g": 0.8,
+    "carbs_g_100g": 15,
+    "fiber_g_100g": 1.6,
+    "nutrient_note": "Vitamin C and carotenoids",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Papaya",
+    "category": "fruit",
+    "kcal_100g": 43,
+    "protein_g_100g": 0.5,
+    "carbs_g_100g": 10.8,
+    "fiber_g_100g": 1.7,
+    "nutrient_note": "Vitamin C",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Guava",
+    "category": "fruit",
+    "kcal_100g": 68,
+    "protein_g_100g": 2.6,
+    "carbs_g_100g": 14.3,
+    "fiber_g_100g": 5.4,
+    "nutrient_note": "Vitamin C and fibre",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Avocado",
+    "category": "fruit",
+    "kcal_100g": 160,
+    "protein_g_100g": 2.0,
+    "carbs_g_100g": 8.5,
+    "fiber_g_100g": 6.7,
+    "nutrient_note": "Unsaturated fat and fibre",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Tomato",
+    "category": "vegetable",
+    "kcal_100g": 18,
+    "protein_g_100g": 0.9,
+    "carbs_g_100g": 3.9,
+    "fiber_g_100g": 1.2,
+    "nutrient_note": "Carotenoids",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Carrot",
+    "category": "vegetable",
+    "kcal_100g": 41,
+    "protein_g_100g": 0.9,
+    "carbs_g_100g": 9.6,
+    "fiber_g_100g": 2.8,
+    "nutrient_note": "Beta-carotene",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Spinach",
+    "category": "vegetable",
+    "kcal_100g": 23,
+    "protein_g_100g": 2.9,
+    "carbs_g_100g": 3.6,
+    "fiber_g_100g": 2.2,
+    "nutrient_note": "Folate",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Broccoli",
+    "category": "vegetable",
+    "kcal_100g": 34,
+    "protein_g_100g": 2.8,
+    "carbs_g_100g": 6.6,
+    "fiber_g_100g": 2.6,
+    "nutrient_note": "Vitamin C and fibre",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Cabbage",
+    "category": "vegetable",
+    "kcal_100g": 25,
+    "protein_g_100g": 1.3,
+    "carbs_g_100g": 5.8,
+    "fiber_g_100g": 2.5,
+    "nutrient_note": "Fibre and vitamin C",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Sweet potato",
+    "category": "starch",
+    "kcal_100g": 86,
+    "protein_g_100g": 1.6,
+    "carbs_g_100g": 20.1,
+    "fiber_g_100g": 3.0,
+    "nutrient_note": "Beta-carotene in orange varieties",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Potato",
+    "category": "starch",
+    "kcal_100g": 77,
+    "protein_g_100g": 2.0,
+    "carbs_g_100g": 17,
+    "fiber_g_100g": 2.2,
+    "nutrient_note": "Potassium; cooking changes values",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Rice, white, cooked",
+    "category": "grain",
+    "kcal_100g": 130,
+    "protein_g_100g": 2.7,
+    "carbs_g_100g": 28.2,
+    "fiber_g_100g": 0.4,
+    "nutrient_note": "Carbohydrate for energy",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Rice, brown, cooked",
+    "category": "grain",
+    "kcal_100g": 123,
+    "protein_g_100g": 2.7,
+    "carbs_g_100g": 25.6,
+    "fiber_g_100g": 1.6,
+    "nutrient_note": "Whole grain; fibre",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Oats, dry",
+    "category": "grain",
+    "kcal_100g": 389,
+    "protein_g_100g": 16.9,
+    "carbs_g_100g": 66.3,
+    "fiber_g_100g": 10.6,
+    "nutrient_note": "Soluble fibre",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Quinoa, cooked",
+    "category": "grain",
+    "kcal_100g": 120,
+    "protein_g_100g": 4.4,
+    "carbs_g_100g": 21.3,
+    "fiber_g_100g": 2.8,
+    "nutrient_note": "Fibre and protein",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Lentils, cooked",
+    "category": "legume",
+    "kcal_100g": 116,
+    "protein_g_100g": 9,
+    "carbs_g_100g": 20.1,
+    "fiber_g_100g": 7.9,
+    "nutrient_note": "Protein, fibre and folate",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Chickpeas, cooked",
+    "category": "legume",
+    "kcal_100g": 164,
+    "protein_g_100g": 8.9,
+    "carbs_g_100g": 27.4,
+    "fiber_g_100g": 7.6,
+    "nutrient_note": "Protein and fibre",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Black beans, cooked",
+    "category": "legume",
+    "kcal_100g": 132,
+    "protein_g_100g": 8.9,
+    "carbs_g_100g": 23.7,
+    "fiber_g_100g": 8.7,
+    "nutrient_note": "Fibre and protein",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Tofu, firm",
+    "category": "protein",
+    "kcal_100g": 144,
+    "protein_g_100g": 17.3,
+    "carbs_g_100g": 2.8,
+    "fiber_g_100g": 2.3,
+    "nutrient_note": "Plant protein; calcium varies",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Egg, boiled",
+    "category": "protein",
+    "kcal_100g": 155,
+    "protein_g_100g": 12.6,
+    "carbs_g_100g": 1.1,
+    "fiber_g_100g": 0,
+    "nutrient_note": "Protein and choline",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Salmon, cooked",
+    "category": "protein",
+    "kcal_100g": 206,
+    "protein_g_100g": 22.1,
+    "carbs_g_100g": 0,
+    "fiber_g_100g": 0,
+    "nutrient_note": "Omega-3 fats",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Plain yoghurt, unsweetened",
+    "category": "dairy",
+    "kcal_100g": 61,
+    "protein_g_100g": 3.5,
+    "carbs_g_100g": 4.7,
+    "fiber_g_100g": 0,
+    "nutrient_note": "Protein and calcium",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Olive oil",
+    "category": "fat",
+    "kcal_100g": 884,
+    "protein_g_100g": 0,
+    "carbs_g_100g": 0,
+    "fiber_g_100g": 0,
+    "nutrient_note": "Unsaturated fat; energy dense",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  },
+  {
+    "food": "Almonds",
+    "category": "nut",
+    "kcal_100g": 579,
+    "protein_g_100g": 21.2,
+    "carbs_g_100g": 21.6,
+    "fiber_g_100g": 12.5,
+    "nutrient_note": "Fibre and unsaturated fat",
+    "data_status": "rounded indicative reference value; not ingredient-specific laboratory verified"
+  }
+]
