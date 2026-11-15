@@ -26,7 +26,7 @@ function env(){
  return {ctx,load,listeners,state};
 }
 test('new modules parse without syntax errors',()=>{
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','pwa_install.js','sw-r43.js'])
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','pwa_install.js','sw-r43.js'])
   assert.doesNotThrow(()=>new vm.Script(fs.readFileSync(path.join(root,name),'utf8'),{filename:name}));
 });
 test('SEMITS Personal Guide has generic body goals and no fixed glute-shoulder programme',()=>{
@@ -66,8 +66,25 @@ test('PWA manifest is parseable and uses SEMITS branding',()=>{
 test('new modules are wired from index and service worker',()=>{
  const page=fs.readFileSync(path.join(root,'index.html'),'utf8');
  const worker=fs.readFileSync(path.join(root,'sw-r43.js'),'utf8');
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js']){
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js']){
   assert.ok(page.includes(name),name+' missing from entry point');
   assert.ok(worker.includes(name),name+' missing from offline shell');
  }
+});
+
+test('Food Studio supports manual entry and optional photo preview without asserting AI recognition',()=>{
+ const e=env();e.load('r43_food_studio.js');
+ const html=e.ctx.sections.foodstudio();
+ assert.match(html,/Meal entry — photo or manual/);
+ assert.match(html,/Char kway teow/);
+ assert.match(html,/PFAS status unknown/);
+ assert.match(html,/Oil amount/);
+ assert.match(html,/not recognised or saved/);
+ assert.ok(e.ctx.menus.some(x=>x[0]==='foodstudio'));
+});
+test('Food Studio requires trial vault unlock before recording meals',()=>{
+ const e=env();e.load('r43_food_studio.js');e.ctx.vaultKey=null;
+ const html=e.ctx.sections.foodstudio();
+ assert.match(html,/Unlock the local test vault/);
+ assert.doesNotMatch(html,/id="r43-foodform"/);
 });
