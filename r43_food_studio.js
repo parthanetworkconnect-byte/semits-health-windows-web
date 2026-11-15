@@ -2,7 +2,7 @@
 /* SEMITS R4.3 Food Studio. Synthetic data only; pictures are previewed, NOT analysed or stored. */
 (function(){
  const KEY='semits-r43-meal-v1',E=v=>r4esc(String(v??''));
- let entries=[],loaded=null;
+ let entries=[],loaded=null,guide=null;
  const foods=['Char kway teow','Rice and dhal','Chicken and rice','Noodles / pasta','Soup / salad','Burger / pizza','Custom meal'];
  const ingredients=['Egg','Tofu','Chicken','Prawn / seafood','Vegetables','Bean sprouts','Sauce','Pickles','Chips','Fruit'];
  const drinks=['Unknown','Water','Unsweetened tea','Fresh juice','Cola / soft drink','Other'];
@@ -12,7 +12,7 @@
  const source=['Unknown','Gas hob','Induction','Electric hob','Oven','Air fryer'];
  const options=(name,all)=>'<select name="'+name+'">'+all.map(x=>'<option value="'+E(x)+'">'+E(x)+'</option>').join('')+'</select>';
  const id=()=>r41active()?.id||'default';
- async function load(){if(!vaultKey){entries=[];loaded=null;return}if(loaded===id())return;loaded=id();try{entries=await livingEncryptedRead(KEY+':'+loaded)||[]}catch{entries=[]}}
+ async function load(){if(!vaultKey){entries=[];guide=null;loaded=null;return}if(loaded===id())return;loaded=id();try{entries=await livingEncryptedRead(KEY+':'+loaded)||[]}catch{entries=[]}try{guide=await livingEncryptedRead('semits-r43-personal-assistant-v1:'+loaded)||null}catch{guide=null}}
  async function save(){if(!vaultKey)throw Error('Trial vault is locked');await livingEncryptedWrite(KEY+':'+id(),entries)}
  function log(){return entries.length?entries.slice(0,25).map(x=>'<article class="r43-food-entry"><strong>'+E(x.meal)+' · '+E(x.food)+'</strong><p>'+E(x.date)+' · '+E(x.portion)+' · '+E(x.drink)+'</p><button type="button" class="btn outline" data-meal-delete="'+E(x.id)+'">Delete trial meal</button></article>').join(''):'<p>No fictional meals recorded.</p>'}
  function form(){return '<div class="r4-hero"><div><h1>SEMITS Food Intelligence Studio</h1><p>Verify ingredients, analyse eating and learn how to prepare meals</p></div></div>'+
@@ -33,7 +33,8 @@
  '<section class="card"><h2>Personal food assessment</h2><div id="r43-food-output"><p>Enter the food to review benefits, cautions and cooking guidance.</p></div>'+
  '<hr><h3>Saved trial journal</h3><div id="r43-food-log">'+log()+'</div></section></div>')}
  function analyse(x){
- const profile=livingState.profile||{},goal=String(profile.goal||'maintain');
+ const profile=livingState.profile||{},goal=String(guide?.goal||profile.goal||'maintenance');
+ const targets=(guide?.bodyAreas||[]).join(', '),conditions=(guide?.flags||[]).join(', ');
  const fact=x.food==='Char kway teow'?
  ['Rice noodles provide carbohydrate for energy. Eggs, tofu, meat, seafood and vegetables contribute nutrients only when included.','Many restaurant versions can contain substantial added oil and sodium from sauces; exact amounts are unknown.','For home cooking, consider extra vegetables, a suitable protein, measured oil and moderate sauce.']:
  x.food==='Rice and dhal'?['Rice provides carbohydrate; dhal may provide plant protein and fibre.','Portion size and ghee or oil can change meal energy.','Add vegetables and measure added fats where useful.']:
@@ -47,7 +48,9 @@
  ['Oil and temperature','Reported oil: '+x.oil+', amount: '+x.oilAmount+'. Cooking: '+x.methodCooking+', heat: '+x.heat+'. If unknown, the system cannot infer oil quantity or cooking temperature. Avoid smoking oil or burning food.'],
  ['Cookware and energy source','Cookware: '+x.pan+'. Heat: '+x.source+'. Induction uses electromagnetic fields to heat compatible cookware; gas burns fuel and needs ventilation. Avoid empty-pan overheating of non-stick cookware, follow manufacturer heat limits and replace damaged coating. PFAS claims cannot be verified by a food photo.'],
  ['Cooking safety','Use clean equipment, separate raw meat from ready-to-eat food, cook chicken to at least 75°C at the thickest point, and use food-specific safe cooking temperatures. Boiled or steamed vegetables can be prepared with little added oil; texture and cooking duration matter.'],
- ['Connection to health goals',Number(profile.age)<18?'Children need age-appropriate nourishment, not automatic weight-loss targets.':goal==='loss'?'For fat loss, review portions and dietary pattern rather than guessing calories.':goal==='gain'?'For weight gain, review total energy and protein intake.':goal==='muscle'||goal==='shape'?'For muscle building, consider protein adequacy, total energy and timing within the complete day.':'For ongoing wellness, consider variety, fibre, appropriate protein and sustainable habits.'],
+ ['Connection to health goals',Number(guide?.age||profile.age)<18?'Children need age-appropriate nourishment, not automatic weight-loss targets.':goal==='loss'?'For fat loss, review portions and dietary pattern rather than guessing calories.':goal==='recomposition'?'For body recomposition, balance protein and overall meal energy with training and recovery; this meal alone does not determine daily totals.':goal==='gain'?'For weight gain, review total energy and protein intake.':goal==='muscle'||goal==='shape'?'For muscle building, consider protein adequacy, total energy and timing within the complete day.':'For ongoing wellness, consider variety, fibre, appropriate protein and sustainable habits.'],
+ ['Selected training priorities',targets?'Your SEMITS Personal Guide lists: '+targets+'. Check protein, carbohydrates and recovery across your complete daily diet, not from a single photo.':'No specific muscle areas have been recorded in the Personal Guide. General meal guidance applies.'],
+ ['Medical context and cautions',conditions?'Your Personal Guide flags '+conditions+'. Food and exercise changes should account for professionally confirmed restrictions; no diagnosis, drug interaction or condition-specific prescription is generated.':'No additional health flags are recorded in the Personal Guide. A medical record is optional, but missing information cannot be assumed normal.'],
  ['Information SEMITS still needs','Was this home-cooked or purchased? What portions, oils and sauces were used? Was the drink sweetened? Are there allergies or medical dietary restrictions?']
  ];
  return '<div class="r43-food-advice">'+blocks.map(([title,body])=>'<article class="r43-food-item"><h3>'+E(title)+'</h3><p>'+E(body)+'</p></article>').join('')+'</div>'+
