@@ -7,10 +7,10 @@ const KEY='semits-r43-personal-assistant-v1';
 let input=null, lastId=null;
 const E=v=>r4esc(String(v==null?'':v));
 const opts=(values,sel='')=>values.map(x=>'<option value="'+E(x)+'" '+(sel===x?'selected':'')+'>'+E(x)+'</option>').join('');
-const flags=['High blood pressure','Diabetes / prediabetes','High cholesterol','Thyroid condition','Heart / circulation condition','Kidney condition','Liver condition','Joint / back pain','Persistent fatigue','Medication considerations','Pregnancy / postpartum','Other condition'];
-const moves=['Walking','Treadmill','Strength / resistance training','Cycling','Swimming','Pilates','Yoga','Mobility / stretching','Running / jogging','Other / mixed'];
-const goals=['maintenance','loss','gain','muscle','fitness','shape'];
-const labelGoal={maintenance:'Maintain wellbeing',loss:'Healthy fat loss',gain:'Healthy weight gain',muscle:'Build muscle / strength',fitness:'Fitness and endurance',shape:'Targeted glute & shoulder development'};
+const flags=['High blood pressure','Diabetes / prediabetes','High cholesterol','Thyroid condition','Heart / circulation condition','Kidney condition','Liver condition','Joint / back pain','Persistent fatigue','Medication considerations','Pregnancy / postpartum','Menstrual cycle changes','Perimenopause / menopause','Recovery from illness / injury','Neurological / mobility condition','Other condition'];
+const moves=['Walking','Treadmill','Strength / resistance training','Cycling','Swimming','Pilates','Yoga','Mobility / stretching','Running / jogging','Balance / functional activity','Clinician-directed physio exercises','Other / mixed'];
+const goals=['maintenance','loss','gain','muscle','fitness','shape','recomposition','rehab','condition','womens','mobility','custom'];
+const labelGoal={maintenance:'Maintain wellbeing',loss:'Healthy fat loss',gain:'Healthy weight gain',muscle:'Build muscle / strength',fitness:'Fitness and endurance',shape:'Targeted glute & shoulder development',recomposition:'Body recomposition',rehab:'Recovery / rehabilitation-informed activity',condition:'Condition-aware wellness',womens:'Women’s health / menstrual wellbeing',mobility:'Mobility, balance and function',custom:'Custom combined goals'};
 function checkboxes(name,items,chosen=[]){return '<div class="r43-check-grid">'+items.map(x=>'<label class="r43-check"><input type="checkbox" name="'+name+'" value="'+E(x)+'" '+(chosen.includes(x)?'checked':'')+'> '+E(x)+'</label>').join('')+'</div>'}
 function form(){
  const original=livingState.profile||{};
@@ -25,7 +25,7 @@ function form(){
  '<form id="r43-form" class="r43-form">'+
  '<div class="r43-grid">'+
  '<label>Preferred goal<select name="goal">'+goals.map(x=>'<option value="'+x+'" '+(a.goal===x?'selected':'')+'>'+labelGoal[x]+'</option>').join('')+'</select></label>'+
- '<label>Age (adult trial only)<input required type="number" name="age" min="18" max="100" value="'+E(a.age||'')+'"></label>'+
+ '<label>Age (5–100; young-person safety pathway)<input required type="number" name="age" min="5" max="100" value="'+E(a.age||'')+'"></label>'+
  '<label>Height (cm)<input required type="number" name="height" min="100" max="230" step=".1" value="'+E(a.height||'')+'"></label>'+
  '<label>Weight (kg)<input required type="number" name="weight" min="25" max="350" step=".1" value="'+E(a.weight||'')+'"></label>'+
  '<label>Usual activity<select name="activity">'+opts(['Mostly sitting','Lightly active','Moderately active','Very active'],a.activity)+'</select></label>'+
@@ -36,6 +36,7 @@ function form(){
  '<label>Preferred workout days per week<input type="number" min="0" max="7" name="days" value="'+E(a.days??3)+'"></label>'+ 
  '<label>Training history (years)<input type="number" min="0" max="60" step="0.5" name="trainingYears" value="'+E(a.trainingYears??0)+'"></label>'+ 
  '<label>Typical workout duration (minutes)<input type="number" min="0" max="240" name="minutes" value="'+E(a.minutes??45)+'"></label></div>'+
+ '<h3>Target body areas / functions — select any</h3>'+checkboxes('bodyAreas',['Whole body','Glutes / hips','Shoulders','Arms','Back','Chest','Core','Legs','Balance / function','Cardio endurance'],a.bodyAreas||[])+
  '<h3>Health considerations — select any that apply</h3>'+
  checkboxes('flags',flags,a.flags||[])+
  '<h3>Activities you enjoy — select any</h3>'+
@@ -56,17 +57,21 @@ function planHTML(a){
  const concerning=a.redflags.length>0,urgent=a.redflags.some(x=>/bladder|bowel|saddle|both legs|Chest pain|breathing|fainting/.test(x));
  const pain=a.painLocation!=='None'&&a.painPattern!=='None';
  const unresolved=pain&&(a.painPattern==='Recurring / worsening'||a.painPattern==='Severe / sudden'||a.painDuration==='More than two weeks');
- const complex=a.flags.some(x=>/Heart|Kidney|Pregnancy|Diabetes|blood pressure/i.test(x));
- const cautious=concerning||unresolved||complex;
+ const complex=a.flags.some(x=>/Heart|Kidney|Pregnancy|Diabetes|blood pressure|Neurological|Recovery from illness/i.test(x));
+ const young=a.age<18;
+ const cautious=concerning||unresolved||complex||young;
  const movement=a.movement.length?a.movement.join(', '):'walking and accessible movement';
  const days=Math.max(0,Math.min(7,Number(a.days)||0));
  const targeted=a.goal==='shape'&&Number(a.trainingYears)>=2;
- const exercise=concerning?'Do not continue the provoking workout until urgent warning signs are assessed.':unresolved?'Avoid movements that worsen the pain; arrange a clinician or physiotherapist assessment before progressing training.':a.experience==='Beginner'?'Start with short, manageable sessions and gradually increase according to tolerance.':'Maintain a sustainable schedule and progress gradually while monitoring recovery.';
+ const chosenAreas=a.bodyAreas?.length?a.bodyAreas.join(', '):'whole body';
+ const clinicalGoal=['rehab','condition','womens'].includes(a.goal);
+ const adultWeightGoal=['loss','gain','recomposition'].includes(a.goal);
+ const exercise=young?'For a child or teenager, use age-appropriate enjoyable movement under caregiver guidance; avoid adult training loads or weight-loss prescriptions.':concerning?'Do not continue the provoking workout until urgent warning signs are assessed.':unresolved?'Avoid movements that worsen the pain; arrange a clinician or physiotherapist assessment before progressing training.':a.experience==='Beginner'?'Start with short, manageable sessions and gradually increase according to tolerance.':'Maintain a sustainable schedule and progress gradually while monitoring recovery.';
  const meal=a.diet==='Vegan'?'Include legumes, soy products, whole grains, vegetables, fruit and reliable vitamin B12 sources.':a.diet==='Vegetarian'?'Build meals around legumes, dairy or eggs if included, whole grains, vegetables and fruit.':'Build varied meals with vegetables, whole grains and appropriate protein foods.';
- const goal=a.goal==='shape'?'Maintain adequate total energy intake and include protein-containing foods throughout the day; a large calorie deficit can compromise muscle gain.':a.goal==='loss'?'Aim for consistent meals and a gradual, sustainable change, rather than extreme restriction.':a.goal==='gain'?'Consider regular nutritious meals and snacks, with resistance training when appropriate.':a.goal==='muscle'?'Include regular protein-containing foods and progressive resistance work when appropriate.':a.goal==='fitness'?'Support endurance with balanced eating, hydration and gradual conditioning.':'Maintain varied food intake and a regular routine.';
+ const goal=young?'Focus on adequate nourishing meals, wellbeing and healthy growth. Do not prescribe calorie restriction or weight targets to children.':a.goal==='rehab'?'Follow the activity limits and individualised rehabilitation plan supplied by a treating clinician or physiotherapist; do not self-prescribe rehabilitation.':a.goal==='condition'?'Support condition management through a sustainable activity and nutrition routine agreed with your healthcare team; no disease treatment claims.':a.goal==='womens'?'Consider menstrual symptoms, life stage, adequate energy and iron-rich foods where appropriate; seek clinical evaluation for persistent irregular, absent, painful or heavy periods.':a.goal==='mobility'?'Support balance, gentle strength and everyday physical function with gradual, accessible movement.':a.goal==='recomposition'?'Aim to improve strength and body composition over time with sufficient dietary protein and appropriate energy intake; avoid crash diets.':a.goal==='shape'?'Maintain adequate total energy intake and include protein-containing foods throughout the day; a large calorie deficit can compromise muscle gain.':a.goal==='loss'?'Aim for consistent meals and a gradual, sustainable change, rather than extreme restriction.':a.goal==='gain'?'Consider regular nutritious meals and snacks, with resistance training when appropriate.':a.goal==='muscle'?'Include regular protein-containing foods and progressive resistance work when appropriate.':a.goal==='fitness'?'Support endurance with balanced eating, hydration and gradual conditioning.':'Maintain varied food intake and a regular routine.';
  const sleep='Aim for a consistent wake time and sufficient sleep opportunity (generally 7–9 hours for adults); adjust to individual circumstances.';
  const referral=urgent?'Urgent assessment needed: seek emergency care now for concerning neurological, chest or breathing symptoms. In Australia, call 000 for an emergency.':concerning?'Seek prompt in-person medical assessment for these warning signs; do not continue the triggering exercise.':unresolved?'Arrange a GP or physiotherapist assessment. Symptom pattern alone cannot determine the cause of back pain.':complex?'Discuss activity and nutrition changes with a qualified clinician, especially if you take medicines or have a heart, kidney, pregnancy-related or metabolic condition.':'If pain persists, worsens or limits daily activities, discuss it with a GP or physiotherapist.';
- const why='This plan was adapted using your goal ('+labelGoal[a.goal]+'), exercise experience ('+a.experience+'), training years ('+(a.trainingYears||0)+'), usual session duration ('+(a.minutes||0)+' minutes), preferred movement ('+movement+'), health flags, sleep schedule, and discomfort responses.';
+ const why='This plan was adapted using your selected body areas ('+chosenAreas+'), health needs, and your goal ('+labelGoal[a.goal]+'), exercise experience ('+a.experience+'), training years ('+(a.trainingYears||0)+'), usual session duration ('+(a.minutes||0)+' minutes), preferred movement ('+movement+'), health flags, sleep schedule, and discomfort responses.';
  const box=(heading,text)=>'<div class="r43-plan-cell"><h3>'+heading+'</h3><p>'+E(text)+'</p></div>';
  return '<section class="card"><h2>Your personalised starting plan</h2>'+
  (concerning?'<div class="r43-alert"><strong>Safety warning:</strong> '+E(referral)+'</div>':'')+
@@ -74,19 +79,20 @@ function planHTML(a){
  box('Eating plan',goal+' '+meal)+
  box('Workout plan',(cautious?'Safety-first activity guidance: ':targeted?'Experienced glute/shoulder hypertrophy focus: ': 'Suggested activity: '+movement+'. ')+(targeted&&!cautious?'Two glute-focused days (hip thrusts, squat or leg press, Romanian deadlifts, split squats and abduction) and two shoulder-focused days (overhead press if comfortable, lateral raises and rear-delt work). Include other muscle groups, a lighter day and recovery. Start around 10 challenging weekly sets per target muscle group, then individualise based on existing workload and recovery. ':exercise)+exercise)+
  box('Targeted muscle progress',targeted&&!cautious?'Record glute and shoulder exercise weights, repetitions, hard sets, technique and perceived effort. Monitor progress every 4–6 weeks with consistent photos or body measurements if desired. Short-term strength improvement may precede visible muscle changes; assess hypertrophy over 3–6 months, without promising a shape or size.':'Set clear, measurable performance goals and review progress over time.')+
+ box('Age and health-specific support',young?'Young person: caregiver participation and an age-appropriate clinician or paediatric dietitian may be needed. This prototype does not provide body-shaping or weight-loss programmes to minors.':a.goal==='womens'||a.flags.includes('Menstrual cycle changes')?'Track cycle timing, pain and flow patterns if useful. Persistent irregular, absent, very painful or heavy periods merit GP assessment; exercise alone cannot correct an underlying menstrual disorder.':a.goal==='rehab'||a.flags.includes('Recovery from illness / injury')?'Use only rehabilitation exercises individually cleared by a physiotherapist or clinician; stop if symptoms worsen. SEMITS cannot diagnose an injury or replace a physiotherapy assessment.':a.goal==='condition'?'Work with a healthcare professional to tailor activity to medicines, condition severity and limitations. Exercise can support some conditions but cannot be assumed to control or reverse a disease.':'Plan should reflect your actual tolerance, age, preferences and ability; reassess as circumstances change.')+
  box('Cardio plan',cautious?'Do not intensify cardio until your health concerns or warning signs have been reviewed.':'Choose comfortable walking, cycling or swimming as preferred; distribute activity across up to '+days+' planned days and increase gradually.')+
  box('Sleep plan',sleep+' Your entered routine: '+a.bed+' to '+a.wake+'.')+
- box('Weight management','Monitor weekly weight trends if appropriate. Avoid drawing conclusions from one reading. Calorie targets require validated intake and health context; no automatic prescription is given here.'+(targeted?' If weight maintenance is the goal, assess whether adequate energy intake supports muscular recovery rather than adding more cardio.':''))+
+ box('Weight management',young?'Avoid adult BMI or calorie restriction targets; prioritise healthy growth, nourishment and appropriate caregiver/clinical support.':'Monitor weekly weight trends if appropriate. Avoid drawing conclusions from one reading. Calorie targets require validated intake and health context; no automatic prescription is given here.'+(targeted?' If weight maintenance is the goal, assess whether adequate energy intake supports muscular recovery rather than adding more cardio.':''))+
  box('Muscle-building nutrition',targeted&&!cautious?'For a healthy exercising adult, approximately 1.4–2.0 g protein per kg body weight each day is a common evidence-based reference range; individualise for health conditions, dietary preferences and medical advice. Adequate total energy and recovery are essential.':'Nutrition priorities should reflect goals and medical considerations; do not assume a high-protein target is suitable for everyone.')+
  box('Pain-aware guidance',pain?'Discomfort during '+a.painActivity+' near '+a.painLocation.toLowerCase()+' could have different causes. Stop or modify painful movements; do not diagnose it from this form. '+referral:'No activity-related discomfort was reported. Stop and reassess any exercise that produces concerning symptoms.')+
- box('Professional referral',referral)+
+ box('Professional referral',young?'For health or weight concerns in children and teens, seek caregiver-supported medical or dietitian advice.':clinicalGoal?'Discuss this goal with a relevant qualified clinician (GP, physiotherapist or women’s-health clinician) and use any individual care plan. '+referral:referral)+
  box('Daily follow-up','Record actual meals, activity, pain changes, sleep duration and fatigue. Reassess if health details or goals change. Missing data should remain unknown, not assumed normal.')+
  '</div><p class="note">Rule-based educational recommendations only — not generated by a medical model, not a prescription, no autonomous referrals. Reviewed clinical protocols and an audited AI model are required before production.</p></section>';
 }
 function readForm(f){
  const fields=new FormData(f),g=name=>String(fields.get(name)||'');
- const a={goal:g('goal'),age:Number(g('age')),height:Number(g('height')),weight:Number(g('weight')),activity:g('activity'),bed:g('bed'),wake:g('wake'),diet:g('diet'),experience:g('experience'),days:Number(g('days')),trainingYears:Number(g('trainingYears')),minutes:Number(g('minutes')),flags:fields.getAll('flags').map(String),movement:fields.getAll('movement').map(String),painActivity:g('painActivity'),painLocation:g('painLocation'),painPattern:g('painPattern'),painDuration:g('painDuration'),redflags:fields.getAll('redflags').map(String),notes:g('notes')};
- if(!(a.age>=18&&a.age<=100&&a.height>=100&&a.height<=230&&a.weight>=25&&a.weight<=350&&a.days>=0&&a.days<=7&&a.trainingYears>=0&&a.trainingYears<=60&&a.minutes>=0&&a.minutes<=240))throw Error('Check the age, height, weight and activity-day values.');
+ const a={goal:g('goal'),age:Number(g('age')),height:Number(g('height')),weight:Number(g('weight')),activity:g('activity'),bed:g('bed'),wake:g('wake'),diet:g('diet'),experience:g('experience'),days:Number(g('days')),bodyAreas:fields.getAll('bodyAreas').map(String),trainingYears:Number(g('trainingYears')),minutes:Number(g('minutes')),flags:fields.getAll('flags').map(String),movement:fields.getAll('movement').map(String),painActivity:g('painActivity'),painLocation:g('painLocation'),painPattern:g('painPattern'),painDuration:g('painDuration'),redflags:fields.getAll('redflags').map(String),notes:g('notes')};
+ if(!(a.age>=5&&a.age<=100&&a.height>=100&&a.height<=230&&a.weight>=25&&a.weight<=350&&a.days>=0&&a.days<=7&&a.trainingYears>=0&&a.trainingYears<=60&&a.minutes>=0&&a.minutes<=240))throw Error('Check the age, height, weight and activity-day values.');
  return a;
 }
 async function load(){
@@ -96,8 +102,8 @@ async function load(){
  lastId=id;
  try{input=await livingEncryptedRead(KEY+':'+id)}catch{input=null}
 }
-menus.push(['assistant','✧','Personal AI Guide']);
-sections.assistant=()=>'<div class="r4-hero"><div><div class="r4-eyebrow">SEMITS HEALTH · R4.3 EXPERIMENTAL</div><h1>My Personal Health Guide</h1><p>First-time interview · coordinated plan · pain-aware screening · daily guidance</p></div></div>'+
+menus.push(['assistant','✧','SEMITS Personal Guide']);
+sections.assistant=()=>'<div class="r4-hero"><div><div class="r4-eyebrow">SEMITS HEALTH · R4.3 EXPERIMENTAL</div><h1>SEMITS Personal Guide</h1><p>First-time interview · coordinated plan · pain-aware screening · daily guidance</p></div></div>'+
  (!vaultKey?'<section class="card"><h2>Unlock your trial vault</h2><p>Go to My Health Hub and unlock or create your test vault first. The interview is not available while locked.</p><a href="#hub" class="btn">Open My Health Hub</a></section>':form());
 document.addEventListener('submit',async e=>{
  if(e.target.id!=='r43-form')return;
