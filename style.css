@@ -11,3 +11,21 @@
 #unifiedContent .fileitem{margin:8px 0}
 #unifiedContent .weekly-report{white-space:pre-wrap;overflow-wrap:anywhere}
 @media(max-width:700px){.unified-tabs .btn{flex:1 1 42%}}
+
+/* R4.3 Universal interview — theme compatible with original Windows UI */
+.r43-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px}
+.r43-form{display:grid;gap:17px}
+.r43-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.r43-grid label,.r43-form>label{display:grid;gap:6px;font-weight:600;font-size:13px}
+.r43-form input[type=number],.r43-form input[type=time],.r43-form select,.r43-form textarea{width:100%;min-width:0;background:#fff;border:1px solid #c6d5c8;border-radius:9px;padding:10px;color:#263b2d;font:inherit}
+.r43-check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.r43-check{display:flex;align-items:start;gap:7px;border:1px solid #dce5dc;border-radius:8px;padding:9px;font-size:12px;line-height:1.5}
+.r43-check input{margin-top:3px;flex-shrink:0}
+.r43-risk{border:1px solid #b9a890;border-radius:12px;padding:14px}
+.r43-risk legend{font-weight:700}
+.r43-plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.r43-plan-cell{border:1px solid #dce5dc;border-radius:12px;padding:14px}
+.r43-plan-cell h3{margin:0 0 8px}.r43-plan-cell p{margin:0;line-height:1.55}
+.r43-alert{background:#fff1e8;color:#712d1b;border:1px solid #e7a58f;border-radius:10px;padding:14px;margin:14px 0}
+@media(max-width:1060px){.r43-layout{grid-template-columns:1fr}}
+@media(max-width:570px){.r43-grid,.r43-check-grid,.r43-plan-grid{grid-template-columns:1fr}}
