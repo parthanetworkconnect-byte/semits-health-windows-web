@@ -13,7 +13,13 @@ const goals=['maintenance','loss','gain','muscle','fitness'];
 const labelGoal={maintenance:'Maintain wellbeing',loss:'Healthy fat loss',gain:'Healthy weight gain',muscle:'Build muscle / strength',fitness:'Fitness and endurance'};
 function checkboxes(name,items,chosen=[]){return '<div class="r43-check-grid">'+items.map(x=>'<label class="r43-check"><input type="checkbox" name="'+name+'" value="'+E(x)+'" '+(chosen.includes(x)?'checked':'')+'> '+E(x)+'</label>').join('')+'</div>'}
 function form(){
- const a=input||{};
+ const original=livingState.profile||{};
+ const mappedGoal=original.goal==='maintain'?'maintenance':original.goal;
+ const defaultMove=original.movement==='pilates'?['Pilates']:original.movement==='strength'?['Strength / resistance training']:original.movement==='walking'?['Walking']:[];
+ const base={age:original.age||'',height:original.height||'',weight:original.weight||'',goal:labelGoal[mappedGoal]?mappedGoal:'maintenance',
+ diet:original.cuisine==='vegan'?'Vegan':original.cuisine==='vegetarian'?'Vegetarian':original.cuisine==='pescatarian'?'Pescatarian':'Mixed / omnivore',
+ movement:defaultMove,flags:original.concern==='fatigue'?['Persistent fatigue']:original.concern==='medical'?['Other condition']:[],days:3};
+ const a={...base,...(input||{})};
  return '<div class="r43-layout"><section class="card"><h2>First-time personal wellness interview</h2>'+
  '<p class="note">Experimental rule-based assistant. Your answers inform a starting plan, not a diagnosis or prescription. Use fictional data until independent security and clinical review.</p>'+
  '<form id="r43-form" class="r43-form">'+
