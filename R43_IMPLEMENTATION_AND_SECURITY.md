@@ -43,3 +43,12 @@ Email verification may restore a login account; it cannot recover cryptographic 
 - Medical conditions, pregnancy, medications and symptoms require clinician review when changing fitness/nutrition plans.
 - Never use real personal medical records or photos on this unaudited public code prototype. Do not put medical data in GitHub commits/issues.
 - Existing R4.2 main / live GitHub Pages are unchanged. Branch intentionally requires separate preview deployment and user acceptance before merging.
+
+## Requirement 6 — targeted hypertrophy for experienced gym users (implemented as educational prototype)
+- Onboarding includes **Targeted glute & shoulder development** goal, years of resistance-training history and typical workout duration; the assistant considers previous routine and preferred days.
+- If the goal is targeted muscle development and training history is at least two years, a safety-aware starting programme proposes glute and shoulder work twice weekly, exercises, initial hard-set volume, appropriate food/protein intake and regular progress review.
+- Example scenario: a 47-year-old woman with five years of training, 90-minute daily gym routine and a goal of maintaining weight while developing glutes and shoulders. Proposed 7-day allocation: Mon glutes A, Tue shoulders A, Wed recovery/mobility, Thu glutes B, Fri shoulders B, Sat other groups or light cardio, Sun rest. Training volume should depend on prior workload, symptoms and recovery, not simply exceed her current 90-minute sessions.
+- Expected outcomes: strength/technique often improve first; visible muscle development is individually variable and may require several months. No guarantee of exact hip/shoulder shape, weight outcome, or timeframe.
+- The assistant should confirm equipment, exercise tolerance, dietary restrictions, available recovery days and injury history before providing a highly specified load prescription. Menopause/perimenopause and relevant clinical conditions may warrant additional context without stereotyping.
+- If red flags, worsening pain or relevant medical cautions are reported, safety messaging supersedes hypertrophy goals.
+- **Not implemented:** an adaptive motor-control coach, true AI body-photo interpretation, automatic periodised load decisions, accurate personalised calorie expenditure or clinical diagnosis.
