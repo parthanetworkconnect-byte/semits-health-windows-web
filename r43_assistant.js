@@ -9,8 +9,8 @@ const E=v=>r4esc(String(v==null?'':v));
 const opts=(values,sel='')=>values.map(x=>'<option value="'+E(x)+'" '+(sel===x?'selected':'')+'>'+E(x)+'</option>').join('');
 const flags=['High blood pressure','Diabetes / prediabetes','High cholesterol','Thyroid condition','Heart / circulation condition','Kidney condition','Liver condition','Joint / back pain','Persistent fatigue','Medication considerations','Pregnancy / postpartum','Other condition'];
 const moves=['Walking','Treadmill','Strength / resistance training','Cycling','Swimming','Pilates','Yoga','Mobility / stretching','Running / jogging','Other / mixed'];
-const goals=['maintenance','loss','gain','muscle','fitness'];
-const labelGoal={maintenance:'Maintain wellbeing',loss:'Healthy fat loss',gain:'Healthy weight gain',muscle:'Build muscle / strength',fitness:'Fitness and endurance'};
+const goals=['maintenance','loss','gain','muscle','fitness','shape'];
+const labelGoal={maintenance:'Maintain wellbeing',loss:'Healthy fat loss',gain:'Healthy weight gain',muscle:'Build muscle / strength',fitness:'Fitness and endurance',shape:'Targeted glute & shoulder development'};
 function checkboxes(name,items,chosen=[]){return '<div class="r43-check-grid">'+items.map(x=>'<label class="r43-check"><input type="checkbox" name="'+name+'" value="'+E(x)+'" '+(chosen.includes(x)?'checked':'')+'> '+E(x)+'</label>').join('')+'</div>'}
 function form(){
  const original=livingState.profile||{};
@@ -33,7 +33,9 @@ function form(){
  '<label>Usual wake time<input type="time" name="wake" value="'+E(a.wake||'06:00')+'"></label>'+
  '<label>Food preference<select name="diet">'+opts(['Mixed / omnivore','Vegetarian','Vegan','Pescatarian','Other / custom'],a.diet)+'</select></label>'+
  '<label>Workout experience<select name="experience">'+opts(['Beginner','Some experience','Experienced'],a.experience)+'</select></label>'+
- '<label>Preferred workout days per week<input type="number" min="0" max="7" name="days" value="'+E(a.days??3)+'"></label></div>'+
+ '<label>Preferred workout days per week<input type="number" min="0" max="7" name="days" value="'+E(a.days??3)+'"></label>'+ 
+ '<label>Training history (years)<input type="number" min="0" max="60" step="0.5" name="trainingYears" value="'+E(a.trainingYears??0)+'"></label>'+ 
+ '<label>Typical workout duration (minutes)<input type="number" min="0" max="240" name="minutes" value="'+E(a.minutes??45)+'"></label></div>'+
  '<h3>Health considerations — select any that apply</h3>'+
  checkboxes('flags',flags,a.flags||[])+
  '<h3>Activities you enjoy — select any</h3>'+
@@ -58,21 +60,24 @@ function planHTML(a){
  const cautious=concerning||unresolved||complex;
  const movement=a.movement.length?a.movement.join(', '):'walking and accessible movement';
  const days=Math.max(0,Math.min(7,Number(a.days)||0));
+ const targeted=a.goal==='shape'&&Number(a.trainingYears)>=2;
  const exercise=concerning?'Do not continue the provoking workout until urgent warning signs are assessed.':unresolved?'Avoid movements that worsen the pain; arrange a clinician or physiotherapist assessment before progressing training.':a.experience==='Beginner'?'Start with short, manageable sessions and gradually increase according to tolerance.':'Maintain a sustainable schedule and progress gradually while monitoring recovery.';
  const meal=a.diet==='Vegan'?'Include legumes, soy products, whole grains, vegetables, fruit and reliable vitamin B12 sources.':a.diet==='Vegetarian'?'Build meals around legumes, dairy or eggs if included, whole grains, vegetables and fruit.':'Build varied meals with vegetables, whole grains and appropriate protein foods.';
- const goal=a.goal==='loss'?'Aim for consistent meals and a gradual, sustainable change, rather than extreme restriction.':a.goal==='gain'?'Consider regular nutritious meals and snacks, with resistance training when appropriate.':a.goal==='muscle'?'Include regular protein-containing foods and progressive resistance work when appropriate.':a.goal==='fitness'?'Support endurance with balanced eating, hydration and gradual conditioning.':'Maintain varied food intake and a regular routine.';
+ const goal=a.goal==='shape'?'Maintain adequate total energy intake and include protein-containing foods throughout the day; a large calorie deficit can compromise muscle gain.':a.goal==='loss'?'Aim for consistent meals and a gradual, sustainable change, rather than extreme restriction.':a.goal==='gain'?'Consider regular nutritious meals and snacks, with resistance training when appropriate.':a.goal==='muscle'?'Include regular protein-containing foods and progressive resistance work when appropriate.':a.goal==='fitness'?'Support endurance with balanced eating, hydration and gradual conditioning.':'Maintain varied food intake and a regular routine.';
  const sleep='Aim for a consistent wake time and sufficient sleep opportunity (generally 7–9 hours for adults); adjust to individual circumstances.';
  const referral=urgent?'Urgent assessment needed: seek emergency care now for concerning neurological, chest or breathing symptoms. In Australia, call 000 for an emergency.':concerning?'Seek prompt in-person medical assessment for these warning signs; do not continue the triggering exercise.':unresolved?'Arrange a GP or physiotherapist assessment. Symptom pattern alone cannot determine the cause of back pain.':complex?'Discuss activity and nutrition changes with a qualified clinician, especially if you take medicines or have a heart, kidney, pregnancy-related or metabolic condition.':'If pain persists, worsens or limits daily activities, discuss it with a GP or physiotherapist.';
- const why='This plan was adapted using your goal ('+labelGoal[a.goal]+'), exercise experience ('+a.experience+'), preferred movement ('+movement+'), health flags, sleep schedule, and discomfort responses.';
+ const why='This plan was adapted using your goal ('+labelGoal[a.goal]+'), exercise experience ('+a.experience+'), training years ('+(a.trainingYears||0)+'), usual session duration ('+(a.minutes||0)+' minutes), preferred movement ('+movement+'), health flags, sleep schedule, and discomfort responses.';
  const box=(heading,text)=>'<div class="r43-plan-cell"><h3>'+heading+'</h3><p>'+E(text)+'</p></div>';
  return '<section class="card"><h2>Your personalised starting plan</h2>'+
  (concerning?'<div class="r43-alert"><strong>Safety warning:</strong> '+E(referral)+'</div>':'')+
  '<p class="note">'+E(why)+'</p><div class="r43-plan-grid">'+
  box('Eating plan',goal+' '+meal)+
- box('Workout plan',(cautious?'Safety-first activity guidance: ':'Suggested activity: '+movement+'. ')+exercise)+
+ box('Workout plan',(cautious?'Safety-first activity guidance: ':targeted?'Experienced glute/shoulder hypertrophy focus: ': 'Suggested activity: '+movement+'. ')+(targeted&&!cautious?'Two glute-focused days (hip thrusts, squat or leg press, Romanian deadlifts, split squats and abduction) and two shoulder-focused days (overhead press if comfortable, lateral raises and rear-delt work). Include other muscle groups, a lighter day and recovery. Start around 10 challenging weekly sets per target muscle group, then individualise based on existing workload and recovery. ':exercise)+exercise)+
+ box('Targeted muscle progress',targeted&&!cautious?'Record glute and shoulder exercise weights, repetitions, hard sets, technique and perceived effort. Monitor progress every 4–6 weeks with consistent photos or body measurements if desired. Short-term strength improvement may precede visible muscle changes; assess hypertrophy over 3–6 months, without promising a shape or size.':'Set clear, measurable performance goals and review progress over time.')+
  box('Cardio plan',cautious?'Do not intensify cardio until your health concerns or warning signs have been reviewed.':'Choose comfortable walking, cycling or swimming as preferred; distribute activity across up to '+days+' planned days and increase gradually.')+
  box('Sleep plan',sleep+' Your entered routine: '+a.bed+' to '+a.wake+'.')+
- box('Weight management','Monitor weekly weight trends if appropriate. Avoid drawing conclusions from one reading. Calorie targets require validated intake and health context; no automatic prescription is given here.')+
+ box('Weight management','Monitor weekly weight trends if appropriate. Avoid drawing conclusions from one reading. Calorie targets require validated intake and health context; no automatic prescription is given here.'+(targeted?' If weight maintenance is the goal, assess whether adequate energy intake supports muscular recovery rather than adding more cardio.':''))+
+ box('Muscle-building nutrition',targeted&&!cautious?'For a healthy exercising adult, approximately 1.4–2.0 g protein per kg body weight each day is a common evidence-based reference range; individualise for health conditions, dietary preferences and medical advice. Adequate total energy and recovery are essential.':'Nutrition priorities should reflect goals and medical considerations; do not assume a high-protein target is suitable for everyone.')+
  box('Pain-aware guidance',pain?'Discomfort during '+a.painActivity+' near '+a.painLocation.toLowerCase()+' could have different causes. Stop or modify painful movements; do not diagnose it from this form. '+referral:'No activity-related discomfort was reported. Stop and reassess any exercise that produces concerning symptoms.')+
  box('Professional referral',referral)+
  box('Daily follow-up','Record actual meals, activity, pain changes, sleep duration and fatigue. Reassess if health details or goals change. Missing data should remain unknown, not assumed normal.')+
@@ -80,8 +85,8 @@ function planHTML(a){
 }
 function readForm(f){
  const fields=new FormData(f),g=name=>String(fields.get(name)||'');
- const a={goal:g('goal'),age:Number(g('age')),height:Number(g('height')),weight:Number(g('weight')),activity:g('activity'),bed:g('bed'),wake:g('wake'),diet:g('diet'),experience:g('experience'),days:Number(g('days')),flags:fields.getAll('flags').map(String),movement:fields.getAll('movement').map(String),painActivity:g('painActivity'),painLocation:g('painLocation'),painPattern:g('painPattern'),painDuration:g('painDuration'),redflags:fields.getAll('redflags').map(String),notes:g('notes')};
- if(!(a.age>=18&&a.age<=100&&a.height>=100&&a.height<=230&&a.weight>=25&&a.weight<=350&&a.days>=0&&a.days<=7))throw Error('Check the age, height, weight and activity-day values.');
+ const a={goal:g('goal'),age:Number(g('age')),height:Number(g('height')),weight:Number(g('weight')),activity:g('activity'),bed:g('bed'),wake:g('wake'),diet:g('diet'),experience:g('experience'),days:Number(g('days')),trainingYears:Number(g('trainingYears')),minutes:Number(g('minutes')),flags:fields.getAll('flags').map(String),movement:fields.getAll('movement').map(String),painActivity:g('painActivity'),painLocation:g('painLocation'),painPattern:g('painPattern'),painDuration:g('painDuration'),redflags:fields.getAll('redflags').map(String),notes:g('notes')};
+ if(!(a.age>=18&&a.age<=100&&a.height>=100&&a.height<=230&&a.weight>=25&&a.weight<=350&&a.days>=0&&a.days<=7&&a.trainingYears>=0&&a.trainingYears<=60&&a.minutes>=0&&a.minutes<=240))throw Error('Check the age, height, weight and activity-day values.');
  return a;
 }
 async function load(){
