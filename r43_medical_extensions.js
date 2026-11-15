@@ -27,7 +27,28 @@
     pages.push('Page '+page+':\n'+text);
    }
    const content=pages.join('\n\n');
-   if(content.trim().length<30)throw Error('No readable embedded text detected. This may be a scanned PDF. OCR of scanned PDF pages is not included yet; export its pages as images for OCR.');
+   if(content.trim().length<30){
+    status('This PDF appears scanned. Running optical character recognition on up to five pages...');
+    const mod=await import(tessPackage),worker=await mod.createWorker('eng');
+    const scanned=[];
+    try{
+     for(let n=1;n<=Math.min(count,5);n++){
+      const page=await document.getPage(n),view=page.getViewport({scale:1.6});
+      if(view.width*view.height>12000000)throw Error('Page too large for safe browser OCR');
+      const canvas=globalThis.document.createElement('canvas');
+      canvas.width=Math.ceil(view.width);canvas.height=Math.ceil(view.height);
+      const ctx=canvas.getContext('2d');
+      try{await page.render({canvasContext:ctx,viewport:view}).promise;
+       const result=await worker.recognize(canvas);
+       scanned.push('Scanned page '+n+':\n'+(result.data?.text||''));
+       status('OCR progress: '+n+' of '+Math.min(count,5)+' pages. All text must be checked manually.');
+      }finally{canvas.width=0;canvas.height=0}
+     }
+    }finally{await worker.terminate()}
+    const recognised=scanned.join('\n\n');
+    if(recognised.trim().length<10)throw Error('No readable text recognised. Use a clearer scan or manual transcription.');
+    return recognised.slice(0,200000);
+   }
    return content.slice(0,200000);
   }
   if(file.type.startsWith('image/')){
