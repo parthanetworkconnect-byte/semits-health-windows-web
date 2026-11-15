@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='semits-r43-shell-v3';
+const CACHE='semits-r43-shell-v4';
 const STATIC=['./index.html','./style.css','./r4.css','./r41.css','./r42.css','./app.js','./living.js','./unified.js','./r4.js','./r41.js','./r42.js','./r43_assistant.js','./r43_medical_intelligence.js','./r43_medical_extensions.js','./pwa_install.js','./manifest.webmanifest','./legacy/assets/icon.svg'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(STATIC)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('semits-r43-shell-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
