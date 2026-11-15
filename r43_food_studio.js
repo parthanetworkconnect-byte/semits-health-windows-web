@@ -32,6 +32,16 @@
  '<button class="btn" type="submit">Analyse and save trial meal</button><p id="r43-food-status" role="status"></p></form></section>'+
  '<section class="card"><h2>Personal food assessment</h2><div id="r43-food-output"><p>Enter the food to review benefits, cautions and cooking guidance.</p></div>'+
  '<hr><h3>Saved trial journal</h3><div id="r43-food-log">'+log()+'</div></section></div>')}
+ function cookingGuide(x){
+  const home=x.methodCooking==='Unknown / restaurant'?'If this is purchased food, the actual cooking details are unknown. This is an optional home-preparation example, not a claim about the meal eaten. ':'';
+  const oil='For one serving, start by trying a measured small amount of suitable oil (for example about 1–2 teaspoons for stir-frying, adjusting for pan, portion and recipe). No particular oil is universally healthiest; consider allergy, cooking temperature and dietary needs. ';
+  const heat='Use controlled heat appropriate to the oil and cookware, avoid smoking oil, and adjust to prevent scorching. Actual pan temperature cannot be determined by low/medium/high settings alone. ';
+  const veg='Add fresh vegetables. Light cooking can preserve texture; fully boiling is not automatically better. Cook foods to safe temperatures where necessary. ';
+  if(x.food==='Char kway teow')return home+'Illustrative home-cooked char kway teow: prepare rice noodles, washed greens and bean sprouts; choose egg, tofu or safely cooked poultry/seafood as suitable. Use a wok or suitable pan, '+oil+heat+'Cook protein safely, stir-fry vegetables and noodles in small batches, and add a measured amount of sauce. '+veg+'The amount of sodium depends on the sauce; choose a portion that fits total daily meals.';
+  if(x.food==='Chicken and rice')return home+'Cook chicken thoroughly to at least 75°C in its thickest part, checking with a clean food thermometer. Keep raw poultry separate from ready-to-eat food. '+oil+'Add cooked rice and vegetables. '+heat;
+  if(x.food==='Rice and dhal')return home+'Prepare dhal by simmering legumes until fully cooked, following ingredient instructions. Rinse and cook rice safely, and serve alongside vegetables. '+oil+'Add seasonings carefully if restricting sodium.';
+  return home+'Choose an appropriately sized serving, vegetables and protein when useful. '+oil+heat+veg+'Follow food-specific safe cooking instructions.';
+ }
  function analyse(x){
  const profile=livingState.profile||{},goal=String(guide?.goal||profile.goal||'maintenance');
  const targets=(guide?.bodyAreas||[]).join(', '),conditions=(guide?.flags||[]).join(', ');
@@ -48,6 +58,7 @@
  ['Oil and temperature','Reported oil: '+x.oil+', amount: '+x.oilAmount+'. Cooking: '+x.methodCooking+', heat: '+x.heat+'. If unknown, the system cannot infer oil quantity or cooking temperature. Avoid smoking oil or burning food.'],
  ['Cookware and energy source','Cookware: '+x.pan+'. Heat: '+x.source+'. Induction uses electromagnetic fields to heat compatible cookware; gas burns fuel and needs ventilation. Avoid empty-pan overheating of non-stick cookware, follow manufacturer heat limits and replace damaged coating. PFAS claims cannot be verified by a food photo.'],
  ['Cooking safety','Use clean equipment, separate raw meat from ready-to-eat food, cook chicken to at least 75°C at the thickest point, and use food-specific safe cooking temperatures. Boiled or steamed vegetables can be prepared with little added oil; texture and cooking duration matter.'],
+ ['Home-cooking improvement plan',cookingGuide(x)],
  ['Connection to health goals',Number(guide?.age||profile.age)<18?'Children need age-appropriate nourishment, not automatic weight-loss targets.':goal==='loss'?'For fat loss, review portions and dietary pattern rather than guessing calories.':goal==='recomposition'?'For body recomposition, balance protein and overall meal energy with training and recovery; this meal alone does not determine daily totals.':goal==='gain'?'For weight gain, review total energy and protein intake.':goal==='muscle'||goal==='shape'?'For muscle building, consider protein adequacy, total energy and timing within the complete day.':'For ongoing wellness, consider variety, fibre, appropriate protein and sustainable habits.'],
  ['Selected training priorities',targets?'Your SEMITS Personal Guide lists: '+targets+'. Check protein, carbohydrates and recovery across your complete daily diet, not from a single photo.':'No specific muscle areas have been recorded in the Personal Guide. General meal guidance applies.'],
  ['Medical context and cautions',conditions?'Your Personal Guide flags '+conditions+'. Food and exercise changes should account for professionally confirmed restrictions; no diagnosis, drug interaction or condition-specific prescription is generated.':'No additional health flags are recorded in the Personal Guide. A medical record is optional, but missing information cannot be assumed normal.'],
