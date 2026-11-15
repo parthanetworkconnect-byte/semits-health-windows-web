@@ -29,3 +29,10 @@
 .r43-alert{background:#fff1e8;color:#712d1b;border:1px solid #e7a58f;border-radius:10px;padding:14px;margin:14px 0}
 @media(max-width:1060px){.r43-layout{grid-template-columns:1fr}}
 @media(max-width:570px){.r43-grid,.r43-check-grid,.r43-plan-grid{grid-template-columns:1fr}}
+
+/* Experimental Medical Intelligence report view */
+.r43-med-item{padding:14px 0;border-bottom:1px solid #dce5dc}
+.r43-med-item p{font-size:13px;line-height:1.5}
+.r43-med-item details{padding:9px 0;overflow-wrap:anywhere}
+.r43-med-item ul{padding-left:21px}
+.r43-evidence{white-space:pre-wrap;word-break:break-word;font:inherit;font-size:13px;line-height:1.55;background:#f5f6f3;border-radius:9px;padding:14px;min-height:55px}
