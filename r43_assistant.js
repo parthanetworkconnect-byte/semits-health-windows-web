@@ -24,7 +24,7 @@ function form(){
  '<p class="note">Experimental rule-based assistant. Your answers inform a starting plan, not a diagnosis or prescription. Use fictional data until independent security and clinical review.</p>'+
  '<form id="r43-form" class="r43-form">'+
  '<div class="r43-grid">'+
- '<label>Preferred goal<select name="goal">'+goals.map(x=>'<option value="'+x+'" '+(a.goal===x?'selected':'')+'>'+labelGoal[x]+'</option>').join('')+'</select></label>'+
+ '<label>Preferred goal<select name="goal">'+goals.map(x=>'<option value="'+x+'" '+(a.goal===x?'selected':'')+'>'+E(labelGoal[x])+'</option>').join('')+'</select></label>'+
  '<label>Age (5–100; young-person safety pathway)<input required type="number" name="age" min="5" max="100" value="'+E(a.age||'')+'"></label>'+
  '<label>Height (cm)<input required type="number" name="height" min="100" max="230" step=".1" value="'+E(a.height||'')+'"></label>'+
  '<label>Weight (kg)<input required type="number" name="weight" min="25" max="350" step=".1" value="'+E(a.weight||'')+'"></label>'+
