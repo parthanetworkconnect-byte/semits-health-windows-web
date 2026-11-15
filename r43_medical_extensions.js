@@ -70,7 +70,10 @@
    '<hr><h3>Medication label reference (not an interaction checker)</h3>'+
    '<form id="r43-ext-med" class="r43-form"><label>Generic or brand medicine name — no personal details<input required maxlength="70" id="r43-ext-med-name" placeholder="e.g. amlodipine"></label><button type="submit" class="btn outline">Search openFDA public labels</button></form>'+
    '<div id="r43-ext-med-label" role="status"></div>'+
-   '<hr><h3>Medical history trends</h3>'+
+   '<hr><h3>Review records before updating your wellness plan</h3>'+
+ '<p class="note">Shows record-linked questions for your GP/physiotherapist and personal plan review. It cannot independently determine diagnosis, drug interactions or safe exercise clearance.</p>'+
+ '<button id="r43-ext-review" type="button" class="btn outline">Prepare a source-linked plan review</button><div id="r43-ext-review-output"></div>'+
+ '<hr><h3>Medical history trends</h3>'+
    '<p class="note">Displays numerical values from the same named test and identical units over time. Not a clinical trend interpretation; source records must be manually checked.</p>'+
    '<button id="r43-ext-trends" type="button" class="btn outline">Review encrypted test history</button><div id="r43-ext-trend-output"></div></section>';
  }
@@ -97,6 +100,20 @@
    const detail=xs.map(x=>E(x.date)+': '+E(x.value)+' '+E(x.unit)+' (source: '+E(x.doc)+')').join(' → ');
    return '<article class="r43-med-item"><strong>'+E(first.name)+'</strong><p>'+detail+'</p><p>Arithmetic difference: '+E(Number(delta.toPrecision(6)))+' '+E(first.unit)+'. No clinical significance assigned; this may reflect laboratory, specimen, timing or method differences.</p></article>';
   }).join(''):'<p>No two same-test, same-unit numerical entries yet. Keep reports with dates, consistent test names and units for comparison.</p>';
+ }
+function review(records){
+  if(!records.length)return '<p>No trial records have been added.</p>';
+  let typeLabels=[...new Set(records.map(r=>r.type))];
+  let medCount=records.reduce((n,r)=>n+(r.meds||[]).length,0);
+  let nums=records.reduce((n,r)=>n+(r.results||[]).length,0);
+  const lines=[
+   'Imported fictional records: '+records.length+' across '+typeLabels.join(', ')+'.',
+   'Potential lab entries detected: '+nums+'. Compare each value, unit, reference range and report date with the original source.',
+   'Potential medication entries detected: '+medCount+'. Ask a pharmacist to verify names, strengths and interactions; SEMITS has not checked them.',
+   'Before altering exercises or nutrition, confirm any relevant medical restrictions with the treating clinician.',
+   'Next review: keep a symptoms/activity diary, note what changes you want to make, and discuss questions at your next consultation.'
+  ];
+  return '<ul>'+lines.map(x=>'<li>'+E(x)+'</li>').join('')+'</ul><p class="note">No change has been applied automatically to your SEMITS Personal Guide. This summary is not clinical advice.</p>';
  }
  async function research(q){
   if(!/^[a-z0-9][a-z0-9 ,()\-]{2,89}$/i.test(q))throw Error('Use a short generic public-topic query without personal information.');
@@ -129,6 +146,10 @@
    if(!confirm('Development test only. Loading PDF/OCR libraries from an external package host is unsafe for real medical records. Continue with a fictional sample?'))return;
    try{let t=await extractFile(f);const text=document.querySelector('#r43-medtext'),title=document.querySelector('#r43-medform [name=title]');if(!text)throw Error('Medical form unavailable');text.value=t;if(title&&!title.value)title.value=f.name.slice(0,120);status('Extracted '+t.length+' characters. Please verify against the source, then use the existing encrypted trial Save action.')}
    catch(err){status('Extraction failed: '+err.message)}
+  }
+  if(el.id==='r43-ext-review'){
+   e.preventDefault();const panel=document.querySelector('#r43-ext-review-output');
+   try{panel.innerHTML=review(await history())}catch(err){panel.textContent='Unable to load encrypted trial history: '+err.message}
   }
   if(el.id==='r43-ext-trends'){
    e.preventDefault();const panel=document.querySelector('#r43-ext-trend-output');
