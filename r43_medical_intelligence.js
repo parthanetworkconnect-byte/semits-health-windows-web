@@ -29,7 +29,7 @@
  }
  function page(){return '<div class="r4-hero"><div><div class="r4-eyebrow">SEMITS HEALTH · R4.3 EXPERIMENTAL</div><h1>Medical Intelligence</h1><p>Encrypted history, document extraction and source-grounded questions</p></div></div>'+
  (!vaultKey?'<section class="card"><h2>Trial vault locked</h2><p>Unlock it in My Health Hub first.</p><a href="#hub" class="btn">Open hub</a></section>':
- '<div class="r43-layout"><section class="card"><h2>Import test medical report</h2><p class="note"><strong>Fictional data only.</strong> TXT and pasted text only. PDF, scan and image OCR are not yet implemented. No medical information is transmitted to an AI service.</p>'+
+ '<div class="r43-layout"><section class="card"><h2>Import test medical report</h2><p class="note"><strong>Fictional data only.</strong> Paste or import text here; experimental PDF and image extraction tools appear below. OCR is unverified and limited. Review all extracted results before saving. No medical information is transmitted to an AI service.</p>'+
  '<form id="r43-medform" class="r43-form"><label>Document title<input name="title" required maxlength="120"></label><label>Category<select name="type">'+kind.map(x=>'<option>'+E(x)+'</option>').join('')+'</select></label>'+
  '<label>Document date<input type="date" required name="date"></label><label>Local text document (.txt)<input id="r43-medfile" type="file" accept=".txt,text/plain"></label>'+
  '<label>Transcribed report text<textarea name="text" id="r43-medtext" required maxlength="'+MAX+'" rows="9"></textarea></label><button class="btn" type="submit">Extract and save in trial vault</button><p id="r43-medstatus" role="status"></p></form></section>'+
