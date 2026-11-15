@@ -46,3 +46,10 @@
 .r43-food-item h3{margin:0 0 8px;font-size:15px}
 .r43-food-item p{margin:0;line-height:1.55}
 @media(max-width:650px){.r43-food-advice{grid-template-columns:1fr}}
+
+/* Food Intelligence extended recognition and reference panel */
+.r43-analysis-panel{margin-top:18px}
+.r43-analysis-panel .r43-grid label{display:grid;gap:6px}
+.r43-analysis-panel input{font:inherit;padding:10px;border:1px solid #c6d5c8;border-radius:9px;max-width:100%;min-width:0}
+.r43-analysis-panel p,.r43-analysis-panel li{line-height:1.55}
+#r43-food-model-result,#r43-food-nutrition,#r43-food-questions,#r43-food-context{margin:12px 0}
