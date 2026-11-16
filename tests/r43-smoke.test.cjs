@@ -19,7 +19,7 @@ function env(){
   document:{addEventListener:(name,cb)=>{(listeners[name]||=[]).push(cb)},querySelector:()=>null},
   location:{hash:'#assistant'},navigator:{},crypto:{randomUUID:()=>String(Date.now())},
   confirm:()=>true,alert:()=>{},URL,FormData,Date,Number,Math,RegExp,Set,Map,
-  console,
+  console,URLSearchParams,
  };
  vm.createContext(ctx);
  function load(file){vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),ctx,{filename:file,timeout:1500})}
