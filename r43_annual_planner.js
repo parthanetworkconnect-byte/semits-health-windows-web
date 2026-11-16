@@ -39,10 +39,10 @@
   for(let i=0;i<365;i++){
    let salt=0,b,l,s,d,fruit,veg,drink,key;
    do{
-    b=pools?pools.breakfast[idx(i+salt,3,pools.breakfast.length,1)]:base.meals[idx(i+salt,3,7,1)].breakfast;
-    l=pools?pools.lunch[idx(i+salt+7,5,pools.lunch.length,2)]:base.meals[idx(i+salt,5,7,2)].lunch;
-    s=pools?pools.snack[idx(i+salt+14,7,pools.snack.length,3)]:base.meals[idx(i+salt,2,7,3)].snack;
-    d=pools?pools.dinner[idx(i+salt+21,11,pools.dinner.length,5)]:base.meals[idx(i+salt,4,7,5)].dinner;
+    b=pools?pools.breakfast[(i+salt)%pools.breakfast.length]:base.meals[(i+salt)%7].breakfast;
+    l=pools?pools.lunch[(i+salt+4)%pools.lunch.length]:base.meals[(i+salt+4)%7].lunch;
+    s=pools?pools.snack[(i+salt+8)%pools.snack.length]:base.meals[(i+salt+8)%7].snack;
+    d=pools?pools.dinner[(i+salt+12)%pools.dinner.length]:base.meals[(i+salt+12)%7].dinner;
     fruit=FRUITS[(i+salt*3)%FRUITS.length];
     veg=VEGETABLES[(i*5+salt)%VEGETABLES.length];
     drink=BEVERAGES[(i+salt)%BEVERAGES.length];
