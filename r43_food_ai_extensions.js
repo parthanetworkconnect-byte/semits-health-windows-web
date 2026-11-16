@@ -59,7 +59,7 @@ async function recognise(){
   suggestion=Array.isArray(predictions)?predictions.slice(0,3):[];
   const lis=suggestion.map((x,i)=>'<li><strong>'+esc(pretty(x.label))+'</strong> — model score '+Math.round((Number(x.score)||0)*100)+'%'+(i===0&&classifyMap(x.label)?' · approximate menu mapping: '+esc(classifyMap(x.label)):'')+'</li>').join('');
   html('#r43-food-model-result','<p>Possible food classes, <strong>not confirmed</strong>:</p><ol>'+lis+'</ol><p class="note">A Food-101 classifier recognises a limited set of dish categories and often fails for mixed cuisine such as char kway teow. A model score is not a reliable probability of correctness. Confirm the actual dish and all ingredients manually before saving.</p>'+
-   (suggestion[0]&&classifyMap(suggestion[0].label)?'<button type="button" class="btn outline" id="r43-apply-food-model">Suggest '+esc(classifyMap(suggestion[0].label))+' in meal field</button>':''));
+   (suggestion[0]?'<button type="button" class="btn outline" id="r43-apply-food-model">Use suggested name in food field (confirm first)</button>':''));
   text('#r43-food-model-status','Classification completed locally; confirm before using.');
  }catch(e){text('#r43-food-model-status','Recognition unavailable: '+String(e.message||e)+'. You can still use manual entry.')}
  finally{loading=false;URL.revokeObjectURL(src)}
@@ -90,7 +90,7 @@ function missing(){
  if(v('oil')==='Unknown'||v('oilAmount')==='Unknown')q.push('Do you know what oil and approximately how much was used? You can leave unknown if purchased.');
  if(v('drink')==='Unknown')q.push('What did you drink with the meal, and roughly how much?');
  if(!d.getAll('ingredient').length)q.push('Could you confirm the protein, vegetables, sauces, pickles or chips actually present?');
- if(v('food')==='Custom meal')q.push('What is the dish called, and which ingredients do you know?');
+ if(!v('food').trim())q.push('What is the food or dish called? Any cuisine and preparation details?');
  q.push('Any food allergies, preferences or clinician-confirmed restrictions relevant to this meal?');
  const list=document.createElement('ol');for(const item of q){const li=document.createElement('li');li.textContent=item;list.append(li)}
  const out=document.querySelector('#r43-food-questions');out.replaceChildren(list);
@@ -119,8 +119,8 @@ async function medicalContext(){
 document.addEventListener('click',e=>{
  if(e.target?.id==='r43-run-food-model')recognise();
  if(e.target?.id==='r43-apply-food-model'){
-  const option=classifyMap(suggestion?.[0]?.label),field=document.querySelector('#r43-foodform [name=food]');
-  if(field&&option){field.value=option;text('#r43-food-model-status','Suggested broad category selected; please verify the actual food and recipe.')}
+  const label=pretty(suggestion?.[0]?.label||''),field=document.querySelector('#r43-foodform [name=food]');
+  if(field&&label){field.value=label;text('#r43-food-model-status','Suggested dish name populated; please verify or replace with any food name.')}
  }
  if(e.target?.id==='r43-run-nutrition')nutrition();
  if(e.target?.id==='r43-food-followups')missing();
