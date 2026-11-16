@@ -70,6 +70,14 @@ var SEMITS_CULTURAL_PLAN=(function(){
  dinner:[catalog.French.dinner[0],catalog.Chinese.dinner[1],catalog.Malaysian.dinner[2],catalog.Indian.dinner[0]],
  snack:[catalog.French.snack[0],catalog.Malaysian.snack[0],catalog.Chinese.snack[0],catalog.Indian.snack[0]]
  };
+ // Universal is a deliberately inclusive combination of currently available examples.
+ // Geographic coverage remains limited to the existing licensed/demo catalogues.
+ catalog['Universal / Worldwide Foods']={
+  breakfast:[...catalog.French.breakfast,...catalog.Indian.breakfast,...catalog.Chinese.breakfast,...catalog.Malaysian.breakfast],
+  lunch:[...catalog.French.lunch,...catalog.Indian.lunch,...catalog.Chinese.lunch,...catalog.Malaysian.lunch],
+  dinner:[...catalog.French.dinner,...catalog.Indian.dinner,...catalog.Chinese.dinner,...catalog.Malaysian.dinner],
+  snack:[...catalog.French.snack,...catalog.Indian.snack,...catalog.Chinese.snack,...catalog.Malaysian.snack]
+ };
  const vegetarianMeals={
  breakfast:[recipe('Fruit, oats and yoghurt','Oats 50 g; yoghurt 170 g; fruit 120 g.',390,19),recipe('Vegetable toast + egg','Wholegrain toast 70 g; egg 2; vegetables 120 g.',410,23)],
  lunch:[recipe('Lentil, vegetable and rice bowl','Cooked lentils 190 g; vegetables 200 g; cooked rice 150 g; olive oil 8 g.',615,24),recipe('Chickpea and wholegrain salad','Cooked chickpeas 190 g; seasonal vegetables 230 g; wholegrain bread 75 g.',620,22)],
@@ -103,7 +111,7 @@ var SEMITS_CULTURAL_PLAN=(function(){
   const tdee=bmr?bmr*factor:null;
   const adjustment=hasTarget?Math.min(500,Math.abs(kg-target)*7700/(months*30.44)):0;
   const preliminary=tdee&&adult&&hasTarget?(kg>target?tdee-adjustment:tdee+adjustment):null;
-  const diet=String(a.diet||'');const culture=diet==='Vegan'?veganMeals:diet==='Vegetarian'?vegetarianMeals:catalog[a.culture]||catalog['General / mixed'];
+  const diet=String(a.diet||'');const culture=diet==='Vegan'?veganMeals:diet==='Vegetarian'?vegetarianMeals:catalog[a.culture]||catalog['Universal / Worldwide Foods'];
   const meals=Array.from({length:7},(_,i)=>{const bp=culture.breakfast[i%culture.breakfast.length],lu=culture.lunch[i%culture.lunch.length],di=culture.dinner[i%culture.dinner.length],sn=culture.snack[i%culture.snack.length];return {day:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][i],breakfast:bp,lunch:lu,dinner:di,snack:sn,total:bp.kcal+lu.kcal+di.kcal+sn.kcal,protein:bp.protein+lu.protein+di.protein+sn.protein}});
   const flags=[...(a.flags||[]),...(a.redflags||[])];const caution=flags.length||a.goal==='rehab'||a.goal==='condition'||a.painPattern==='Recurring / worsening'||a.painPattern==='Severe / sudden';
   return {age,cm,kg,target,months,bmi,goalBMI,rate,bmr,tdee,preliminary,meals,caution,flags,hasTarget,adult,sex,activity};
@@ -112,7 +120,7 @@ var SEMITS_CULTURAL_PLAN=(function(){
  const item=r=>'<strong>'+E(r.name)+'</strong><small>'+E(r.description)+'</small><small>Demo recipe estimate: ~'+r.kcal+' kcal · ~'+r.protein+' g protein</small>';
  function render(a){
   if(!a?.age||!a?.height||!a?.weight)return '';
-  const p=plan(a),culture=a.culture||'French';if(!p.adult)return '<section class="card"><h2>Seven-day plan</h2><p>Adult BMI, energy and weight-loss plans are not generated for minors. Seek age-appropriate professional advice.</p></section>';
+  const p=plan(a),culture=a.culture||'Universal / Worldwide Foods';if(!p.adult)return '<section class="card"><h2>Seven-day plan</h2><p>Adult BMI, energy and weight-loss plans are not generated for minors. Seek age-appropriate professional advice.</p></section>';
   const verified=!!p.bmr;
   const metrics=box('BMI now',p.bmi.toFixed(1)+' kg/m²')+box('Goal BMI',p.hasTarget?p.goalBMI.toFixed(1)+' kg/m²':'Set a target')+
    box('Planned change',p.hasTarget?(p.kg-p.target).toFixed(1)+' kg in '+p.months+' months':'Set a target')+
@@ -121,7 +129,7 @@ var SEMITS_CULTURAL_PLAN=(function(){
    box('Estimated daily energy use',verified?safeRound(p.tdee)+' kcal/day':'Sex input needed');
   const dietNotice=a.diet==='Vegan'||a.diet==='Vegetarian'?'<p class="note">Your selected '+E(a.diet)+' diet uses illustrative plant-based menu substitutions. These are not guaranteed to match your chosen cuisine. Vegan diets may need attention to vitamin B12 and other nutrients; review with a qualified dietitian where appropriate.</p>':'';
   const warning=p.flags.length?'<p class="r43-alert">Selected medical or symptom flags require professional review before any personal energy restriction or training progression. This draft plan is educational only.</p>':'';
-  const context='<p class="note">Cultural background selects menu traditions, not genetic or health assumptions. French, Indian, Chinese and Malaysian cuisines vary considerably by region, religion, family and historical period. A person born 55 years ago did not necessarily eat a standard national diet. Ask about childhood region, current location, religious rules, allergies and personally enjoyed foods.</p>';
+  const context='<p class="note">Universal / Worldwide Foods mixes the cuisine examples currently in the catalogue. It does not yet contain every country. Cultural background selects menu traditions, not genetic or health assumptions. French, Indian, Chinese and Malaysian cuisines vary considerably by region, religion, family and historical period. A person born 55 years ago did not necessarily eat a standard national diet. Ask about childhood region, current location, religious rules, allergies and personally enjoyed foods.</p>';
   const energy='<p class="note">Calculation uses adult BMI (screening only), Mifflin–St Jeor resting energy equation where sex is provided, and an activity multiplier as a rough estimate. '+(p.preliminary?'Illustrative energy-budget calculation for your target: ~'+safeRound(p.preliminary)+' kcal/day. The sample menus below are NOT scaled to this number and must not be treated as a prescribed calorie budget.':'No automatic energy target without sex and measured activity.')+' Recipe energy/macronutrients below are illustrative synthetic placeholders, NOT verified food-composition data or measured quantities; do not use for clinical calorie tracking.</p>';
   const days=p.meals.map((d,i)=>'<details class="r43-cultural-day"'+(i===0?' open':'')+'><summary><span>'+E(d.day)+' · '+E(culture)+' meal suggestions</span><span>Example total ~'+d.total+' kcal</span></summary>'+
    '<div class="r43-cultural-meals">'+
