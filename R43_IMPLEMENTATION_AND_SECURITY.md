@@ -101,3 +101,9 @@ Email verification may restore a login account; it cannot recover cryptographic 
 - The context tool reads the trial user profile, health flags and count of trial medical reports; it does not interpret lab findings or modify clinical diet prescriptions.
 - A complete clinically reviewed AI health engine, accurate recipe recognition, photo-based portion quantification, medical interpretation and secure production login remain unimplemented.
 - Trial only. Do not upload real food photos containing private information or real medical data. Live R4.2 is preserved, and R4.3 remains pending browser/security testing.
+
+## Requirement 11 — Guided navigation and coherent UX
+- New `r43_navigation.js` provides sidebar group headings and journey-focused ordering without removing or renaming existing routes. Grouping: Start Here, Wellness Plan, Daily Tracking, Health & Evidence, Tools & Settings.
+- `#journey` provides an onboarding pathway: profiles → basic health context → wellness goals → any food or meal → exercise → trends. Medical records remain optional for non-clinical wellness guidance; no automatic interpretation or clearance.
+- Food Studio now accepts **any user-entered dish name**, not a fixed example menu, and derives only cautious suggestions from confirmed user ingredients and optional category. Optional Food-101 classifier predictions may populate an editable text field; confirm before use. Historical saved meals remain readable without migration.
+- Developer-only branch and synthetic data restrictions remain. Existing R4.2 baseline unchanged. UI requires browser verification and automated checks before production use.
