@@ -35,13 +35,15 @@
   // Each day has four eating occasions. The day-level mix is unique in the 365-day sample,
   // not an assertion that all individual recipes are unique.
   const result=[],seen=new Set();
+  const universal=a.culture==='Universal / Worldwide Foods'&&a.diet!=='Vegan'&&a.diet!=='Vegetarian';
+  const pools=universal?SEMITS_CULTURAL_PLAN.catalog['Universal / Worldwide Foods']:null;
   for(let i=0;i<365;i++){
    let salt=0,b,l,s,d,fruit,veg,drink,key;
    do{
-    b=base.meals[idx(i+salt,3,7,1)].breakfast;
-    l=base.meals[idx(i+salt,5,7,2)].lunch;
-    s=base.meals[idx(i+salt,2,7,3)].snack;
-    d=base.meals[idx(i+salt,4,7,5)].dinner;
+    b=pools?pools.breakfast[idx(i+salt,3,pools.breakfast.length,1)]:base.meals[idx(i+salt,3,7,1)].breakfast;
+    l=pools?pools.lunch[idx(i+salt,5,pools.lunch.length,2)]:base.meals[idx(i+salt,5,7,2)].lunch;
+    s=pools?pools.snack[idx(i+salt,7,pools.snack.length,3)]:base.meals[idx(i+salt,2,7,3)].snack;
+    d=pools?pools.dinner[idx(i+salt,11,pools.dinner.length,5)]:base.meals[idx(i+salt,4,7,5)].dinner;
     fruit=FRUITS[(i+salt*3)%FRUITS.length];
     veg=VEGETABLES[(i*5+salt)%VEGETABLES.length];
     drink=BEVERAGES[(i+salt)%BEVERAGES.length];
@@ -68,7 +70,7 @@
   }
   return result;
  }
- function dayCard(d){
+ function dayCard(d,profile){
   return '<article class="r43-year-day-card"><div class="r43-year-day-heading"><h3>Day '+d.day+' <small>· Week '+d.week+'</small></h3>'+
    '<strong>~'+d.exampleKcal+' kcal*</strong></div>'+
    '<div class="r43-cultural-meals">'+d.meals.map((x,i)=>
@@ -80,7 +82,8 @@
   '<div class="r43-year-complements"><p><strong>Fresh fruit:</strong> '+E(d.fruit.name)+' (~'+d.fruit.kcal+' kcal, demo estimate) — included in illustrative daily total.</p>'+
   '<p><strong>Vegetable accompaniment:</strong> '+E(d.vegetable)+' — optional; nutrients and energy depend on preparation, not included in daily total.</p>'+
   '<p><strong>Drink:</strong> '+E(d.drink.name)+' (without added sugar, ~0 kcal). Water as desired.</p></div>'+
-  '<p class="note">*Not a validated nutrient calculation. Daily total is the sum of unverified demo recipe calories plus the illustrative fruit value, excluding optional vegetables, sauces, oils and extras. Avoid using this total as a clinical calorie target.</p></article>';
+  '<p class="note">*Not a validated nutrient calculation. Daily total is the sum of unverified demo recipe calories plus the illustrative fruit value, excluding optional vegetables, sauces, oils and extras. Avoid using this total as a clinical calorie target.</p>'+
+  (typeof SEMITS_NUTRIENT_WORKSHEET!=='undefined'?SEMITS_NUTRIENT_WORKSHEET.detail(d,profile):'')+'</article>';
  }
  function render(a){
   if(!a||Number(a.age)<18)return '';
@@ -89,18 +92,19 @@
   return '<section class="card r43-year-planner" id="r43-year-planner">'+
   '<div class="r4-eyebrow">SEMITS · 365-DAY MEAL CALENDAR · DEVELOPMENT DEMO</div>'+
   '<h2>365-day individual menu calendar</h2>'+
-  '<p>Four planned eating occasions per day. Menus vary using available cultural recipe templates plus fruit, vegetable and drink choices. A day-level combination is distinct; this is not a database of 1,460 unique recipes.</p>'+
+  '<p class="note">Universal / Worldwide Foods allows meals from different available cuisines on the same day. Choose it in the Personal Guide questionnaire, then generate a new plan. Nutritional calculations are only complete when recipe ingredient weights and reference values have been supplied and verified.</p>'+
+  '<p>Four planned eating occasions per day. Menus vary using the chosen cultural or universal recipe pool plus fruit, vegetable and drink choices. A day-level combination is distinct; this is not a database of 1,460 unique recipes.</p>'+
   (lower?'<p class="r43-alert">Medical or pain flags selected: do not treat example menus or calories as approved restrictions. Obtain appropriate clinical review.</p>':'')+
   '<div class="r43-year-toolbar"><label for="r43-year-day">View day</label>'+
   '<select id="r43-year-day" aria-label="Choose one of 365 meal days">'+days.map(d=>'<option value="'+d.day+'">Day '+d.day+' · Week '+d.week+'</option>').join('')+'</select>'+
   '<button class="btn outline" type="button" id="r43-year-prev">Previous</button>'+
   '<button class="btn outline" type="button" id="r43-year-next">Next</button></div>'+
-  '<div id="r43-year-day-content">'+dayCard(days[0])+'</div>'+
+  '<div id="r43-year-day-content">'+dayCard(days[0],a)+'</div>'+
   '<details class="r43-year-overview"><summary>View year overview (52 weeks + 1 day)</summary>'+
   '<p>Choose a day to view all four meals and approximate portion details.</p>'+
   '<div class="r43-year-grid">'+days.map(d=>'<button type="button" data-r43-year="'+d.day+'" class="r43-year-tile" aria-label="View Day '+d.day+'">'+d.day+'</button>').join('')+'</div></details>'+
   '<details><summary>Optional drinks, desserts, supper and alcohol</summary><ul>'+EXTRAS.map(x=>'<li>'+E(x)+'</li>').join('')+'</ul></details>'+
-  '<p class="note">Only French, Indian, Chinese, Malaysian and mixed illustrative templates are currently available. All-country recipe coverage and verified food photography are not implemented. Weight, age, diet and medical history require review; meal totals are unverified.</p>'+
+  '<p class="note">Universal / Worldwide Foods now mixes French, Indian, Chinese and Malaysian demonstration recipes (where diet choices allow). This is not complete worldwide coverage. All-country recipe coverage and verified food photography are not implemented. Weight, age, diet and medical history require review; meal totals are unverified.</p>'+
   '</section>';
  }
  const previous=SEMITS_CULTURAL_PLAN.render;
@@ -123,7 +127,7 @@
   data.age=Number(data.age);data.height=Number(data.height);data.weight=Number(data.weight);
   data.targetWeight=Number(data.targetWeight);data.targetMonths=Number(data.targetMonths);
   data.flags=raw.getAll('flags');data.redflags=raw.getAll('redflags');
-  const days=annualPlan(data);if(days[next-1])document.querySelector('#r43-year-day-content').innerHTML=dayCard(days[next-1]);
+  const days=annualPlan(data);if(days[next-1])document.querySelector('#r43-year-day-content').innerHTML=dayCard(days[next-1],data);
  });
  document.addEventListener('change',ev=>{
   if(ev.target?.id!=='r43-year-day')return;
@@ -135,6 +139,6 @@
   data.targetWeight=Number(data.targetWeight);data.targetMonths=Number(data.targetMonths);
   data.flags=raw.getAll('flags');data.redflags=raw.getAll('redflags');
   const day=annualPlan(data)[current-1];
-  if(day)document.querySelector('#r43-year-day-content').innerHTML=dayCard(day);
+  if(day)document.querySelector('#r43-year-day-content').innerHTML=dayCard(day,data);
  });
 })();
