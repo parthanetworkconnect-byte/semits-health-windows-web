@@ -85,3 +85,16 @@
 .r43-meal-art{font-size:27px}
 .r43-cultural-comparison{border-top:1px solid #ddd;margin-top:20px;padding-top:14px}
 @media(max-width:720px){.r43-cultural-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.r43-cultural-meals{grid-template-columns:1fr}}
+
+/* SEMITS 365-day four-meal calendar */
+.r43-year-planner{margin-top:22px}.r43-year-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:16px 0}
+.r43-year-toolbar select{min-width:150px;padding:10px;border:1px solid #c8d1cb;border-radius:9px;background:white;color:#203126}
+.r43-year-day-card{border:1px solid #dfe6e1;border-radius:12px;padding:16px;background:#fff}
+.r43-year-day-heading{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:13px}
+.r43-year-day-heading h3{margin:0}.r43-year-day-heading small{font-size:13px;color:#6b796f;font-weight:400}
+.r43-year-complements{border-top:1px solid #e6ede8;margin-top:10px;padding-top:8px;line-height:1.5}
+.r43-year-overview{margin-top:16px}.r43-year-grid{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4px;margin:12px 0}
+.r43-year-tile{padding:6px 1px;background:#f6f8f7;border:1px solid #d5dfd9;border-radius:5px;color:#253329;font-size:11px;cursor:pointer}
+.r43-year-tile:hover,.r43-year-tile:focus-visible{background:#e7f2e9;border-color:#5c7b67}
+@media(max-width:850px){.r43-year-grid{grid-template-columns:repeat(10,minmax(0,1fr))}}
+@media(max-width:520px){.r43-year-grid{grid-template-columns:repeat(7,minmax(0,1fr))}}
