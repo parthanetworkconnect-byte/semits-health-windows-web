@@ -26,7 +26,7 @@ function env(){
  return {ctx,load,listeners,state};
 }
 test('new modules parse without syntax errors',()=>{
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js','pwa_install.js','sw-r43.js'])
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js','r43_cooking_engine.js','pwa_install.js','sw-r43.js'])
   assert.doesNotThrow(()=>new vm.Script(fs.readFileSync(path.join(root,name),'utf8'),{filename:name}));
 });
 test('SEMITS Personal Guide has generic body goals and no fixed glute-shoulder programme',()=>{
@@ -66,7 +66,7 @@ test('PWA manifest is parseable and uses SEMITS branding',()=>{
 test('new modules are wired from index and service worker',()=>{
  const page=fs.readFileSync(path.join(root,'index.html'),'utf8');
  const worker=fs.readFileSync(path.join(root,'sw-r43.js'),'utf8');
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js']){
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js','r43_cooking_engine.js']){
   assert.ok(page.includes(name),name+' missing from entry point');
   assert.ok(worker.includes(name),name+' missing from offline shell');
  }
@@ -189,7 +189,7 @@ test('Packaged food lookup requires user confirmation and is safely blank on mis
  assert.equal(norm.carbs,null);
  assert.equal(norm.fat,8);
  assert.match(e.ctx.window.SEMITS_FOOD_REFERENCE.requestURL('apple'),/cgi\/search\.pl/);
- assert.match(e.ctx.SEMITS_FOOD_REFERENCE.requestURL('1234567890123'),/api\/v2\/product/);
+ assert.match(e.ctx.window.SEMITS_FOOD_REFERENCE.requestURL('1234567890123'),/api\/v2\/product/);
 });
 test('Ingredient worksheet includes opt-in food reference lookup for every row',()=>{
  const e=env();e.load('r43_nutrition_detail.js');
@@ -199,4 +199,38 @@ test('Ingredient worksheet includes opt-in food reference lookup for every row',
  assert.match(html,/data-food-lookup-go/);
  assert.match(html,/Find product/);
  assert.match(html,/Only your search text is sent/);
+});
+
+test('Cooking engine preserves energy under water-loss yield and calculates plated serving',()=>{
+ const e=env();e.load('r43_cooking_engine.js');
+ const calc=e.ctx.SEMITS_COOKING_ENGINE.computeRecipe;
+ const data={ingredients:[{grams:200,kcal100:120,protein100:10,carbs100:14,fat100:2,source:'synthetic label'},
+ {grams:100,kcal100:50,protein100:3,carbs100:8,fat100:1,source:'synthetic label'}],
+ oilGrams:10,oilKcal100:900,oilFat100:100,oilSource:'synthetic label',
+ cookedBatchGrams:280,servedGrams:140};
+ const result=calc(data);
+ assert.equal(result.complete,true);
+ assert.equal(result.batchKcal,380);
+ assert.equal(result.platedKcal,190);
+ assert.equal(result.per100gKcal,380*100/280);
+ assert.equal(result.platedMacros.protein,11.5);
+});
+test('Cooking engine refuses unsourced ingredients, unknown oil, or invalid plated weight',()=>{
+ const e=env();e.load('r43_cooking_engine.js');
+ const calc=e.ctx.SEMITS_COOKING_ENGINE.computeRecipe;
+ const base={ingredients:[{grams:100,kcal100:100,source:'source'}],
+ oilGrams:0,cookedBatchGrams:90,servedGrams:45};
+ assert.equal(calc(base).complete,true);
+ assert.equal(calc({...base,ingredients:[{grams:100,kcal100:100}]}).complete,false);
+ assert.equal(calc({...base,oilGrams:''}).complete,false);
+ assert.equal(calc({...base,servedGrams:91}).complete,false);
+ assert.equal(calc({...base,oilGrams:10}).complete,false);
+});
+test('Cooking lab is connected to each ingredient worksheet in browser',()=>{
+ const e=env();e.load('r43_cooking_engine.js');e.load('r43_nutrition_detail.js');
+ const page=e.ctx.SEMITS_NUTRIENT_WORKSHEET.detail({meals:[
+ {title:'Breakfast',recipe:{name:'Sample food',description:'Oats 70 g'}}]},{goal:'maintenance',flags:[]});
+ assert.match(page,/Cooked recipe and plated serving calculator/);
+ assert.match(page,/Final cooked batch weight/);
+ assert.match(page,/Added oil actually included/);
 });
