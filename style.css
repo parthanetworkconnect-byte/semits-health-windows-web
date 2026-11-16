@@ -98,3 +98,16 @@
 .r43-year-tile:hover,.r43-year-tile:focus-visible{background:#e7f2e9;border-color:#5c7b67}
 @media(max-width:850px){.r43-year-grid{grid-template-columns:repeat(10,minmax(0,1fr))}}
 @media(max-width:520px){.r43-year-grid{grid-template-columns:repeat(7,minmax(0,1fr))}}
+
+/* Universal food: transparent ingredient-by-ingredient calculator */
+.r43-nutrient-workbook{margin-top:18px;border-top:1px solid #dce5de;padding-top:14px}
+.r43-nutrient-workbook>summary,.r43-nutrient-meal>summary{cursor:pointer;font-weight:700;padding:10px 0}
+.r43-nutrient-meal{border:1px solid #e2e8e2;border-radius:10px;padding:8px 12px;margin:10px 0}
+.r43-nutrient-table{width:100%;font-size:12px;border-collapse:collapse;table-layout:fixed}
+.r43-nutrient-table th,.r43-nutrient-table td{padding:7px 5px;border-bottom:1px solid #e6eae6;text-align:left;overflow-wrap:anywhere;vertical-align:middle}
+.r43-nutrient-table th:first-child{width:30%}.r43-nutrient-table th:nth-child(2){width:15%}.r43-nutrient-table th:nth-child(3){width:20%}.r43-nutrient-table th:nth-child(4){width:25%}.r43-nutrient-table th:nth-child(5){width:10%}
+.r43-nutrient-table input{width:100%;min-width:0;font:inherit;border:1px solid #ccd9ce;border-radius:6px;padding:7px;background:#fff}
+.r43-nutrient-subtotal,.r43-nutrient-total{font-weight:600;font-size:13px;margin:10px 0}
+.r43-day-benefits{background:#f5f8f6;border:1px solid #dbe5dc;border-radius:11px;padding:14px;margin:13px 0}
+.r43-day-benefits h4{margin:0 0 7px}.r43-day-benefits p{margin:0;line-height:1.5}
+@media(max-width:740px){.r43-nutrient-table{table-layout:auto;display:block;overflow-x:auto;white-space:normal}.r43-nutrient-table th,.r43-nutrient-table td{min-width:85px}}
