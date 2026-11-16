@@ -40,13 +40,13 @@ function detail(day,profile){
     '<td><input aria-label="Calories per 100 grams for '+E(m.title)+' ingredient '+(j+1)+'" data-reference type="number" min="0" max="1000" step="0.1" placeholder="enter value"></td>'+
     '<td><input aria-label="Protein grams per 100 g for '+E(m.title)+' ingredient '+(j+1)+'" data-protein type="number" min="0" max="100" step="0.1" placeholder="protein"></td>'+ '<td><input aria-label="Carbohydrate grams per 100 g for '+E(m.title)+' ingredient '+(j+1)+'" data-carbs type="number" min="0" max="100" step="0.1" placeholder="carbs"></td>'+ '<td><input aria-label="Fat grams per 100 g for '+E(m.title)+' ingredient '+(j+1)+'" data-fat type="number" min="0" max="100" step="0.1" placeholder="fat"></td>'+ '<td><input aria-label="Nutrition source for '+E(m.title)+' ingredient '+(j+1)+'" data-source type="text" maxlength="80" placeholder="label/database"></td>'+
     '<td data-result>—</td></tr>').join('')+
-   '</tbody></table><p class="r43-nutrient-subtotal" aria-live="polite">Awaiting verified ingredient values. No calculated total yet.</p>'+ (typeof SEMITS_COOKING_ENGINE!=='undefined'?SEMITS_COOKING_ENGINE.controls():'')+'</details>';
+   '</tbody></table><p class="r43-nutrient-subtotal" aria-live="polite">Awaiting verified ingredient values. No calculated total yet.</p>'+ (typeof SEMITS_COOKING_ENGINE!=='undefined'?SEMITS_COOKING_ENGINE.controls():'')+(typeof SEMITS_RETENTION_ENGINE!=='undefined'?SEMITS_RETENTION_ENGINE.controls():'')+'</details>';
  }).join('');
  return '<details class="r43-nutrient-workbook"><summary>Ingredient quantities and nutrition calculations · '+day.meals.length+' meals</summary>'+
  '<p class="note">Each ingredient calculation uses measured grams × reference kcal per 100 g ÷ 100. The reference is intentionally blank: SEMITS does not have a validated database match for every recipe. Enter values from a trusted food label or a verified database. Unknown ingredients remain uncalculated, rather than being counted as zero.</p>'+
  sections+'<p class="r43-nutrient-total" aria-live="polite">No complete verified meal totals yet.</p>'+
  '<p class="note">Protein, carbohydrates and fat can be calculated when every matched ingredient has a provided per-100g reference. Fibre, sodium and micronutrients require additional verified per-ingredient data. Earlier demonstration recipe estimates are not verified.</p></details>'+
- '<div class="r43-day-benefits"><h4>How this day relates to the personal goal</h4><p>'+E(contextualBenefits(profile))+'</p></div>';
+ '<div class="r43-day-benefits"><h4>How this day relates to the personal goal</h4><p>'+E(contextualBenefits(profile))+'</p></div>'+(typeof SEMITS_DIET_REVIEW!=='undefined'?SEMITS_DIET_REVIEW.render(profile):'');
 }
 function recompute(wrapper){
  if(!wrapper)return;
