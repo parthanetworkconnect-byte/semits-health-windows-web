@@ -70,6 +70,18 @@ var SEMITS_CULTURAL_PLAN=(function(){
  dinner:[catalog.French.dinner[0],catalog.Chinese.dinner[1],catalog.Malaysian.dinner[2],catalog.Indian.dinner[0]],
  snack:[catalog.French.snack[0],catalog.Malaysian.snack[0],catalog.Chinese.snack[0],catalog.Indian.snack[0]]
  };
+ const vegetarianMeals={
+ breakfast:[recipe('Fruit, oats and yoghurt','Oats 50 g; yoghurt 170 g; fruit 120 g.',390,19),recipe('Vegetable toast + egg','Wholegrain toast 70 g; egg 2; vegetables 120 g.',410,23)],
+ lunch:[recipe('Lentil, vegetable and rice bowl','Cooked lentils 190 g; vegetables 200 g; cooked rice 150 g; olive oil 8 g.',615,24),recipe('Chickpea and wholegrain salad','Cooked chickpeas 190 g; seasonal vegetables 230 g; wholegrain bread 75 g.',620,22)],
+ dinner:[recipe('Bean and vegetable stew','Beans 200 g; cooked barley 160 g; vegetables 200 g.',580,24),recipe('Tofu, broccoli and rice','Tofu 190 g; broccoli 230 g; cooked rice 160 g.',600,28)],
+ snack:[recipe('Yoghurt and berries','Plain yoghurt 170 g; berries 130 g.',170,11),recipe('Fruit and nuts','Seasonal fruit 170 g; mixed unsalted nuts 20 g.',200,5)]
+ };
+ const veganMeals={
+ breakfast:[recipe('Oats with fortified soy milk','Oats 55 g; fortified soy milk 250 mL; fruit 130 g.',405,19),recipe('Tofu scramble and toast','Firm tofu 150 g; vegetables 120 g; wholegrain bread 70 g.',420,25)],
+ lunch:[recipe('Lentil rice and vegetable bowl','Cooked lentils 190 g; cooked rice 150 g; vegetables 220 g.',620,24),recipe('Chickpea salad and wholegrain bread','Cooked chickpeas 200 g; wholegrain bread 70 g; mixed vegetables 230 g.',635,24)],
+ dinner:[recipe('Tofu stir-fry with brown rice','Firm tofu 200 g; cooked brown rice 150 g; vegetables 230 g.',610,30),recipe('White bean and vegetable stew','Cooked white beans 210 g; vegetables 260 g; cooked quinoa 150 g.',625,27)],
+ snack:[recipe('Fruit and nuts','Seasonal fruit 160 g; nuts 20 g.',200,5),recipe('Soy yoghurt and berries','Fortified unsweetened soy yoghurt 180 g; berries 120 g.',180,10)]
+ };
  const activity=[
  ['Monday','Brisk walking','30 min, comfortable talk-test pace; break after prolonged sitting'],
  ['Tuesday','Resistance training','25 min: supported squat-to-chair, wall push-ups, light rows; 1–2 comfortable sets'],
@@ -91,7 +103,7 @@ var SEMITS_CULTURAL_PLAN=(function(){
   const tdee=bmr?bmr*factor:null;
   const adjustment=hasTarget?Math.min(500,Math.abs(kg-target)*7700/(months*30.44)):0;
   const preliminary=tdee&&adult&&hasTarget?(kg>target?tdee-adjustment:tdee+adjustment):null;
-  const culture=catalog[a.culture]||catalog['General / mixed'];
+  const diet=String(a.diet||'');const culture=diet==='Vegan'?veganMeals:diet==='Vegetarian'?vegetarianMeals:catalog[a.culture]||catalog['General / mixed'];
   const meals=Array.from({length:7},(_,i)=>{const bp=culture.breakfast[i%culture.breakfast.length],lu=culture.lunch[i%culture.lunch.length],di=culture.dinner[i%culture.dinner.length],sn=culture.snack[i%culture.snack.length];return {day:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][i],breakfast:bp,lunch:lu,dinner:di,snack:sn,total:bp.kcal+lu.kcal+di.kcal+sn.kcal,protein:bp.protein+lu.protein+di.protein+sn.protein}});
   const flags=[...(a.flags||[]),...(a.redflags||[])];const caution=flags.length||a.goal==='rehab'||a.goal==='condition'||a.painPattern==='Recurring / worsening'||a.painPattern==='Severe / sudden';
   return {age,cm,kg,target,months,bmi,goalBMI,rate,bmr,tdee,preliminary,meals,caution,flags,hasTarget,adult,sex,activity};
@@ -107,6 +119,7 @@ var SEMITS_CULTURAL_PLAN=(function(){
    box('Average weekly change',p.hasTarget?p.rate.toFixed(2)+' kg/week':'Not set')+
    box('Estimated resting energy',verified?safeRound(p.bmr)+' kcal/day':'Sex input needed')+
    box('Estimated daily energy use',verified?safeRound(p.tdee)+' kcal/day':'Sex input needed');
+  const dietNotice=a.diet==='Vegan'||a.diet==='Vegetarian'?'<p class="note">Your selected '+E(a.diet)+' diet uses illustrative plant-based menu substitutions. These are not guaranteed to match your chosen cuisine. Vegan diets may need attention to vitamin B12 and other nutrients; review with a qualified dietitian where appropriate.</p>':'';
   const warning=p.flags.length?'<p class="r43-alert">Selected medical or symptom flags require professional review before any personal energy restriction or training progression. This draft plan is educational only.</p>':'';
   const context='<p class="note">Cultural background selects menu traditions, not genetic or health assumptions. French, Indian, Chinese and Malaysian cuisines vary considerably by region, religion, family and historical period. A person born 55 years ago did not necessarily eat a standard national diet. Ask about childhood region, current location, religious rules, allergies and personally enjoyed foods.</p>';
   const energy='<p class="note">Calculation uses adult BMI (screening only), Mifflin–St Jeor resting energy equation where sex is provided, and an activity multiplier as a rough estimate. '+(p.preliminary?'Illustrative energy-budget calculation for your target: ~'+safeRound(p.preliminary)+' kcal/day. The sample menus below are NOT scaled to this number and must not be treated as a prescribed calorie budget.':'No automatic energy target without sex and measured activity.')+' Recipe energy/macronutrients below are illustrative synthetic placeholders, NOT verified food-composition data or measured quantities; do not use for clinical calorie tracking.</p>';
@@ -120,7 +133,7 @@ var SEMITS_CULTURAL_PLAN=(function(){
   const prompt='<p class="note">Recipe illustrations are icons, not photographs. Actual cultural food photos require licensed image assets and verified recipe data. Drink plain water regularly, use coffee or tea according to preference and health considerations; do not assume alcohol is beneficial. Bedtime/wake target: '+E(a.bed||'22:00')+' to '+E(a.wake||'06:00')+'. Protect 7–9 hours of sleep opportunity where possible.</p>';
   const compare='<div class="r43-cultural-comparison"><h3>Healthy ageing comparison — what can and cannot be concluded</h3><p>Compare habits with population guidance rather than imagining a disease-free typical person. Adults differ in medication use, fitness, income, environment and genetics. A person without a diagnosed disease is not automatically healthier in every respect.</p><p>The oldest fully verified human lifespan is 122 years and 164 days. No verified 130-year-old provides a scientifically valid personal diet or activity protocol. Long-lived individuals are not controlled evidence that a specific food causes longevity.</p><p>Public guidance: movement most days, about 150–300 minutes moderate activity each week when appropriate, strengthening on two days, varied vegetables, fruit, legumes and whole grains. Increase gradually based on starting ability and medical context.</p></div>';
   return '<section class="card r43-cultural-plan"><div class="r43-cultural-head"><div><div class="r4-eyebrow">SEMITS CULTURAL WEEKLY PLAN · DEMONSTRATION</div><h2>Seven-day '+E(culture)+'-influenced food & activity plan</h2><p>Menus based on food preferences, not cultural stereotypes.</p></div></div>'+
-   '<div class="r43-cultural-metrics">'+metrics+'</div>'+warning+context+energy+
+   '<div class="r43-cultural-metrics">'+metrics+'</div>'+warning+dietNotice+context+energy+
    '<h3>Seven different daily routines</h3>'+days+prompt+compare+
    '<p class="note">This is an educational generated example, not a validated AI diet prescription. Cultural recipes, nutrition data, allergies, country-specific food availability and clinical restrictions need verified sources and individual confirmation. Recheck actual intake, weight trends, tolerance and professional advice before adjustments.</p></section>';
  }
