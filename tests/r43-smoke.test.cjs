@@ -26,7 +26,7 @@ function env(){
  return {ctx,load,listeners,state};
 }
 test('new modules parse without syntax errors',()=>{
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','pwa_install.js','sw-r43.js'])
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','pwa_install.js','sw-r43.js'])
   assert.doesNotThrow(()=>new vm.Script(fs.readFileSync(path.join(root,name),'utf8'),{filename:name}));
 });
 test('SEMITS Personal Guide has generic body goals and no fixed glute-shoulder programme',()=>{
@@ -66,7 +66,7 @@ test('PWA manifest is parseable and uses SEMITS branding',()=>{
 test('new modules are wired from index and service worker',()=>{
  const page=fs.readFileSync(path.join(root,'index.html'),'utf8');
  const worker=fs.readFileSync(path.join(root,'sw-r43.js'),'utf8');
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js']){
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js']){
   assert.ok(page.includes(name),name+' missing from entry point');
   assert.ok(worker.includes(name),name+' missing from offline shell');
  }
@@ -76,7 +76,8 @@ test('Food Studio supports manual entry and optional photo preview without asser
  const e=env();e.load('r43_food_studio.js');
  const html=e.ctx.sections.foodstudio();
  assert.match(html,/Meal entry — photo or manual/);
- assert.match(html,/Char kway teow/);
+ assert.match(html,/Type any food or meal name/);
+ assert.doesNotMatch(html,/Char kway teow/);
  assert.match(html,/PFAS status unknown/);
  assert.match(html,/Oil amount/);
  assert.match(html,/not recognised or saved/);
@@ -101,4 +102,14 @@ test('Food AI extension provides optional local classifier and reference-based r
 test('Food AI extension is not available while vault locked',()=>{
  const e=env();e.load('r43_food_studio.js');e.load('r43_food_ai_extensions.js');e.ctx.vaultKey=null;
  assert.doesNotMatch(e.ctx.sections.foodstudio(),/id="r43-run-food-model"/);
+});
+
+test('Grouped SEMITS navigation provides Start Here and connected steps',()=>{
+ const e=env();e.ctx.esc=e.ctx.r4esc;
+ e.ctx.sections.today=()=>'<div>today</div>';
+ e.load('r43_navigation.js');
+ assert.match(e.ctx.sections.journey(),/Start here/);
+ assert.match(e.ctx.sections.journey(),/Without medical records/);
+ assert.match(e.ctx.sections.journey(),/Record food and review nutrition/);
+ assert.ok(e.ctx.menus.some(m=>m[0]==='journey'));
 });
