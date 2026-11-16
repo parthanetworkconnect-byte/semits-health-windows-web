@@ -31,12 +31,11 @@
  const idx=(day,prime,len,offset)=>(((day*prime+Math.floor(day/len)*offset)%len)+len)%len;
  function annualPlan(a){
   const base=SEMITS_CULTURAL_PLAN.plan(a);
-  if(!base.adult)return [];
+  if(!base.adult||base.countryUnavailable)return [];
   // Each day has four eating occasions. The day-level mix is unique in the 365-day sample,
   // not an assertion that all individual recipes are unique.
   const result=[],seen=new Set();
-  const universal=a.culture==='Universal / Worldwide Foods'&&a.diet!=='Vegan'&&a.diet!=='Vegetarian';
-  const pools=universal?SEMITS_CULTURAL_PLAN.catalog['Universal / Worldwide Foods']:null;
+  const pools=base.cuisinePool||null;
   for(let i=0;i<365;i++){
    let salt=0,b,l,s,d,fruit,veg,drink,key;
    do{
@@ -87,7 +86,9 @@
  }
  function render(a){
   if(!a||Number(a.age)<18)return '';
-  const days=annualPlan(a),p=SEMITS_CULTURAL_PLAN.plan(a);
+  const p=SEMITS_CULTURAL_PLAN.plan(a);
+  if(p.countryUnavailable)return '<section class="card r43-year-planner"><h2>365-day '+E(p.countryInfo.country)+' cuisine calendar — pending</h2><p>The country is selectable, but its recipe library has not been populated. SEMITS will not substitute unrelated country foods and label them as '+E(p.countryInfo.country)+' cuisine. Select a supported pilot country or Universal / Worldwide Foods for a demo plan.</p></section>';
+  const days=annualPlan(a);
   const lower=p.flags.length>0||p.caution;
   return '<section class="card r43-year-planner" id="r43-year-planner">'+
   '<div class="r4-eyebrow">SEMITS · 365-DAY MEAL CALENDAR · DEVELOPMENT DEMO</div>'+
