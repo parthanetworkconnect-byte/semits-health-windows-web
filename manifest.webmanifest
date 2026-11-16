@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "SEMITS Health R4.3 Universal Trial",
+  "short_name": "SEMITS Health",
+  "start_url": "./#today",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f6f1",
+  "theme_color": "#174633",
+  "icons": [
+    {
+      "src": "legacy/assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

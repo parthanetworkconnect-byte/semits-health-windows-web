@@ -11,3 +11,149 @@
 #unifiedContent .fileitem{margin:8px 0}
 #unifiedContent .weekly-report{white-space:pre-wrap;overflow-wrap:anywhere}
 @media(max-width:700px){.unified-tabs .btn{flex:1 1 42%}}
+
+/* R4.3 Universal interview — theme compatible with original Windows UI */
+.r43-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px}
+.r43-form{display:grid;gap:17px}
+.r43-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.r43-grid label,.r43-form>label{display:grid;gap:6px;font-weight:600;font-size:13px}
+.r43-form input[type=number],.r43-form input[type=time],.r43-form select,.r43-form textarea{width:100%;min-width:0;background:#fff;border:1px solid #c6d5c8;border-radius:9px;padding:10px;color:#263b2d;font:inherit}
+.r43-check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.r43-check{display:flex;align-items:start;gap:7px;border:1px solid #dce5dc;border-radius:8px;padding:9px;font-size:12px;line-height:1.5}
+.r43-check input{margin-top:3px;flex-shrink:0}
+.r43-risk{border:1px solid #b9a890;border-radius:12px;padding:14px}
+.r43-risk legend{font-weight:700}
+.r43-plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.r43-plan-cell{border:1px solid #dce5dc;border-radius:12px;padding:14px}
+.r43-plan-cell h3{margin:0 0 8px}.r43-plan-cell p{margin:0;line-height:1.55}
+.r43-alert{background:#fff1e8;color:#712d1b;border:1px solid #e7a58f;border-radius:10px;padding:14px;margin:14px 0}
+@media(max-width:1060px){.r43-layout{grid-template-columns:1fr}}
+@media(max-width:570px){.r43-grid,.r43-check-grid,.r43-plan-grid{grid-template-columns:1fr}}
+
+/* Experimental Medical Intelligence report view */
+.r43-med-item{padding:14px 0;border-bottom:1px solid #dce5dc}
+.r43-med-item p{font-size:13px;line-height:1.5}
+.r43-med-item details{padding:9px 0;overflow-wrap:anywhere}
+.r43-med-item ul{padding-left:21px}
+.r43-evidence{white-space:pre-wrap;word-break:break-word;font:inherit;font-size:13px;line-height:1.55;background:#f5f6f3;border-radius:9px;padding:14px;min-height:55px}
+
+/* R4.3 food studio responsive entry and review */
+.r43-food-image{display:block;max-width:100%;max-height:260px;object-fit:contain;border-radius:10px;margin:12px 0}
+.r43-food-entry{border-bottom:1px solid #dce5dc;padding:12px 0}
+.r43-food-entry p{font-size:13px}
+.r43-food-advice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.r43-food-item{border:1px solid #dce5dc;border-radius:11px;padding:14px}
+.r43-food-item h3{margin:0 0 8px;font-size:15px}
+.r43-food-item p{margin:0;line-height:1.55}
+@media(max-width:650px){.r43-food-advice{grid-template-columns:1fr}}
+
+/* Food Intelligence extended recognition and reference panel */
+.r43-analysis-panel{margin-top:18px}
+.r43-analysis-panel .r43-grid label{display:grid;gap:6px}
+.r43-analysis-panel input{font:inherit;padding:10px;border:1px solid #c6d5c8;border-radius:9px;max-width:100%;min-width:0}
+.r43-analysis-panel p,.r43-analysis-panel li{line-height:1.55}
+#r43-food-model-result,#r43-food-nutrition,#r43-food-questions,#r43-food-context{margin:12px 0}
+
+/* R4.3 organised sidebar, guided setup workflow */
+#nav .r43-nav-group{margin-bottom:12px}
+#nav .r43-nav-heading{color:#b7c8d9;letter-spacing:.10em;font-weight:700;font-size:10px;margin:18px 10px 7px}
+#nav .r43-nav-group a{display:flex;gap:11px;align-items:center;min-height:39px}
+.r43-journey-intro{display:flex;justify-content:space-between;gap:20px;align-items:center;border:1px solid #dde4e1;border-radius:16px;background:#fff;padding:22px;margin:18px 0}
+.r43-journey-intro h2{margin:0 0 10px}.r43-journey-intro p{margin:6px 0;line-height:1.55}
+.r43-journey-actions{display:flex;flex-wrap:wrap;gap:8px}
+.r43-journey-flow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.r43-stage{display:flex;align-items:center;gap:14px;padding:18px;border:1px solid #dce4e2;border-radius:14px;background:white;color:inherit;text-decoration:none;min-width:0}
+.r43-stage:hover,.r43-stage:focus-visible{border-color:#8095a2;box-shadow:0 2px 8px #10233015}
+.r43-stage-number{display:flex;align-items:center;justify-content:center;min-width:32px;height:32px;border:1px solid #bfcbd0;border-radius:50%;font-weight:700}
+.r43-stage span:nth-child(2){flex:1;min-width:0}.r43-stage small{display:block;margin-top:6px;color:#586a76;line-height:1.45}
+.r43-stage-arrow{color:#586a76}
+.r43-journey-extra{margin:24px 0}.r43-journey-links{display:flex;gap:12px;flex-wrap:wrap}
+.r43-journey-links a{border:1px solid #dbe4e1;padding:10px 12px;border-radius:9px}
+@media(max-width:700px){.r43-journey-flow{grid-template-columns:1fr}.r43-journey-intro{display:block}.r43-journey-actions{margin-top:15px}}
+
+/* Seven-day culturally adapted demo planner */
+.r43-cultural-plan{margin-top:20px}
+.r43-cultural-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
+.r43-cultural-metric{background:#f7faf8;border:1px solid #d9e4dc;border-radius:11px;padding:12px;min-width:0}
+.r43-cultural-metric small{display:block;font-size:12px;color:#65726a}
+.r43-cultural-metric strong{display:block;font-size:20px;margin-top:4px}
+.r43-cultural-day{border:1px solid #dee5df;border-radius:12px;margin:11px 0;padding:12px}
+.r43-cultural-day summary{cursor:pointer;display:flex;justify-content:space-between;gap:10px;font-weight:700}
+.r43-cultural-meals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.r43-cultural-meal{border:1px solid #e2e6e2;border-radius:10px;padding:12px;display:grid;gap:6px;align-content:start}
+.r43-cultural-meal strong{font-size:14px}.r43-cultural-meal small{font-size:12px;color:#637067;line-height:1.4}
+.r43-meal-art{font-size:27px}
+.r43-cultural-comparison{border-top:1px solid #ddd;margin-top:20px;padding-top:14px}
+@media(max-width:720px){.r43-cultural-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.r43-cultural-meals{grid-template-columns:1fr}}
+
+/* SEMITS 365-day four-meal calendar */
+.r43-year-planner{margin-top:22px}.r43-year-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:16px 0}
+.r43-year-toolbar select{min-width:150px;padding:10px;border:1px solid #c8d1cb;border-radius:9px;background:white;color:#203126}
+.r43-year-day-card{border:1px solid #dfe6e1;border-radius:12px;padding:16px;background:#fff}
+.r43-year-day-heading{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:13px}
+.r43-year-day-heading h3{margin:0}.r43-year-day-heading small{font-size:13px;color:#6b796f;font-weight:400}
+.r43-year-complements{border-top:1px solid #e6ede8;margin-top:10px;padding-top:8px;line-height:1.5}
+.r43-year-overview{margin-top:16px}.r43-year-grid{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:4px;margin:12px 0}
+.r43-year-tile{padding:6px 1px;background:#f6f8f7;border:1px solid #d5dfd9;border-radius:5px;color:#253329;font-size:11px;cursor:pointer}
+.r43-year-tile:hover,.r43-year-tile:focus-visible{background:#e7f2e9;border-color:#5c7b67}
+@media(max-width:850px){.r43-year-grid{grid-template-columns:repeat(10,minmax(0,1fr))}}
+@media(max-width:520px){.r43-year-grid{grid-template-columns:repeat(7,minmax(0,1fr))}}
+
+/* Universal food: transparent ingredient-by-ingredient calculator */
+.r43-nutrient-workbook{margin-top:18px;border-top:1px solid #dce5de;padding-top:14px}
+.r43-nutrient-workbook>summary,.r43-nutrient-meal>summary{cursor:pointer;font-weight:700;padding:10px 0}
+.r43-nutrient-meal{border:1px solid #e2e8e2;border-radius:10px;padding:8px 12px;margin:10px 0}
+.r43-nutrient-table{width:100%;font-size:12px;border-collapse:collapse;table-layout:fixed}
+.r43-nutrient-table th,.r43-nutrient-table td{padding:7px 5px;border-bottom:1px solid #e6eae6;text-align:left;overflow-wrap:anywhere;vertical-align:middle}
+.r43-nutrient-table th:first-child{width:30%}.r43-nutrient-table th:nth-child(2){width:15%}.r43-nutrient-table th:nth-child(3){width:20%}.r43-nutrient-table th:nth-child(4){width:25%}.r43-nutrient-table th:nth-child(5){width:10%}
+.r43-nutrient-table input{width:100%;min-width:0;font:inherit;border:1px solid #ccd9ce;border-radius:6px;padding:7px;background:#fff}
+.r43-nutrient-subtotal,.r43-nutrient-total{font-weight:600;font-size:13px;margin:10px 0}
+.r43-day-benefits{background:#f5f8f6;border:1px solid #dbe5dc;border-radius:11px;padding:14px;margin:13px 0}
+.r43-day-benefits h4{margin:0 0 7px}.r43-day-benefits p{margin:0;line-height:1.5}
+@media(max-width:740px){.r43-nutrient-table{table-layout:auto;display:block;overflow-x:auto;white-space:normal}.r43-nutrient-table th,.r43-nutrient-table td{min-width:85px}}
+
+/* Eight-column measured nutrient worksheet: horizontal scroll on smaller screens */
+.r43-nutrient-meal{overflow-x:auto}
+.r43-nutrient-table{min-width:960px;table-layout:auto}
+.r43-nutrient-table th:first-child{width:25%}
+.r43-nutrient-table th:nth-child(n+2){width:auto}
+.r43-nutrient-table input{min-width:78px}
+
+/* Optional food-composition source lookup (Open Food Facts) */
+.r43-food-lookup{display:grid;gap:5px;margin-top:8px}
+.r43-food-lookup input{max-width:100%;min-width:100px}
+.r43-food-lookup .btn{font-size:11px;padding:6px 8px;white-space:normal}
+.r43-food-matches{display:grid;gap:5px;line-height:1.4;font-size:11px;min-width:180px;max-width:280px}
+.r43-lookup-choice{text-align:left;white-space:normal;overflow-wrap:anywhere}
+.r43-food-matches .note{font-size:11px}
+
+/* R4.3 cooking-yield calculations */
+.r43-cook-lab{border:1px solid #d4ded6;border-radius:12px;background:#f8faf8;padding:14px;margin:15px 0}
+.r43-cook-lab h4{margin:0 0 7px}.r43-cook-lab .r43-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.r43-cook-lab label{display:grid;gap:6px;font-size:13px;color:#3c4b42}
+.r43-cook-lab input,.r43-cook-lab select{min-width:0;max-width:100%;padding:9px;border-radius:8px;border:1px solid #bdccc1;background:#fff;color:#152b1f}
+.r43-cook-result{padding:12px;border-left:3px solid #738a78;background:white;font-weight:600;line-height:1.55}
+@media(max-width:660px){.r43-cook-lab .r43-grid{grid-template-columns:1fr}}
+
+/* Source-specific cooking retention and clinical review gate */
+.r43-retention-lab,.r43-review-checklist{border:1px solid #d3ddd5;border-radius:11px;padding:13px;margin:14px 0;background:#fcfcfb}
+.r43-retention-lab summary,.r43-review-checklist summary{cursor:pointer;font-weight:700}
+.r43-retention-lab .r43-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}
+.r43-retention-lab label{display:grid;gap:5px;font-size:12px}
+.r43-retention-lab input{min-width:0;width:100%;border:1px solid #c4d0c7;border-radius:6px;padding:8px}
+.r43-retention-result{padding:10px;background:white;border-left:3px solid #818d82;font-weight:600}
+.r43-review-checklist ul{padding-left:22px;line-height:1.55}
+@media(max-width:680px){.r43-retention-lab .r43-grid{grid-template-columns:1fr}}
+
+/* R4.3 wellness-flow: questionnaire followed by full-width plan, not squeezed into right rail */
+.r43-layout{display:block}
+.r43-layout > .card{margin-bottom:22px}
+.r43-layout #r43-plan{width:100%;display:grid;gap:18px;min-width:0}
+.r43-layout #r43-plan > .card{min-width:0}
+.r43-layout #r43-plan .r43-cultural-plan,
+.r43-layout #r43-plan .r43-year-planner{margin-top:0}
+.r43-layout #r43-plan .r43-cultural-meals{grid-template-columns:repeat(4,minmax(0,1fr))}
+.r43-layout #r43-plan .r43-year-day-card .r43-cultural-meals{grid-template-columns:repeat(4,minmax(0,1fr))}
+#r43-food-country-status{font-size:11px;line-height:1.4;color:#62736b;font-weight:400}
+@media(max-width:1100px){.r43-layout #r43-plan .r43-cultural-meals,.r43-layout #r43-plan .r43-year-day-card .r43-cultural-meals{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.r43-layout #r43-plan .r43-cultural-meals,.r43-layout #r43-plan .r43-year-day-card .r43-cultural-meals{grid-template-columns:1fr}}

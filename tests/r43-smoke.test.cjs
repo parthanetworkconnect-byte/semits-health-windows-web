@@ -1,0 +1,261 @@
+'use strict';
+const {test}=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+function env(){
+ const listeners={};
+ const state={};
+ const ctx={
+  menus:[],sections:{medicalintelligence:()=>'<h2>Medical records</h2>'},
+  r4esc:x=>String(x).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])),
+  vaultKey:'test-vault',r41active:()=>({id:'sample-profile'}),
+  livingState:{profile:{age:47,height:166,weight:65,goal:'maintain',cuisine:'mixed'},logs:[],history:{notes:[]}},
+  livingEncryptedRead:async k=>state[k],livingEncryptedWrite:async(k,v)=>{state[k]=v},
+  r4state:{gym:[]},nav:()=>{},r4renderCurrent:()=>{},
+  window:{addEventListener:(name,cb)=>{(listeners[name]||=[]).push(cb)}},
+  document:{addEventListener:(name,cb)=>{(listeners[name]||=[]).push(cb)},querySelector:()=>null},
+  location:{hash:'#assistant'},navigator:{},crypto:{randomUUID:()=>String(Date.now())},
+  confirm:()=>true,alert:()=>{},URL,FormData,Date,Number,Math,RegExp,Set,Map,
+  console,URLSearchParams,
+ };
+ vm.createContext(ctx);
+ function load(file){vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),ctx,{filename:file,timeout:1500})}
+ return {ctx,load,listeners,state};
+}
+test('new modules parse without syntax errors',()=>{
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js','r43_cooking_engine.js','r43_retention_engine.js','r43_diet_review.js','pwa_install.js','sw-r43.js'])
+  assert.doesNotThrow(()=>new vm.Script(fs.readFileSync(path.join(root,name),'utf8'),{filename:name}));
+});
+test('SEMITS Personal Guide has generic body goals and no fixed glute-shoulder programme',()=>{
+ const e=env();e.load('r43_assistant.js');
+ const html=e.ctx.sections.assistant();
+ assert.match(html,/Targeted Muscle Development &amp; Body Shaping/);
+ assert.match(html,/Body recomposition/);
+ assert.match(html,/Whole body/);
+ assert.match(html,/Menstrual cycle changes/);
+ assert.doesNotMatch(html,/Targeted glute &amp; shoulder development/);
+ assert.ok(e.ctx.menus.find(x=>x[0]==='assistant'));
+});
+test('Personal Guide refuses to show intake when the vault is locked',()=>{
+ const e=env();e.load('r43_assistant.js');e.ctx.vaultKey=null;
+ assert.match(e.ctx.sections.assistant(),/Unlock your trial vault/);
+});
+test('Medical Intelligence shows local import and a separate PDF/OCR experiment',()=>{
+ const e=env();e.load('r43_medical_intelligence.js');e.load('r43_medical_extensions.js');
+ const html=e.ctx.sections.medicalintelligence();
+ assert.match(html,/Import test medical report/);
+ assert.match(html,/PDF and image extraction tools/);
+ assert.match(html,/experimental PDF, image &amp; internet research tools|Experimental PDF, image & internet research tools/);
+ assert.match(html,/fictional|Fictional/);
+ assert.match(html,/historical|history trends|Medical history trends/i);
+});
+test('Medical Intelligence does not display data-import UI while locked',()=>{
+ const e=env();e.load('r43_medical_intelligence.js');e.load('r43_medical_extensions.js');
+ e.ctx.vaultKey=null;
+ const html=e.ctx.sections.medicalintelligence();
+ assert.match(html,/Trial vault locked/);
+ assert.doesNotMatch(html,/type="file"/);
+});
+test('PWA manifest is parseable and uses SEMITS branding',()=>{
+ const m=JSON.parse(fs.readFileSync(path.join(root,'manifest.webmanifest'),'utf8'));
+ assert.match(m.name,/SEMITS Health/);assert.equal(m.display,'standalone');
+});
+test('new modules are wired from index and service worker',()=>{
+ const page=fs.readFileSync(path.join(root,'index.html'),'utf8');
+ const worker=fs.readFileSync(path.join(root,'sw-r43.js'),'utf8');
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js','r43_cooking_engine.js','r43_retention_engine.js','r43_diet_review.js']){
+  assert.ok(page.includes(name),name+' missing from entry point');
+  assert.ok(worker.includes(name),name+' missing from offline shell');
+ }
+});
+
+test('Food Studio supports manual entry and optional photo preview without asserting AI recognition',()=>{
+ const e=env();e.load('r43_food_studio.js');
+ const html=e.ctx.sections.foodstudio();
+ assert.match(html,/Meal entry — photo or manual/);
+ assert.match(html,/Type any food or meal name/);
+ assert.doesNotMatch(html,/Char kway teow/);
+ assert.match(html,/PFAS status unknown/);
+ assert.match(html,/Oil amount/);
+ assert.match(html,/not recognised or saved/);
+ assert.ok(e.ctx.menus.some(x=>x[0]==='foodstudio'));
+});
+test('Food Studio requires trial vault unlock before recording meals',()=>{
+ const e=env();e.load('r43_food_studio.js');e.ctx.vaultKey=null;
+ const html=e.ctx.sections.foodstudio();
+ assert.match(html,/Unlock the local test vault/);
+ assert.doesNotMatch(html,/id="r43-foodform"/);
+});
+
+test('Food AI extension provides optional local classifier and reference-based ranges',()=>{
+ const e=env();e.load('r43_food_studio.js');e.load('r43_food_ai_extensions.js');
+ const html=e.ctx.sections.foodstudio();
+ assert.match(html,/Recognise possible food from selected photo/);
+ assert.match(html,/Portion-confirmed nutrition estimate/);
+ assert.match(html,/SEMITS follow-up questions/);
+ assert.match(html,/Profile and medical-record review/);
+ assert.match(html,/recipe, weight or exact calories/);
+});
+test('Food AI extension is not available while vault locked',()=>{
+ const e=env();e.load('r43_food_studio.js');e.load('r43_food_ai_extensions.js');e.ctx.vaultKey=null;
+ assert.doesNotMatch(e.ctx.sections.foodstudio(),/id="r43-run-food-model"/);
+});
+
+test('Grouped SEMITS navigation provides Start Here and connected steps',()=>{
+ const e=env();e.ctx.esc=e.ctx.r4esc;
+ e.ctx.sections.today=()=>'<div>today</div>';
+ e.load('r43_navigation.js');
+ assert.match(e.ctx.sections.journey(),/Start here/);
+ assert.match(e.ctx.sections.journey(),/Without medical records/);
+ assert.match(e.ctx.sections.journey(),/Record food and review nutrition/);
+ assert.ok(e.ctx.menus.some(m=>m[0]==='journey'));
+});
+
+test('Seven-day French plan generates 7 different days and transparent BMI',()=>{
+ const e=env();e.load('r43_cultural_planner.js');
+ const a={sex:'Male',age:55,height:170,weight:95,targetWeight:87,targetMonths:6,
+ goal:'loss',culture:'French',activity:'Mostly sitting',flags:[],redflags:[],bed:'22:00',wake:'06:00'};
+ const p=e.ctx.SEMITS_CULTURAL_PLAN.plan(a);
+ assert.equal(p.meals.length,7);assert.equal(p.bmi.toFixed(1),'32.9');
+ assert.equal(p.goalBMI.toFixed(1),'30.1');
+ assert.match(e.ctx.SEMITS_CULTURAL_PLAN.render(a),/Seven-day French-influenced/);
+ assert.match(e.ctx.SEMITS_CULTURAL_PLAN.render(a),/122 years and 164 days/);
+});
+test('Personal Guide includes cultural planner with optional target and cultural preferences',()=>{
+ const e=env();e.load('r43_cultural_planner.js');e.load('r43_assistant.js');
+ const page=e.ctx.sections.assistant();
+ assert.match(page,/Cultural food preference/);
+ assert.match(page,/Goal weight/);
+ assert.match(page,/Time to goal/);
+});
+
+test('Annual plan has 365 different day menus with four meals',()=>{
+ for(const culture of ['French','Indian','Chinese','Malaysian','General / mixed']){
+  const e=env();e.load('r43_cultural_planner.js');e.load('r43_annual_planner.js');
+  const a={sex:'Male',age:55,height:170,weight:95,targetWeight:87,targetMonths:6,
+   culture,diet:'Mixed / omnivore',activity:'Mostly sitting',flags:[],redflags:[]};
+  const days=e.ctx.SEMITS_CULTURAL_PLAN.annualPlan(a);
+  assert.equal(days.length,365);
+  assert.equal(new Set(days.map(d=>d.distinctKey)).size,365);
+  assert.ok(days.every(d=>d.meals.length===4));
+  assert.match(e.ctx.SEMITS_CULTURAL_PLAN.render(a),/365-day individual menu calendar/);
+  assert.match(e.ctx.SEMITS_CULTURAL_PLAN.render(a),/Day 365/);
+ }
+});
+test('Annual vegetarian and vegan menus respect selected preference',()=>{
+ for(const diet of ['Vegan','Vegetarian']){
+  const e=env();e.load('r43_cultural_planner.js');e.load('r43_annual_planner.js');
+  const days=e.ctx.SEMITS_CULTURAL_PLAN.annualPlan({sex:'Female',age:45,height:165,weight:75,
+   culture:'French',diet,activity:'Lightly active',flags:[],redflags:[]});
+  assert.equal(days.length,365);
+  assert.equal(new Set(days.map(d=>d.distinctKey)).size,365);
+  assert.ok(days.every(d=>d.meals.every(m=>!/(chicken|turkey|tuna|salmon|fish)/i.test(m.recipe.name))));
+ }
+});
+
+test('Universal food preference draws from more than one country catalogue',()=>{
+ const e=env();e.load('r43_cultural_planner.js');e.load('r43_annual_planner.js');
+ const a={sex:'Male',age:55,height:170,weight:95,targetWeight:87,targetMonths:6,
+ culture:'Universal / Worldwide Foods',diet:'Mixed / omnivore',activity:'Mostly sitting',flags:[],redflags:[]};
+ const all=e.ctx.SEMITS_CULTURAL_PLAN.annualPlan(a);
+ assert.equal(all.length,365);
+ assert.equal(new Set(all.map(x=>x.distinctKey)).size,365);
+ assert.ok(new Set(all.flatMap(x=>x.meals.map(m=>m.recipe.name))).size>30);
+ assert.match(e.ctx.SEMITS_CULTURAL_PLAN.render(a),/Universal/);
+});
+test('Ingredient worksheet uses explicit grams and per-100g references rather than inventing totals',()=>{
+ const e=env();e.load('r43_nutrition_detail.js');
+ const rows=e.ctx.SEMITS_NUTRIENT_WORKSHEET.splitIngredients({description:'Wholegrain bread 65 g; yoghurt 150 g; coffee 100 mL'});
+ assert.equal(rows[0].grams,65);
+ assert.equal(rows[1].grams,150);
+ assert.equal(rows[2].grams,null);
+ const html=e.ctx.SEMITS_NUTRIENT_WORKSHEET.detail({meals:[{title:'Breakfast',recipe:{name:'Test',description:'Wholegrain bread 65 g'}}]}, {goal:'loss',flags:[]});
+ assert.match(html,/Energy per 100 g/);
+ assert.match(html,/data-reference/);
+ assert.match(html,/Weight-management goal/);
+ assert.match(html,/Unknown ingredients remain uncalculated/);
+});
+
+test('Packaged food lookup requires user confirmation and is safely blank on missing nutrients',()=>{
+ const e=env();e.load('r43_food_reference.js');
+ const norm=e.ctx.window.SEMITS_FOOD_REFERENCE.normalise({
+  code:'1234567890123',product_name:'Test food',brands:'Demo Brand',
+  nutriments:{'energy-kcal_100g':230,proteins_100g:12,'fat_100g':8}});
+ assert.equal(norm.kcal,230);
+ assert.equal(norm.protein,12);
+ assert.equal(norm.carbs,null);
+ assert.equal(norm.fat,8);
+ assert.match(e.ctx.window.SEMITS_FOOD_REFERENCE.requestURL('apple'),/cgi\/search\.pl/);
+ assert.match(e.ctx.window.SEMITS_FOOD_REFERENCE.requestURL('1234567890123'),/api\/v2\/product/);
+});
+test('Ingredient worksheet includes opt-in food reference lookup for every row',()=>{
+ const e=env();e.load('r43_nutrition_detail.js');
+ const html=e.ctx.SEMITS_NUTRIENT_WORKSHEET.detail({
+  meals:[{title:'Breakfast',recipe:{name:'Toast',description:'Bread 70 g'}}]
+ },{goal:'maintenance',flags:[]});
+ assert.match(html,/data-food-lookup-go/);
+ assert.match(html,/Find product/);
+ assert.match(html,/Only your search text is sent/);
+});
+
+test('Cooking engine preserves energy under water-loss yield and calculates plated serving',()=>{
+ const e=env();e.load('r43_cooking_engine.js');
+ const calc=e.ctx.SEMITS_COOKING_ENGINE.computeRecipe;
+ const data={ingredients:[{grams:200,kcal100:120,protein100:10,carbs100:14,fat100:2,source:'synthetic label'},
+ {grams:100,kcal100:50,protein100:3,carbs100:8,fat100:1,source:'synthetic label'}],
+ oilGrams:10,oilKcal100:900,oilFat100:100,oilSource:'synthetic label',
+ cookedBatchGrams:280,servedGrams:140};
+ const result=calc(data);
+ assert.equal(result.complete,true);
+ assert.equal(result.batchKcal,380);
+ assert.equal(result.platedKcal,190);
+ assert.equal(result.per100gKcal,380*100/280);
+ assert.equal(result.platedMacros.protein,11.5);
+});
+test('Cooking engine refuses unsourced ingredients, unknown oil, or invalid plated weight',()=>{
+ const e=env();e.load('r43_cooking_engine.js');
+ const calc=e.ctx.SEMITS_COOKING_ENGINE.computeRecipe;
+ const base={ingredients:[{grams:100,kcal100:100,source:'source'}],
+ oilGrams:0,cookedBatchGrams:90,servedGrams:45};
+ assert.equal(calc(base).complete,true);
+ assert.equal(calc({...base,ingredients:[{grams:100,kcal100:100}]}).complete,false);
+ assert.equal(calc({...base,oilGrams:''}).complete,false);
+ assert.equal(calc({...base,servedGrams:91}).complete,false);
+ assert.equal(calc({...base,oilGrams:10}).complete,false);
+});
+test('Cooking lab is connected to each ingredient worksheet in browser',()=>{
+ const e=env();e.load('r43_cooking_engine.js');e.load('r43_nutrition_detail.js');
+ const page=e.ctx.SEMITS_NUTRIENT_WORKSHEET.detail({meals:[
+ {title:'Breakfast',recipe:{name:'Sample food',description:'Oats 70 g'}}]},{goal:'maintenance',flags:[]});
+ assert.match(page,/Cooked recipe and plated serving calculator/);
+ assert.match(page,/Final cooked batch weight/);
+ assert.match(page,/Added oil actually included/);
+});
+
+test('Retention calculator requires explicitly sourced nutrient method and percentage',()=>{
+ const e=env();e.load('r43_retention_engine.js');
+ const calc=e.ctx.SEMITS_RETENTION_ENGINE.apply;
+ const good=calc({rawNutrientAmount:40,retentionPercent:60,reference:'Test data only - synthetic table row',
+  nutrient:'Vitamin C',foodGroup:'Vegetable test group',method:'Steamed'});
+ assert.equal(good.complete,true);assert.equal(good.cookedAmount,24);
+ assert.equal(calc({...good,retentionPercent:110}).complete,false);
+ assert.equal(calc({rawNutrientAmount:40,retentionPercent:60,nutrient:'Vitamin C'}).complete,false);
+});
+test('Diet review checklist never certifies clinical validation',()=>{
+ const e=env();e.load('r43_diet_review.js');
+ const q=e.ctx.SEMITS_DIET_REVIEW.assess({age:55,height:170,weight:95,diet:'Mixed / omnivore',flags:['Diabetes / prediabetes']},
+  {ingredientsMatched:false,yieldMeasured:false,nutrientCompleteness:false});
+ assert.equal(q.canBePresentedAsClinicallyValidated,false);
+ assert.equal(q.status,'NOT CLINICALLY VALIDATED');
+ assert.ok(q.issues.some(x=>/Allergen screening/.test(x)));
+});
+test('New cooking retention and diet review panels are wired to meal worksheet',()=>{
+ const e=env();e.load('r43_cooking_engine.js');e.load('r43_retention_engine.js');e.load('r43_diet_review.js');e.load('r43_nutrition_detail.js');
+ const h=e.ctx.SEMITS_NUTRIENT_WORKSHEET.detail({meals:[{title:'Breakfast',recipe:{name:'Test',description:'Oats 70 g'}}]},
+  {age:55,diet:'Mixed / omnivore',flags:[]});
+ assert.match(h,/Optional nutrient retention/);
+ assert.match(h,/Clinical validation and diet safety status/);
+});
