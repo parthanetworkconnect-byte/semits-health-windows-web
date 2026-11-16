@@ -26,7 +26,7 @@ function env(){
  return {ctx,load,listeners,state};
 }
 test('new modules parse without syntax errors',()=>{
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js','r43_cooking_engine.js','r43_retention_engine.js','r43_diet_review.js','pwa_install.js','sw-r43.js'])
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_country_foods.js','r43_indian_regional_recipes.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js','r43_cooking_engine.js','r43_retention_engine.js','r43_diet_review.js','pwa_install.js','sw-r43.js'])
   assert.doesNotThrow(()=>new vm.Script(fs.readFileSync(path.join(root,name),'utf8'),{filename:name}));
 });
 test('SEMITS Personal Guide has generic body goals and no fixed glute-shoulder programme',()=>{
@@ -258,4 +258,30 @@ test('New cooking retention and diet review panels are wired to meal worksheet',
   {age:55,diet:'Mixed / omnivore',flags:[]});
  assert.match(h,/Optional nutrient retention/);
  assert.match(h,/Clinical validation and diet safety status/);
+});
+
+test('195 countries selectable with honest coverage and unpopulated-country block',()=>{
+ const e=env();
+ e.load('r43_cultural_planner.js');e.load('r43_country_foods.js');e.load('r43_indian_regional_recipes.js');e.load('r43_annual_planner.js');
+ assert.equal(e.ctx.SEMITS_COUNTRY_FOODS.countries.length,195);
+ assert.equal(e.ctx.SEMITS_COUNTRY_FOODS.status('India').state,'pilot');
+ assert.equal(e.ctx.SEMITS_COUNTRY_FOODS.status('Japan').state,'unavailable');
+ const a={sex:'Male',age:55,height:170,weight:95,goal:'fitness',culture:'Universal / Worldwide Foods',foodCountry:'Japan',
+  diet:'Mixed / omnivore',activity:'Mostly sitting',flags:[],redflags:[]};
+ assert.match(e.ctx.SEMITS_CULTURAL_PLAN.render(a),/food library pending/);
+ assert.equal(e.ctx.SEMITS_CULTURAL_PLAN.annualPlan(a).length,0);
+});
+test('Indian pilot menus have seven distinct dishes per eating occasion',()=>{
+ const e=env();
+ e.load('r43_cultural_planner.js');e.load('r43_country_foods.js');e.load('r43_indian_regional_recipes.js');e.load('r43_annual_planner.js');
+ const a={sex:'Male',age:55,height:170,weight:95,goal:'fitness',culture:'Universal / Worldwide Foods',foodCountry:'India',
+  diet:'Mixed / omnivore',activity:'Mostly sitting',flags:[],redflags:[]};
+ const weekly=e.ctx.SEMITS_CULTURAL_PLAN.plan(a).meals;
+ for(const key of ['breakfast','lunch','dinner','snack'])assert.equal(new Set(weekly.map(d=>d[key].name)).size,7);
+ const year=e.ctx.SEMITS_CULTURAL_PLAN.annualPlan(a);
+ assert.equal(year.length,365);
+ assert.equal(new Set(year.map(d=>d.distinctKey)).size,365);
+ for(let start=0;start+7<=365;start+=7){
+  for(let idx=0;idx<4;idx++)assert.equal(new Set(year.slice(start,start+7).map(d=>d.meals[idx].recipe.name)).size,7);
+ }
 });
