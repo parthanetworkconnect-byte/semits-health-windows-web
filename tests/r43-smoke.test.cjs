@@ -26,7 +26,7 @@ function env(){
  return {ctx,load,listeners,state};
 }
 test('new modules parse without syntax errors',()=>{
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','pwa_install.js','sw-r43.js'])
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','pwa_install.js','sw-r43.js'])
   assert.doesNotThrow(()=>new vm.Script(fs.readFileSync(path.join(root,name),'utf8'),{filename:name}));
 });
 test('SEMITS Personal Guide has generic body goals and no fixed glute-shoulder programme',()=>{
@@ -66,7 +66,7 @@ test('PWA manifest is parseable and uses SEMITS branding',()=>{
 test('new modules are wired from index and service worker',()=>{
  const page=fs.readFileSync(path.join(root,'index.html'),'utf8');
  const worker=fs.readFileSync(path.join(root,'sw-r43.js'),'utf8');
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js']){
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js']){
   assert.ok(page.includes(name),name+' missing from entry point');
   assert.ok(worker.includes(name),name+' missing from offline shell');
  }
@@ -130,4 +130,28 @@ test('Personal Guide includes cultural planner with optional target and cultural
  assert.match(page,/Cultural food preference/);
  assert.match(page,/Goal weight/);
  assert.match(page,/Time to goal/);
+});
+
+test('Annual plan has 365 different day menus with four meals',()=>{
+ for(const culture of ['French','Indian','Chinese','Malaysian','General / mixed']){
+  const e=env();e.load('r43_cultural_planner.js');e.load('r43_annual_planner.js');
+  const a={sex:'Male',age:55,height:170,weight:95,targetWeight:87,targetMonths:6,
+   culture,diet:'Mixed / omnivore',activity:'Mostly sitting',flags:[],redflags:[]};
+  const days=e.ctx.SEMITS_CULTURAL_PLAN.annualPlan(a);
+  assert.equal(days.length,365);
+  assert.equal(new Set(days.map(d=>d.distinctKey)).size,365);
+  assert.ok(days.every(d=>d.meals.length===4));
+  assert.match(e.ctx.SEMITS_CULTURAL_PLAN.render(a),/365-day individual menu calendar/);
+  assert.match(e.ctx.SEMITS_CULTURAL_PLAN.render(a),/Day 365/);
+ }
+});
+test('Annual vegetarian and vegan menus respect selected preference',()=>{
+ for(const diet of ['Vegan','Vegetarian']){
+  const e=env();e.load('r43_cultural_planner.js');e.load('r43_annual_planner.js');
+  const days=e.ctx.SEMITS_CULTURAL_PLAN.annualPlan({sex:'Female',age:45,height:165,weight:75,
+   culture:'French',diet,activity:'Lightly active',flags:[],redflags:[]});
+  assert.equal(days.length,365);
+  assert.equal(new Set(days.map(d=>d.distinctKey)).size,365);
+  assert.ok(days.every(d=>d.meals.every(m=>!/(chicken|turkey|tuna|salmon|fish)/i.test(m.recipe.name))));
+ }
 });
