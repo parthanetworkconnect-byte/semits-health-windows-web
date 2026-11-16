@@ -31,7 +31,7 @@ function form(){
  '<label>Usual activity<select name="activity">'+opts(['Mostly sitting','Lightly active','Moderately active','Very active'],a.activity)+'</select></label>'+
  '<label>Usual bedtime<input type="time" name="bed" value="'+E(a.bed||'22:00')+'"></label>'+
  '<label>Usual wake time<input type="time" name="wake" value="'+E(a.wake||'06:00')+'"></label>'+
- '<label>Food preference<select name="diet">'+opts(['Mixed / omnivore','Vegetarian','Vegan','Pescatarian','Halal preference','Kosher preference','Jain preference','Lacto-vegetarian','Ovo-vegetarian','Gluten-free preference','Dairy-free preference','Other / custom'],a.diet)+'</select></label>'+  '<label>Sex used for resting-energy equation<select name="sex">'+opts(['Not supplied','Male','Female'],a.sex)+'</select></label>'+  '<label>Cultural food preference (not genetics)<select name="culture">'+opts(['Universal / Worldwide Foods','General / mixed','French','Indian','Chinese','Malaysian'],a.culture)+'</select></label>'+  '<label>Choose food from any of 195 countries<select name="foodCountry"><option value="">No single country — use cuisine preference above</option>'+(typeof SEMITS_COUNTRY_FOODS!=='undefined'?SEMITS_COUNTRY_FOODS.options(a.foodCountry):'')+'</select></label>'+
+ '<label>Food preference<select name="diet">'+opts(['Mixed / omnivore','Vegetarian','Vegan','Pescatarian','Halal preference','Kosher preference','Jain preference','Lacto-vegetarian','Ovo-vegetarian','Gluten-free preference','Dairy-free preference','Other / custom'],a.diet)+'</select></label>'+  '<label>Sex used for resting-energy equation<select name="sex">'+opts(['Not supplied','Male','Female'],a.sex)+'</select></label>'+  '<label>Cultural food preference (not genetics)<select name="culture">'+opts(['Universal / Worldwide Foods','General / mixed','French','Indian','Chinese','Malaysian'],a.culture)+'</select></label>'+  '<label>Choose food from any of 195 countries<select name="foodCountry" id="r43-food-country"><option value="">No single country — use cuisine preference above</option>'+(typeof SEMITS_COUNTRY_FOODS!=='undefined'?SEMITS_COUNTRY_FOODS.options(a.foodCountry):'')+'</select><small id="r43-food-country-status">'+(a.foodCountry&&typeof SEMITS_COUNTRY_FOODS!=='undefined'?E(SEMITS_COUNTRY_FOODS.status(a.foodCountry).label):'Choose a food country. Only 4 pilot libraries are currently populated.')+'</small></label>'+
  '<label>Regional cuisine (optional)<input type="text" name="foodRegion" maxlength="70" value="'+E(a.foodRegion||'')+'" placeholder="e.g. Tamil Nadu / Kerala"></label>'+
  '<label>Allergies / ingredients to exclude (unverified safety filter)<input type="text" name="allergies" maxlength="180" value="'+E(a.allergies||'')+'" placeholder="e.g. peanuts, shellfish"></label>'+
  '<label>Goal weight (kg; optional)<input type="number" name="targetWeight" min="25" max="350" step=".1" value="'+E(a.targetWeight||'')+'" placeholder="e.g. 87"></label>'+  '<label>Time to goal (months)<input type="number" name="targetMonths" min="1" max="36" value="'+E(a.targetMonths||6)+'"></label>'+
@@ -111,6 +111,11 @@ async function load(){
 menus.push(['assistant','✧','SEMITS Personal Guide']);
 sections.assistant=()=>'<div class="r4-hero"><div><div class="r4-eyebrow">SEMITS HEALTH · R4.3 EXPERIMENTAL</div><h1>SEMITS Personal Guide</h1><p>First-time interview · coordinated plan · pain-aware screening · daily guidance</p></div></div>'+
  (!vaultKey?'<section class="card"><h2>Unlock your trial vault</h2><p>Go to My Health Hub and unlock or create your test vault first. The interview is not available while locked.</p><a href="#hub" class="btn">Open My Health Hub</a></section>':form());
+document.addEventListener('change',e=>{
+ if(e.target?.id!=='r43-food-country'||typeof SEMITS_COUNTRY_FOODS==='undefined')return;
+ const name=e.target.value,el=document.querySelector('#r43-food-country-status');
+ if(el)el.textContent=name?SEMITS_COUNTRY_FOODS.status(name).label:'Choose a food country. Only 4 pilot libraries are currently populated.';
+});
 document.addEventListener('submit',async e=>{
  if(e.target.id!=='r43-form')return;
  e.preventDefault();e.stopImmediatePropagation();
