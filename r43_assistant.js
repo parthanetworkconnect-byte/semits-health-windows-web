@@ -17,7 +17,7 @@ function form(){
  const mappedGoal=original.goal==='maintain'?'maintenance':original.goal;
  const defaultMove=original.movement==='pilates'?['Pilates']:original.movement==='strength'?['Strength / resistance training']:original.movement==='walking'?['Walking']:[];
  const base={age:original.age||'',height:original.height||'',weight:original.weight||'',goal:labelGoal[mappedGoal]?mappedGoal:'maintenance',
- sex:'Not supplied',culture:'French',targetWeight:'',targetMonths:6,diet:original.cuisine==='vegan'?'Vegan':original.cuisine==='vegetarian'?'Vegetarian':original.cuisine==='pescatarian'?'Pescatarian':'Mixed / omnivore',
+ sex:'Not supplied',culture:'General / mixed',targetWeight:'',targetMonths:6,diet:original.cuisine==='vegan'?'Vegan':original.cuisine==='vegetarian'?'Vegetarian':original.cuisine==='pescatarian'?'Pescatarian':'Mixed / omnivore',
  movement:defaultMove,flags:original.concern==='fatigue'?['Persistent fatigue']:original.concern==='medical'?['Other condition']:[],days:3};
  const a={...base,...(input||{})};
  return '<div class="r43-layout"><section class="card"><h2>First-time personal wellness interview</h2>'+
@@ -31,7 +31,7 @@ function form(){
  '<label>Usual activity<select name="activity">'+opts(['Mostly sitting','Lightly active','Moderately active','Very active'],a.activity)+'</select></label>'+
  '<label>Usual bedtime<input type="time" name="bed" value="'+E(a.bed||'22:00')+'"></label>'+
  '<label>Usual wake time<input type="time" name="wake" value="'+E(a.wake||'06:00')+'"></label>'+
- '<label>Food preference<select name="diet">'+opts(['Mixed / omnivore','Vegetarian','Vegan','Pescatarian','Other / custom'],a.diet)+'</select></label>'+  '<label>Sex used for resting-energy equation<select name="sex">'+opts(['Not supplied','Male','Female'],a.sex)+'</select></label>'+  '<label>Cultural food preference (not genetics)<select name="culture">'+opts(['French','Indian','Chinese','Malaysian'],a.culture)+'</select></label>'+  '<label>Goal weight (kg; optional)<input type="number" name="targetWeight" min="25" max="350" step=".1" value="'+E(a.targetWeight||'')+'" placeholder="e.g. 87"></label>'+  '<label>Time to goal (months)<input type="number" name="targetMonths" min="1" max="36" value="'+E(a.targetMonths||6)+'"></label>'+
+ '<label>Food preference<select name="diet">'+opts(['Mixed / omnivore','Vegetarian','Vegan','Pescatarian','Other / custom'],a.diet)+'</select></label>'+  '<label>Sex used for resting-energy equation<select name="sex">'+opts(['Not supplied','Male','Female'],a.sex)+'</select></label>'+  '<label>Cultural food preference (not genetics)<select name="culture">'+opts(['General / mixed','French','Indian','Chinese','Malaysian'],a.culture)+'</select></label>'+  '<label>Goal weight (kg; optional)<input type="number" name="targetWeight" min="25" max="350" step=".1" value="'+E(a.targetWeight||'')+'" placeholder="e.g. 87"></label>'+  '<label>Time to goal (months)<input type="number" name="targetMonths" min="1" max="36" value="'+E(a.targetMonths||6)+'"></label>'+
  '<label>Workout experience<select name="experience">'+opts(['Beginner','Some experience','Experienced'],a.experience)+'</select></label>'+
  '<label>Preferred workout days per week<input type="number" min="0" max="7" name="days" value="'+E(a.days??3)+'"></label>'+ 
  '<label>Training history (years)<input type="number" min="0" max="60" step="0.5" name="trainingYears" value="'+E(a.trainingYears??0)+'"></label>'+ 
