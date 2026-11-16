@@ -144,3 +144,16 @@
 .r43-retention-result{padding:10px;background:white;border-left:3px solid #818d82;font-weight:600}
 .r43-review-checklist ul{padding-left:22px;line-height:1.55}
 @media(max-width:680px){.r43-retention-lab .r43-grid{grid-template-columns:1fr}}
+
+/* R4.3 wellness-flow: questionnaire followed by full-width plan, not squeezed into right rail */
+.r43-layout{display:block}
+.r43-layout > .card{margin-bottom:22px}
+.r43-layout #r43-plan{width:100%;display:grid;gap:18px;min-width:0}
+.r43-layout #r43-plan > .card{min-width:0}
+.r43-layout #r43-plan .r43-cultural-plan,
+.r43-layout #r43-plan .r43-year-planner{margin-top:0}
+.r43-layout #r43-plan .r43-cultural-meals{grid-template-columns:repeat(4,minmax(0,1fr))}
+.r43-layout #r43-plan .r43-year-day-card .r43-cultural-meals{grid-template-columns:repeat(4,minmax(0,1fr))}
+#r43-food-country-status{font-size:11px;line-height:1.4;color:#62736b;font-weight:400}
+@media(max-width:1100px){.r43-layout #r43-plan .r43-cultural-meals,.r43-layout #r43-plan .r43-year-day-card .r43-cultural-meals{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.r43-layout #r43-plan .r43-cultural-meals,.r43-layout #r43-plan .r43-year-day-card .r43-cultural-meals{grid-template-columns:1fr}}
