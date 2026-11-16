@@ -41,9 +41,9 @@
    let salt=0,b,l,s,d,fruit,veg,drink,key;
    do{
     b=pools?pools.breakfast[idx(i+salt,3,pools.breakfast.length,1)]:base.meals[idx(i+salt,3,7,1)].breakfast;
-    l=pools?pools.lunch[idx(i+salt,5,pools.lunch.length,2)]:base.meals[idx(i+salt,5,7,2)].lunch;
-    s=pools?pools.snack[idx(i+salt,7,pools.snack.length,3)]:base.meals[idx(i+salt,2,7,3)].snack;
-    d=pools?pools.dinner[idx(i+salt,11,pools.dinner.length,5)]:base.meals[idx(i+salt,4,7,5)].dinner;
+    l=pools?pools.lunch[idx(i+salt+7,5,pools.lunch.length,2)]:base.meals[idx(i+salt,5,7,2)].lunch;
+    s=pools?pools.snack[idx(i+salt+14,7,pools.snack.length,3)]:base.meals[idx(i+salt,2,7,3)].snack;
+    d=pools?pools.dinner[idx(i+salt+21,11,pools.dinner.length,5)]:base.meals[idx(i+salt,4,7,5)].dinner;
     fruit=FRUITS[(i+salt*3)%FRUITS.length];
     veg=VEGETABLES[(i*5+salt)%VEGETABLES.length];
     drink=BEVERAGES[(i+salt)%BEVERAGES.length];
@@ -62,7 +62,7 @@
      {time:'15:30',title:'Snack',recipe:s},
      {time:'18:30',title:'Dinner',recipe:d}
     ],fruit:{name:fruit[0],kcal:fruit[1]},
-    vegetable:veg,drink:{name:drink[0],kcal:drink[1]},
+    vegetable:veg,drink:{name:drink[0],kcal:drink[1],volumeMl:/coffee/i.test(drink[0])?150:/tea/i.test(drink[0])?200:250},
     recipeKcal:mealTotal,exampleKcal:mealTotal+fruit[1],
     recipeProtein:b.protein+l.protein+s.protein+d.protein,
     // User must confirm this supplement: it is optional and not counted in demo totals.
@@ -81,7 +81,7 @@
   ).join('')+'</div>'+
   '<div class="r43-year-complements"><p><strong>Fresh fruit:</strong> '+E(d.fruit.name)+' (~'+d.fruit.kcal+' kcal, demo estimate) — included in illustrative daily total.</p>'+
   '<p><strong>Vegetable accompaniment:</strong> '+E(d.vegetable)+' — optional; nutrients and energy depend on preparation, not included in daily total.</p>'+
-  '<p><strong>Drink:</strong> '+E(d.drink.name)+' (without added sugar, ~0 kcal). Water as desired.</p></div>'+
+  '<p><strong>Drink:</strong> '+E(d.drink.name)+' · '+d.drink.volumeMl+' mL (without added sugar, ~0 kcal). Water as desired.</p></div>'+
   '<p class="note">*Not a validated nutrient calculation. Daily total is the sum of unverified demo recipe calories plus the illustrative fruit value, excluding optional vegetables, sauces, oils and extras. Avoid using this total as a clinical calorie target.</p>'+
   (typeof SEMITS_NUTRIENT_WORKSHEET!=='undefined'?SEMITS_NUTRIENT_WORKSHEET.detail(d,profile):'')+'</article>';
  }
