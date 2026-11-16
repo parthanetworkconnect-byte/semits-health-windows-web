@@ -26,7 +26,7 @@ function env(){
  return {ctx,load,listeners,state};
 }
 test('new modules parse without syntax errors',()=>{
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','pwa_install.js','sw-r43.js'])
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','pwa_install.js','sw-r43.js'])
   assert.doesNotThrow(()=>new vm.Script(fs.readFileSync(path.join(root,name),'utf8'),{filename:name}));
 });
 test('SEMITS Personal Guide has generic body goals and no fixed glute-shoulder programme',()=>{
@@ -66,7 +66,7 @@ test('PWA manifest is parseable and uses SEMITS branding',()=>{
 test('new modules are wired from index and service worker',()=>{
  const page=fs.readFileSync(path.join(root,'index.html'),'utf8');
  const worker=fs.readFileSync(path.join(root,'sw-r43.js'),'utf8');
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js']){
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js']){
   assert.ok(page.includes(name),name+' missing from entry point');
   assert.ok(worker.includes(name),name+' missing from offline shell');
  }
@@ -154,4 +154,27 @@ test('Annual vegetarian and vegan menus respect selected preference',()=>{
   assert.equal(new Set(days.map(d=>d.distinctKey)).size,365);
   assert.ok(days.every(d=>d.meals.every(m=>!/(chicken|turkey|tuna|salmon|fish)/i.test(m.recipe.name))));
  }
+});
+
+test('Universal food preference draws from more than one country catalogue',()=>{
+ const e=env();e.load('r43_cultural_planner.js');e.load('r43_annual_planner.js');
+ const a={sex:'Male',age:55,height:170,weight:95,targetWeight:87,targetMonths:6,
+ culture:'Universal / Worldwide Foods',diet:'Mixed / omnivore',activity:'Mostly sitting',flags:[],redflags:[]};
+ const all=e.ctx.SEMITS_CULTURAL_PLAN.annualPlan(a);
+ assert.equal(all.length,365);
+ assert.equal(new Set(all.map(x=>x.distinctKey)).size,365);
+ assert.ok(new Set(all.flatMap(x=>x.meals.map(m=>m.recipe.name))).size>30);
+ assert.match(e.ctx.SEMITS_CULTURAL_PLAN.render(a),/Universal/);
+});
+test('Ingredient worksheet uses explicit grams and per-100g references rather than inventing totals',()=>{
+ const e=env();e.load('r43_nutrition_detail.js');
+ const rows=e.ctx.SEMITS_NUTRIENT_WORKSHEET.splitIngredients({description:'Wholegrain bread 65 g; yoghurt 150 g; coffee 100 mL'});
+ assert.equal(rows[0].grams,65);
+ assert.equal(rows[1].grams,150);
+ assert.equal(rows[2].grams,null);
+ const html=e.ctx.SEMITS_NUTRIENT_WORKSHEET.detail({meals:[{title:'Breakfast',recipe:{name:'Test',description:'Wholegrain bread 65 g'}}]}, {goal:'loss',flags:[]});
+ assert.match(html,/Energy per 100 g/);
+ assert.match(html,/data-reference/);
+ assert.match(html,/Weight-management goal/);
+ assert.match(html,/Unknown ingredients remain uncalculated/);
 });
