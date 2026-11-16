@@ -26,7 +26,7 @@ function env(){
  return {ctx,load,listeners,state};
 }
 test('new modules parse without syntax errors',()=>{
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','pwa_install.js','sw-r43.js'])
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','pwa_install.js','sw-r43.js'])
   assert.doesNotThrow(()=>new vm.Script(fs.readFileSync(path.join(root,name),'utf8'),{filename:name}));
 });
 test('SEMITS Personal Guide has generic body goals and no fixed glute-shoulder programme',()=>{
@@ -66,7 +66,7 @@ test('PWA manifest is parseable and uses SEMITS branding',()=>{
 test('new modules are wired from index and service worker',()=>{
  const page=fs.readFileSync(path.join(root,'index.html'),'utf8');
  const worker=fs.readFileSync(path.join(root,'sw-r43.js'),'utf8');
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js']){
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js']){
   assert.ok(page.includes(name),name+' missing from entry point');
   assert.ok(worker.includes(name),name+' missing from offline shell');
  }
@@ -112,4 +112,22 @@ test('Grouped SEMITS navigation provides Start Here and connected steps',()=>{
  assert.match(e.ctx.sections.journey(),/Without medical records/);
  assert.match(e.ctx.sections.journey(),/Record food and review nutrition/);
  assert.ok(e.ctx.menus.some(m=>m[0]==='journey'));
+});
+
+test('Seven-day French plan generates 7 different days and transparent BMI',()=>{
+ const e=env();e.load('r43_cultural_planner.js');
+ const a={sex:'Male',age:55,height:170,weight:95,targetWeight:87,targetMonths:6,
+ goal:'loss',culture:'French',activity:'Mostly sitting',flags:[],redflags:[],bed:'22:00',wake:'06:00'};
+ const p=e.ctx.SEMITS_CULTURAL_PLAN.plan(a);
+ assert.equal(p.meals.length,7);assert.equal(p.bmi.toFixed(1),'32.9');
+ assert.equal(p.goalBMI.toFixed(1),'30.1');
+ assert.match(e.ctx.SEMITS_CULTURAL_PLAN.render(a),/Seven-day French-influenced/);
+ assert.match(e.ctx.SEMITS_CULTURAL_PLAN.render(a),/122 years and 164 days/);
+});
+test('Personal Guide includes cultural planner with optional target and cultural preferences',()=>{
+ const e=env();e.load('r43_cultural_planner.js');e.load('r43_assistant.js');
+ const page=e.ctx.sections.assistant();
+ assert.match(page,/Cultural food preference/);
+ assert.match(page,/Goal weight/);
+ assert.match(page,/Time to goal/);
 });
