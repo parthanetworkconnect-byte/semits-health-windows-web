@@ -181,14 +181,14 @@ test('Ingredient worksheet uses explicit grams and per-100g references rather th
 
 test('Packaged food lookup requires user confirmation and is safely blank on missing nutrients',()=>{
  const e=env();e.load('r43_food_reference.js');
- const norm=e.ctx.SEMITS_FOOD_REFERENCE.normalise({
+ const norm=e.ctx.window.SEMITS_FOOD_REFERENCE.normalise({
   code:'1234567890123',product_name:'Test food',brands:'Demo Brand',
   nutriments:{'energy-kcal_100g':230,proteins_100g:12,'fat_100g':8}});
  assert.equal(norm.kcal,230);
  assert.equal(norm.protein,12);
  assert.equal(norm.carbs,null);
  assert.equal(norm.fat,8);
- assert.match(e.ctx.SEMITS_FOOD_REFERENCE.requestURL('apple'),/cgi\/search\.pl/);
+ assert.match(e.ctx.window.SEMITS_FOOD_REFERENCE.requestURL('apple'),/cgi\/search\.pl/);
  assert.match(e.ctx.SEMITS_FOOD_REFERENCE.requestURL('1234567890123'),/api\/v2\/product/);
 });
 test('Ingredient worksheet includes opt-in food reference lookup for every row',()=>{
