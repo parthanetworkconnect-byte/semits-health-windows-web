@@ -3,7 +3,7 @@
 (function(){
  const KEY='semits-r43-meal-v1',E=v=>r4esc(String(v??''));
  let entries=[],loaded=null,guide=null;
- const foods=['Char kway teow','Rice and dhal','Chicken and rice','Noodles / pasta','Soup / salad','Burger / pizza','Custom meal'];
+ const foods=['Rice','Bread','Pasta','Noodles','Soup','Salad','Vegetables','Fruit','Eggs','Chicken','Fish','Meat','Beans / lentils','Dairy','Mixed dish','Other'];
  const ingredients=['Egg','Tofu','Chicken','Prawn / seafood','Vegetables','Bean sprouts','Sauce','Pickles','Chips','Fruit'];
  const drinks=['Unknown','Water','Unsweetened tea','Fresh juice','Cola / soft drink','Other'];
  const methods=['Unknown / restaurant','Boiled','Steamed','Stir-fried','Pan-fried','Deep-fried','Grilled','Baked'];
@@ -22,7 +22,7 @@
  '<form id="r43-foodform" class="r43-form">'+
  '<label>Entry method'+options('method',['Manual entry','Photo preview plus manual confirmation'])+'</label>'+
  '<label>Optional food image (local preview only)<input id="r43-food-photo-file" type="file" accept="image/png,image/jpeg,image/webp"></label><div id="r43-food-preview"></div>'+
- '<div class="r43-grid"><label>Meal type'+options('meal',['Breakfast','Lunch','Dinner','Snack'])+'</label><label>Food'+options('food',foods)+'</label>'+
+ '<div class="r43-grid"><label>Meal type'+options('meal',['Breakfast','Lunch','Dinner','Snack'])+'</label><label>Food or dish name<input name="food" type="text" maxlength="120" required placeholder="Type any food or meal name" autocomplete="off"></label><label>Food category (optional)'+options('category',['Unknown',...foods])+'</label>'+
  '<label>Portion'+options('portion',['Unknown','Small','Medium','Large','Shared'])+'</label><label>Drink'+options('drink',drinks)+'</label></div>'+
  '<h3>Known ingredients and side dishes</h3><div class="r43-check-grid">'+ingredients.map(x=>'<label class="r43-check"><input type="checkbox" name="ingredient" value="'+E(x)+'"> '+E(x)+'</label>').join('')+'</div>'+
  '<h3>How it was cooked</h3><div class="r43-grid"><label>Method'+options('methodCooking',methods)+'</label>'+
@@ -37,19 +37,22 @@
   const oil='For one serving, start by trying a measured small amount of suitable oil (for example about 1–2 teaspoons for stir-frying, adjusting for pan, portion and recipe). No particular oil is universally healthiest; consider allergy, cooking temperature and dietary needs. ';
   const heat='Use controlled heat appropriate to the oil and cookware, avoid smoking oil, and adjust to prevent scorching. Actual pan temperature cannot be determined by low/medium/high settings alone. ';
   const veg='Add fresh vegetables. Light cooking can preserve texture; fully boiling is not automatically better. Cook foods to safe temperatures where necessary. ';
-  if(x.food==='Char kway teow')return home+'Illustrative home-cooked char kway teow: prepare rice noodles, washed greens and bean sprouts; choose egg, tofu or safely cooked poultry/seafood as suitable. Use a wok or suitable pan, '+oil+heat+'Cook protein safely, stir-fry vegetables and noodles in small batches, and add a measured amount of sauce. '+veg+'The amount of sodium depends on the sauce; choose a portion that fits total daily meals.';
-  if(x.food==='Chicken and rice')return home+'Cook chicken thoroughly to at least 75°C in its thickest part, checking with a clean food thermometer. Keep raw poultry separate from ready-to-eat food. '+oil+'Add cooked rice and vegetables. '+heat;
-  if(x.food==='Rice and dhal')return home+'Prepare dhal by simmering legumes until fully cooked, following ingredient instructions. Rinse and cook rice safely, and serve alongside vegetables. '+oil+'Add seasonings carefully if restricting sodium.';
+  if(x.ingredients.includes('Chicken')||/\bchicken\b|\bpoultry\b/i.test(x.food))return home+'For a dish containing poultry: cook it thoroughly to at least 75°C in its thickest part, checking with a clean food thermometer. Keep raw poultry separate from ready-to-eat food. '+oil+'Add appropriate vegetables and carbohydrate as desired. '+heat;
+  if(x.category==='Beans / lentils'||/\blentil\b|\bdhal\b|\bbeans\b/i.test(x.food))return home+'For a legume-based dish, follow the ingredient-specific preparation and cooking instructions. Fully cook dried legumes as required (especially kidney beans). '+oil+'Add vegetables and appropriate grain servings if desired.';
   return home+'Choose an appropriately sized serving, vegetables and protein when useful. '+oil+heat+veg+'Follow food-specific safe cooking instructions.';
  }
  function analyse(x){
  const profile=livingState.profile||{},goal=String(guide?.goal||profile.goal||'maintenance');
  const targets=(guide?.bodyAreas||[]).join(', '),conditions=(guide?.flags||[]).join(', ');
- const fact=x.food==='Char kway teow'?
- ['Rice noodles provide carbohydrate for energy. Eggs, tofu, meat, seafood and vegetables contribute nutrients only when included.','Many restaurant versions can contain substantial added oil and sodium from sauces; exact amounts are unknown.','For home cooking, consider extra vegetables, a suitable protein, measured oil and moderate sauce.']:
- x.food==='Rice and dhal'?['Rice provides carbohydrate; dhal may provide plant protein and fibre.','Portion size and ghee or oil can change meal energy.','Add vegetables and measure added fats where useful.']:
- x.food==='Chicken and rice'?['Chicken can provide protein; rice provides carbohydrate.','Actual nutrition depends on chicken cut, preparation and portion.','Cook poultry thoroughly and add a variety of vegetables.']:
- ['Nutritional quality depends on actual ingredients, serving sizes and cooking choices.','Unknown recipe details prevent reliable calorie, sodium and fat estimates.','Include appropriate protein, vegetables and portions aligned with goals.'];
+ const known=x.ingredients||[];
+ const starchy=/(rice|bread|pasta|noodle|potato|oat|grain)/i.test(x.food)||['Rice','Bread','Pasta','Noodles'].includes(x.category);
+ const protein=known.some(n=>['Chicken','Prawn / seafood','Egg','Tofu'].includes(n))||/(fish|chicken|meat|egg|lentil|bean|tofu|yoghurt)/i.test(x.food)||['Chicken','Fish','Meat','Eggs','Beans / lentils','Dairy'].includes(x.category);
+ const veg=known.includes('Vegetables')||known.includes('Bean sprouts')||/\b(vegetable|salad|broccoli|cabbage|spinach|carrot)\b/i.test(x.food)||x.category==='Vegetables';
+ const fact=[
+  (starchy?'This meal may supply carbohydrates for energy. ':'')+(protein?'The named or confirmed ingredients may supply protein. ':'')+(veg?'The named or confirmed ingredients may supply fibre and micronutrients. ':'')+'Nutrient contributions depend on the actual recipe and amount eaten.',
+  'The exact energy, added oils, sodium, allergens and ingredients cannot be verified from a name or photo alone. Portion and sauces may change the nutritional profile.',
+  'Confirm ingredients and portion, then review vegetables, a suitable protein and cooking method for your needs. Adjust serving sizes in the context of your full daily intake.'
+ ];
  let blocks=[
  ['Potential positives',fact[0]],
  ['Potential limitations',fact[1]+(x.ingredients.includes('Pickles')?' Pickles can add sodium.':'')+(x.ingredients.includes('Chips')?' Chips can add substantial salt and energy.':'')],
@@ -76,7 +79,8 @@
  });
  document.addEventListener('submit',async ev=>{
   if(ev.target?.id!=='r43-foodform')return;ev.preventDefault();ev.stopImmediatePropagation();const d=new FormData(ev.target),v=n=>String(d.get(n)||'');
-  const x={id:crypto.randomUUID(),date:new Date().toISOString().slice(0,10),method:v('method'),meal:v('meal'),food:v('food'),portion:v('portion'),drink:v('drink'),ingredients:d.getAll('ingredient').map(String),methodCooking:v('methodCooking'),oil:v('oil'),oilAmount:v('oilAmount'),heat:v('heat'),pan:v('pan'),source:v('source'),notes:v('notes')};
+  if(!v('food').trim()){document.querySelector('#r43-food-status').textContent='Enter a food or dish name.';return}
+  const x={id:crypto.randomUUID(),date:new Date().toISOString().slice(0,10),method:v('method'),meal:v('meal'),food:v('food').trim(),category:v('category'),portion:v('portion'),drink:v('drink'),ingredients:d.getAll('ingredient').map(String),methodCooking:v('methodCooking'),oil:v('oil'),oilAmount:v('oilAmount'),heat:v('heat'),pan:v('pan'),source:v('source'),notes:v('notes')};
   document.querySelector('#r43-food-output').innerHTML=analyse(x);
   entries.unshift(x);try{await save();document.querySelector('#r43-food-log').innerHTML=log();document.querySelector('#r43-food-status').textContent='Saved encrypted fictional meal details; photo not stored.'}
   catch(e){entries.shift();document.querySelector('#r43-food-status').textContent='Not saved: '+e.message}
