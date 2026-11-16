@@ -8,7 +8,7 @@
  const BASE='https://world.openfoodfacts.org';
  const E=v=>r4esc(String(v??''));
  const fields='code,product_name,brands,quantity,nutriments,nutrition_data_per,serving_size';
- let lastSearch=0,latest=[],row=null;
+ let lastSearch=0;const matchesByRow=new WeakMap();
  const sane=(v,min,max)=>Number.isFinite(Number(v))&&Number(v)>=min&&Number(v)<=max?Number(v):null;
  const nutrient=(obj,key,max)=>sane(obj?.[key+'_100g'],0,max);
  function normalise(raw){
@@ -28,7 +28,7 @@
  function eligible(x){return x.code&&x.name&&x.kcal!==null}
  function closestRow(target){return target?.closest?.('[data-nutrient-row]')||null}
  async function search(trigger){
-  row=closestRow(trigger);if(!row)return;
+  const row=closestRow(trigger);if(!row)return;
   const query=row.querySelector('[data-food-lookup-term]')?.value?.trim()||'';
   if(query.length<2||query.length>90){showMessage(row,'Enter a product name (2–90 characters) or barcode.');return}
   const now=Date.now();
@@ -41,7 +41,7 @@
    if(!resp.ok)throw Error('Lookup failed (HTTP '+resp.status+').');
    const data=await resp.json();
    const products=Array.isArray(data.products)?data.products:data.product?[data.product]:[];
-   latest=products.map(normalise).filter(eligible).slice(0,8);
+   const latest=products.map(normalise).filter(eligible).slice(0,8);matchesByRow.set(row,latest);
    if(!latest.length){result.textContent='No products with a usable per-100g energy value found. Try a barcode, or enter label data manually.';return}
    result.replaceChildren();
    const intro=document.createElement('p');intro.textContent='Compare exact product, brand and label before applying. Open Food Facts is community-edited and may be wrong.';result.append(intro);
@@ -59,7 +59,7 @@
  }
  function showMessage(r,msg){const el=r?.querySelector('[data-food-matches]');if(el)el.textContent=msg}
  function apply(target){
-  const selected=Number(target.dataset.offChoice),x=latest[selected];const r=closestRow(target);
+  const selected=Number(target.dataset.offChoice),r=closestRow(target);const x=matchesByRow.get(r)?.[selected];
   if(!r||!x)return;
   if(!confirm('Does '+x.name+(x.brand?' ('+x.brand+')':'')+' exactly match the food, preparation and nutrition panel? Copy its community-sourced per-100g data for manual review?'))return;
   const inputs={reference:x.kcal,protein:x.protein,carbs:x.carbs,fat:x.fat};
