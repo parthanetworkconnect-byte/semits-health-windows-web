@@ -26,7 +26,7 @@ function env(){
  return {ctx,load,listeners,state};
 }
 test('new modules parse without syntax errors',()=>{
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','pwa_install.js','sw-r43.js'])
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js','pwa_install.js','sw-r43.js'])
   assert.doesNotThrow(()=>new vm.Script(fs.readFileSync(path.join(root,name),'utf8'),{filename:name}));
 });
 test('SEMITS Personal Guide has generic body goals and no fixed glute-shoulder programme',()=>{
@@ -66,7 +66,7 @@ test('PWA manifest is parseable and uses SEMITS branding',()=>{
 test('new modules are wired from index and service worker',()=>{
  const page=fs.readFileSync(path.join(root,'index.html'),'utf8');
  const worker=fs.readFileSync(path.join(root,'sw-r43.js'),'utf8');
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js']){
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js']){
   assert.ok(page.includes(name),name+' missing from entry point');
   assert.ok(worker.includes(name),name+' missing from offline shell');
  }
@@ -177,4 +177,26 @@ test('Ingredient worksheet uses explicit grams and per-100g references rather th
  assert.match(html,/data-reference/);
  assert.match(html,/Weight-management goal/);
  assert.match(html,/Unknown ingredients remain uncalculated/);
+});
+
+test('Packaged food lookup requires user confirmation and is safely blank on missing nutrients',()=>{
+ const e=env();e.load('r43_food_reference.js');
+ const norm=e.ctx.SEMITS_FOOD_REFERENCE.normalise({
+  code:'1234567890123',product_name:'Test food',brands:'Demo Brand',
+  nutriments:{'energy-kcal_100g':230,proteins_100g:12,'fat_100g':8}});
+ assert.equal(norm.kcal,230);
+ assert.equal(norm.protein,12);
+ assert.equal(norm.carbs,null);
+ assert.equal(norm.fat,8);
+ assert.match(e.ctx.SEMITS_FOOD_REFERENCE.requestURL('apple'),/cgi\/search\.pl/);
+ assert.match(e.ctx.SEMITS_FOOD_REFERENCE.requestURL('1234567890123'),/api\/v2\/product/);
+});
+test('Ingredient worksheet includes opt-in food reference lookup for every row',()=>{
+ const e=env();e.load('r43_nutrition_detail.js');
+ const html=e.ctx.SEMITS_NUTRIENT_WORKSHEET.detail({
+  meals:[{title:'Breakfast',recipe:{name:'Toast',description:'Bread 70 g'}}]
+ },{goal:'maintenance',flags:[]});
+ assert.match(html,/data-food-lookup-go/);
+ assert.match(html,/Find product/);
+ assert.match(html,/Only your search text is sent/);
 });
