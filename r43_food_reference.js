@@ -9,7 +9,7 @@
  const E=v=>r4esc(String(v??''));
  const fields='code,product_name,brands,quantity,nutriments,nutrition_data_per,serving_size';
  let lastSearch=0;const matchesByRow=new WeakMap();
- const sane=(v,min,max)=>Number.isFinite(Number(v))&&Number(v)>=min&&Number(v)<=max?Number(v):null;
+ const sane=(v,min,max)=>v===null||v===undefined||v===''?null:Number.isFinite(Number(v))&&Number(v)>=min&&Number(v)<=max?Number(v):null;
  const nutrient=(obj,key,max)=>sane(obj?.[key+'_100g'],0,max);
  function normalise(raw){
   const n=raw?.nutriments||{};
