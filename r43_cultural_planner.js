@@ -64,6 +64,12 @@ var SEMITS_CULTURAL_PLAN=(function(){
   snack:[recipe('Papaya and yoghurt','Papaya 180 g; plain yoghurt 150 g.',185,9),recipe('Guava and seeds','Guava 160 g; seeds 20 g.',195,7),recipe('Banana and unsweetened soy milk','Banana 100 g; soy milk 200 mL.',200,9)]
  }
  };
+ catalog['General / mixed']={
+ breakfast:[catalog.French.breakfast[0],catalog.Indian.breakfast[0],catalog.Chinese.breakfast[0],catalog.Malaysian.breakfast[1]],
+ lunch:[catalog.Chinese.lunch[0],catalog.French.lunch[1],catalog.Indian.lunch[0],catalog.Malaysian.lunch[0]],
+ dinner:[catalog.French.dinner[0],catalog.Chinese.dinner[1],catalog.Malaysian.dinner[2],catalog.Indian.dinner[0]],
+ snack:[catalog.French.snack[0],catalog.Malaysian.snack[0],catalog.Chinese.snack[0],catalog.Indian.snack[0]]
+ };
  const activity=[
  ['Monday','Brisk walking','30 min, comfortable talk-test pace; break after prolonged sitting'],
  ['Tuesday','Resistance training','25 min: supported squat-to-chair, wall push-ups, light rows; 1–2 comfortable sets'],
@@ -85,7 +91,7 @@ var SEMITS_CULTURAL_PLAN=(function(){
   const tdee=bmr?bmr*factor:null;
   const adjustment=hasTarget?Math.min(500,Math.abs(kg-target)*7700/(months*30.44)):0;
   const preliminary=tdee&&adult&&hasTarget?(kg>target?tdee-adjustment:tdee+adjustment):null;
-  const culture=catalog[a.culture]||catalog.French;
+  const culture=catalog[a.culture]||catalog['General / mixed'];
   const meals=Array.from({length:7},(_,i)=>{const bp=culture.breakfast[i%culture.breakfast.length],lu=culture.lunch[i%culture.lunch.length],di=culture.dinner[i%culture.dinner.length],sn=culture.snack[i%culture.snack.length];return {day:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][i],breakfast:bp,lunch:lu,dinner:di,snack:sn,total:bp.kcal+lu.kcal+di.kcal+sn.kcal,protein:bp.protein+lu.protein+di.protein+sn.protein}});
   const flags=[...(a.flags||[]),...(a.redflags||[])];const caution=flags.length||a.goal==='rehab'||a.goal==='condition'||a.painPattern==='Recurring / worsening'||a.painPattern==='Severe / sudden';
   return {age,cm,kg,target,months,bmi,goalBMI,rate,bmr,tdee,preliminary,meals,caution,flags,hasTarget,adult,sex,activity};
