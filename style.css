@@ -118,3 +118,11 @@
 .r43-nutrient-table th:first-child{width:25%}
 .r43-nutrient-table th:nth-child(n+2){width:auto}
 .r43-nutrient-table input{min-width:78px}
+
+/* Optional food-composition source lookup (Open Food Facts) */
+.r43-food-lookup{display:grid;gap:5px;margin-top:8px}
+.r43-food-lookup input{max-width:100%;min-width:100px}
+.r43-food-lookup .btn{font-size:11px;padding:6px 8px;white-space:normal}
+.r43-food-matches{display:grid;gap:5px;line-height:1.4;font-size:11px;min-width:180px;max-width:280px}
+.r43-lookup-choice{text-align:left;white-space:normal;overflow-wrap:anywhere}
+.r43-food-matches .note{font-size:11px}
