@@ -26,7 +26,7 @@ function env(){
  return {ctx,load,listeners,state};
 }
 test('new modules parse without syntax errors',()=>{
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js','r43_cooking_engine.js','pwa_install.js','sw-r43.js'])
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js','r43_cooking_engine.js','r43_retention_engine.js','r43_diet_review.js','pwa_install.js','sw-r43.js'])
   assert.doesNotThrow(()=>new vm.Script(fs.readFileSync(path.join(root,name),'utf8'),{filename:name}));
 });
 test('SEMITS Personal Guide has generic body goals and no fixed glute-shoulder programme',()=>{
@@ -66,7 +66,7 @@ test('PWA manifest is parseable and uses SEMITS branding',()=>{
 test('new modules are wired from index and service worker',()=>{
  const page=fs.readFileSync(path.join(root,'index.html'),'utf8');
  const worker=fs.readFileSync(path.join(root,'sw-r43.js'),'utf8');
- for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js','r43_cooking_engine.js']){
+ for(const name of ['r43_assistant.js','r43_medical_intelligence.js','r43_medical_extensions.js','r43_food_studio.js','r43_food_ai_extensions.js','r43_navigation.js','r43_cultural_planner.js','r43_annual_planner.js','r43_nutrition_detail.js','r43_food_reference.js','r43_cooking_engine.js','r43_retention_engine.js','r43_diet_review.js']){
   assert.ok(page.includes(name),name+' missing from entry point');
   assert.ok(worker.includes(name),name+' missing from offline shell');
  }
@@ -233,4 +233,29 @@ test('Cooking lab is connected to each ingredient worksheet in browser',()=>{
  assert.match(page,/Cooked recipe and plated serving calculator/);
  assert.match(page,/Final cooked batch weight/);
  assert.match(page,/Added oil actually included/);
+});
+
+test('Retention calculator requires explicitly sourced nutrient method and percentage',()=>{
+ const e=env();e.load('r43_retention_engine.js');
+ const calc=e.ctx.SEMITS_RETENTION_ENGINE.apply;
+ const good=calc({rawNutrientAmount:40,retentionPercent:60,reference:'Test data only - synthetic table row',
+  nutrient:'Vitamin C',foodGroup:'Vegetable test group',method:'Steamed'});
+ assert.equal(good.complete,true);assert.equal(good.cookedAmount,24);
+ assert.equal(calc({...good,retentionPercent:110}).complete,false);
+ assert.equal(calc({rawNutrientAmount:40,retentionPercent:60,nutrient:'Vitamin C'}).complete,false);
+});
+test('Diet review checklist never certifies clinical validation',()=>{
+ const e=env();e.load('r43_diet_review.js');
+ const q=e.ctx.SEMITS_DIET_REVIEW.assess({age:55,height:170,weight:95,diet:'Mixed / omnivore',flags:['Diabetes / prediabetes']},
+  {ingredientsMatched:false,yieldMeasured:false,nutrientCompleteness:false});
+ assert.equal(q.canBePresentedAsClinicallyValidated,false);
+ assert.equal(q.status,'NOT CLINICALLY VALIDATED');
+ assert.ok(q.issues.some(x=>/Allergen screening/.test(x)));
+});
+test('New cooking retention and diet review panels are wired to meal worksheet',()=>{
+ const e=env();e.load('r43_cooking_engine.js');e.load('r43_retention_engine.js');e.load('r43_diet_review.js');e.load('r43_nutrition_detail.js');
+ const h=e.ctx.SEMITS_NUTRIENT_WORKSHEET.detail({meals:[{title:'Breakfast',recipe:{name:'Test',description:'Oats 70 g'}}]},
+  {age:55,diet:'Mixed / omnivore',flags:[]});
+ assert.match(h,/Optional nutrient retention/);
+ assert.match(h,/Clinical validation and diet safety status/);
 });
