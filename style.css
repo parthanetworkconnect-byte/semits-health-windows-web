@@ -111,3 +111,10 @@
 .r43-day-benefits{background:#f5f8f6;border:1px solid #dbe5dc;border-radius:11px;padding:14px;margin:13px 0}
 .r43-day-benefits h4{margin:0 0 7px}.r43-day-benefits p{margin:0;line-height:1.5}
 @media(max-width:740px){.r43-nutrient-table{table-layout:auto;display:block;overflow-x:auto;white-space:normal}.r43-nutrient-table th,.r43-nutrient-table td{min-width:85px}}
+
+/* Eight-column measured nutrient worksheet: horizontal scroll on smaller screens */
+.r43-nutrient-meal{overflow-x:auto}
+.r43-nutrient-table{min-width:960px;table-layout:auto}
+.r43-nutrient-table th:first-child{width:25%}
+.r43-nutrient-table th:nth-child(n+2){width:auto}
+.r43-nutrient-table input{min-width:78px}
