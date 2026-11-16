@@ -1,6 +1,6 @@
 'use strict';
-const CACHE='semits-r43-shell-v9';
-const STATIC=['./index.html','./style.css','./r4.css','./r41.css','./r42.css','./app.js','./living.js','./unified.js','./r4.js','./r41.js','./r42.js','./r43_assistant.js','./r43_medical_intelligence.js','./r43_medical_extensions.js','./r43_food_studio.js','./r43_food_ai_extensions.js','./r43_navigation.js','./r43_cultural_planner.js','./r43_annual_planner.js','./pwa_install.js','./manifest.webmanifest','./legacy/assets/icon.svg'];
+const CACHE='semits-r43-shell-v10';
+const STATIC=['./index.html','./style.css','./r4.css','./r41.css','./r42.css','./app.js','./living.js','./unified.js','./r4.js','./r41.js','./r42.js','./r43_assistant.js','./r43_medical_intelligence.js','./r43_medical_extensions.js','./r43_food_studio.js','./r43_food_ai_extensions.js','./r43_navigation.js','./r43_cultural_planner.js','./r43_annual_planner.js','./r43_nutrition_detail.js','./pwa_install.js','./manifest.webmanifest','./legacy/assets/icon.svg'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(STATIC)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('semits-r43-shell-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(e.request.method!=='GET'||u.origin!==self.location.origin)return;if(u.pathname.endsWith('/')||u.pathname.endsWith('/index.html')){e.respondWith(fetch(e.request).catch(()=>caches.match('./index.html')));return}if(STATIC.some(p=>new URL(p,self.registration.scope).pathname===u.pathname)){e.respondWith(caches.match(e.request).then(x=>x||fetch(e.request)));}});
