@@ -43,9 +43,9 @@
     l=pools?pools.lunch[(i+salt+4)%pools.lunch.length]:base.meals[(i+salt+4)%7].lunch;
     s=pools?pools.snack[(i+salt+8)%pools.snack.length]:base.meals[(i+salt+8)%7].snack;
     d=pools?pools.dinner[(i+salt+12)%pools.dinner.length]:base.meals[(i+salt+12)%7].dinner;
-    fruit=FRUITS[(i+salt*3)%FRUITS.length];
-    veg=VEGETABLES[(i*5+salt)%VEGETABLES.length];
-    drink=BEVERAGES[(i+salt)%BEVERAGES.length];
+    fruit=FRUITS[(i+salt)%FRUITS.length];
+    veg=VEGETABLES[(Math.floor(i/7)+salt*5)%VEGETABLES.length];
+    drink=BEVERAGES[(Math.floor(i/13)+salt*3)%BEVERAGES.length];
     key=[b.name,l.name,s.name,d.name,fruit[0],veg,drink[0]].join(' | ');
     salt++;
     if(salt>5000)throw Error('Could not produce a distinct daily menu');
